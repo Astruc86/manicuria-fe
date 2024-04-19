@@ -4,8 +4,6 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import "../footer/footer.css"
 import data from "../../json/empresa.json"
 
-
-
 export default function Footer() {
   return (
     <footer className='footer '>
