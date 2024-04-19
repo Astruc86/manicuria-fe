@@ -1,7 +1,7 @@
 import FacebookIcon from '@mui/icons-material/Facebook';
 import XIcon from '@mui/icons-material/X';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import "../footer/Footer.css"
+import "../footer/footer.css"
 import data from "../../json/empresa.json"
 
 
