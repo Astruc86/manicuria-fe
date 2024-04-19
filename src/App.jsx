@@ -1,9 +1,9 @@
 import { Navigate, Routes, Route } from "react-router-dom"
-import { Navbar } from "./components/Navbar"
+import { Navbar } from "./components/navbar/Navbar"
 import { ContactoScreen } from "./pages/ContactoScreen"
 import { HomeScreen } from "./pages/HomeScreen"
 import { TurnoScreen } from "./pages/TurnoScreen"
-import Footer from "./components/Footer"
+import Footer from "./components/footer/Footer"
 
 
 

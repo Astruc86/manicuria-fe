@@ -1,5 +1,5 @@
-import "../styles/InformacionContacto.css"
-import data from "../json/empresa.json"
+import "./informacionContacto.css"
+import data from "../../json/empresa.json"
 
 export const InformacionContacto = () => {
   return (

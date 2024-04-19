@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { InformacionContacto } from "../components/InformacionContacto"
-import "../styles/ContactoSreen.css"
+import { InformacionContacto } from "../components/informacionContacto/InformacionContacto"
+
+
 
 export const ContactoScreen = () => {
 
