@@ -1,7 +1,7 @@
 export const TurnoScreen = () => {
   return (
     <>
-      <h1 className="tituloPages">TurnoScreen</h1>
+      <h1 >TurnoScreen</h1>
       <hr />
     </>
   )

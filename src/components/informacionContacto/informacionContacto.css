@@ -1,9 +1,8 @@
-.tarjeta{
-    display: flex;
-    padding: 10px;
-
+.tarjeta {
+  display: flex;
+  padding: 10px;
 }
-.tituloInformacion{
-    font: size fs -3px;
-    margin-top: 30px;
+.titulo-informacion {
+  font: size fs -3px;
+  margin-top: 30px;
 }

@@ -7,11 +7,11 @@ export const InformacionContacto = () => {
   return (
     <div className="tarjeta">
       <div>
-        <h3 className="tituloInformacion">Teléfono</h3>
+        <h3 className="titulo-informacion">Teléfono</h3>
         <p>{data.telefono}</p>
-        <h3 className="tituloInformacion">Dirección</h3>
+        <h3 className="titulo-informacion">Dirección</h3>
         <p>{data.direccion}</p>
-        <h3 className="tituloInformacion">Horarios</h3>
+        <h3 className="titulo-informacion">Horarios</h3>
         <>
           {horario.map((item, index) => (
             <p key={index}>{item}</p>
