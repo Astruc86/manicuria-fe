@@ -4,13 +4,14 @@ import { ContactoScreen } from "./pages/ContactoScreen"
 import { HomeScreen } from "./pages/HomeScreen"
 import { TurnoScreen } from "./pages/TurnoScreen"
 import Footer from "./components/footer/Footer"
+import "./index.css"
 
 
 
 export const App = () => {
 
   return (
-    <>
+    <div className="app-container">
       <Navbar></Navbar>
       <div className="container">
         <Routes>
@@ -21,6 +22,6 @@ export const App = () => {
         </Routes>
       </div>
       <Footer></Footer>
-    </>
+    </div>
   )
 }

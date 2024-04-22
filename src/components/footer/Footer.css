@@ -1,12 +1,11 @@
 .footer-iconos .icono {
-    width: 50px;
-    height: 200px;
+  width: 50px;
+  height: 200px;
 }
-.footer{
-        background-color: aqua;
-        border-top: 2px solid rgba(0, 0, 0, 0.24);  
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-    }
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
