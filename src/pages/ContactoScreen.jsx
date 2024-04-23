@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react"
-import { InformacionContacto } from "../components/InformacionContacto"
-import "../styles/ContactoSreen.css"
+import { useEffect, useState } from "react";
+import { InformacionContacto } from "../components/informacionContacto/InformacionContacto";
+import "../styles/contactoScreen.css";
 
 export const ContactoScreen = () => {
-
   /*
   const [info, setInfo] = useState([])
 
@@ -20,10 +19,8 @@ export const ContactoScreen = () => {
 */
   return (
     <>
-      <h1 className="tituloPages">Contacto</h1>
+      <h1>Contacto</h1>
       <InformacionContacto></InformacionContacto>
-
     </>
-    
-  )
-}
+  );
+};

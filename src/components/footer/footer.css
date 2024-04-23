@@ -1,0 +1,15 @@
+.footer-iconos .icono {
+    width: 50px;
+    height: 200px;
+  }
+  
+  .footer {
+    background-color: #333;
+    color: #fff;
+    height: 200px;
+  }
+  
+  .footer-iconos{
+    height: 100%;
+    align-items: center;
+  }
