@@ -6,7 +6,10 @@
   .footer {
     background-color: #333;
     color: #fff;
-    text-align: center;
-    padding: 10px;
+    height: 200px;
   }
   
+  .footer-iconos{
+    height: 100%;
+    align-items: center;
+  }

@@ -7,7 +7,7 @@ import "../footer/footer.css"
 export default function Footer() {
   return (
     <footer className='footer'>
-      <div className="footer-iconos mt-5 d-flex justify-content-evenly">
+      <div className="footer-iconos d-flex justify-content-evenly">
         <a href={data.urlFacebook} target="_blank" rel="noopener noreferrer">
           <FacebookIcon className='icono' />
         </a>
