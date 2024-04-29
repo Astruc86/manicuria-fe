@@ -5,7 +5,7 @@ import data from "../../json/listaCarrusel.json";
 
 const Carrusel = () => {
   return (
-    <Carousel className="d-flex align-items-center justify-content-center">
+    <Carousel className="d-flex align-items-center justify-content-center " >
       {data.map((item) => (
         <Carousel.Item key={item.id}>
           <img
