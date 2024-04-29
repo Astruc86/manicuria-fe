@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-// Importa el archivo JSON (puedes usar fetch o axios para cargarlo)
 import data from "../../json/servicio.json";
+import "./servicio-item.css"
 
-const ServicioItem = ({ servicio }) => {
+const ServicioItem = ({ servicio, handleClick, isSelected }) => {
+  const className = isSelected ? 'servicio-item-wrapper selected' : 'servicio-item-wrapper';
+
   return (
-    <div className="servicio-item">
+    <div className={className} onClick={() => handleClick(servicio)}>
       <div className="servicio-info">
         <h3>{servicio.nombre}</h3>
         <p>{servicio.descripcion}</p>
@@ -19,6 +21,7 @@ const ServicioItem = ({ servicio }) => {
 
 const ServicioList = () => {
   const [servicios, setServicios] = useState([]);
+  const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
 
   useEffect(() => {
     // Simula una carga asíncrona de datos (puedes ajustarlo a tu método real)
@@ -28,10 +31,19 @@ const ServicioList = () => {
     }, 1000); // Simula un segundo de carga
   }, []);
 
+  const handleClick = (servicio) => {
+    setServicioSeleccionado(servicio);
+  };
+
   return (
     <div className="servicio-list">
       {servicios.map((servicio, index) => (
-        <ServicioItem key={index} servicio={servicio} />
+        <ServicioItem
+          key={index}
+          servicio={servicio}
+          handleClick={handleClick}
+          isSelected={servicio === servicioSeleccionado}
+        />
       ))}
     </div>
   );
