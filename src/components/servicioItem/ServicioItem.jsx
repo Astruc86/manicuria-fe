@@ -6,15 +6,15 @@ const ServicioItem = ({ servicio, handleClick, isSelected }) => {
   const className = isSelected ? 'servicio-item-wrapper selected' : 'servicio-item-wrapper';
 
   return (
-    <div className={className} onClick={() => handleClick(servicio)}>
-      <div className="servicio-info">
-        <h3>{servicio.nombre}</h3>
+     <div className={className} onClick={() => handleClick(servicio)}>
+      <div className="servicio-info d-flex justify-content-between" >
+        <p>{servicio.nombre}</p>
+        <p>{servicio.duracion} min</p>
+        <p>${servicio.precio}</p>
+      </div>
+      <>
         <p>{servicio.descripcion}</p>
-      </div>
-      <div className="servicio-detalles">
-        <span>{servicio.duracion} min</span>
-        <span>${servicio.precio}</span>
-      </div>
+      </>
     </div>
   );
 };
@@ -24,10 +24,9 @@ const ServicioList = () => {
   const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
 
   useEffect(() => {
-    // Simula una carga asíncrona de datos (puedes ajustarlo a tu método real)
-    // Por ejemplo, si usas fetch o axios, cargarías los datos aquí.
+    //Aca va el fetch
     setTimeout(() => {
-      setServicios(data); // Carga los datos del JSON en el estado
+      setServicios(data); 
     }, 1000); // Simula un segundo de carga
   }, []);
 
@@ -36,7 +35,7 @@ const ServicioList = () => {
   };
 
   return (
-    <div className="servicio-list">
+    <div className="servicio-list" >
       {servicios.map((servicio, index) => (
         <ServicioItem
           key={index}
