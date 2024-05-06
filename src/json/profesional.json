@@ -1,0 +1,17 @@
+[
+    {
+        "id":"1",
+        "nombre":"nombe1",
+        "listaServicios": []
+    },
+    {
+        "id":"2",
+        "nombre":"nombe2",
+        "listaServicios": []
+    },
+    {
+        "id":"3",
+        "nombre":"nombe3",
+        "listaServicios": []
+    }
+]
