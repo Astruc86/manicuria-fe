@@ -14,7 +14,6 @@
 .servicio-item-wrapper {
   padding: 27px;
   margin-bottom: 10px;
-  background-color: aqua;
   cursor: pointer;
   border: 1px solid #ccc;
 }
@@ -24,7 +23,7 @@
 }
 
 .servicio-item-wrapper.selected {
-  background-color: #aaa;
+  background-color: #ff7d51;
   color: white;
 }
 

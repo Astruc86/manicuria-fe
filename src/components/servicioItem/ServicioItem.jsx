@@ -7,7 +7,7 @@ const ServicioItem = ({ servicio, handleClick, isSelected }) => {
 
   return (
      <div className={className} onClick={() => handleClick(servicio)}>
-      <div className="servicio-info d-flex justify-content-between" >
+      <div className="servicio-info d-flex justify-content-between">
         <p>{servicio.nombre}</p>
         <p>{servicio.duracion} min</p>
         <p>${servicio.precio}</p>
@@ -24,10 +24,7 @@ const ServicioList = () => {
   const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
 
   useEffect(() => {
-    //Aca va el fetch
-    setTimeout(() => {
-      setServicios(data); 
-    }, 1000); // Simula un segundo de carga
+    setServicios(data);
   }, []);
 
   const handleClick = (servicio) => {
@@ -35,7 +32,7 @@ const ServicioList = () => {
   };
 
   return (
-    <div className="servicio-list" >
+    <div className="servicio-list">
       {servicios.map((servicio, index) => (
         <ServicioItem
           key={index}
