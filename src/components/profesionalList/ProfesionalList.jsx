@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import data from "../../json/profesional.json";
-import "./profesional-item.css"; // Asegúrate de tener el archivo CSS correcto
+import "./profesional-item.css"; 
 
 const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
   const className = isSelected ? 'profesional-item-wrapper selected' : 'profesional-item-wrapper';
@@ -19,7 +19,13 @@ const ProfesionalList = () => {
   const [profesionalSeleccionado, setProfesionalSeleccionado] = useState(null);
 
   useEffect(() => {
-    setProfesionales(["Primer profesional disponible", ...data]);
+    const primerProfesional = {
+      id: 0,
+      nombre: "Primer Profesional Disponible",
+      listaServicios: []
+    };
+
+    setProfesionales([primerProfesional, ...data]);
   }, []);
 
   const handleClick = (profesional) => {
