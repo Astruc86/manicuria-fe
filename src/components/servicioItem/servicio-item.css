@@ -1,0 +1,55 @@
+/* Estilos base */
+.servicio-item {
+  font-size: 1.2em;
+}
+
+.servicio-info p {
+  font-size: 1.2em;
+}
+
+.servicio-detalles {
+  font-size: 1.2em;
+}
+
+.servicio-item-wrapper {
+  padding: 27px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+.servicio-item-wrapper:hover {
+  background-color: #f0f0f0;
+}
+
+.servicio-item-wrapper.selected {
+  background-color: #ffd1af;
+  color: black;
+}
+
+.servicio-list {
+  padding: 0.625rem 10.5rem 1.25rem;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+  .servicio-item-wrapper {
+    padding: 15px;
+    font-size: 1em; /* Ajusta el tamaño de fuente según sea necesario */
+  }
+  
+  .servicio-list {
+    padding: 0.625rem 2rem; /* Ajusta el padding horizontal según sea necesario */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .servicio-item-wrapper {
+    padding: 10px;
+    font-size: 0.8em; /* Ajusta el tamaño de fuente según sea necesario */
+  }
+  
+  .servicio-list {
+    padding: 0.625rem 1rem; /* Ajusta el padding horizontal según sea necesario */
+  }
+}
