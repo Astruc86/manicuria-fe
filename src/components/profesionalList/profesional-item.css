@@ -23,8 +23,8 @@
   }
   
   .profesional-item-wrapper.selected {
-    background-color: #ff7d51;
-    color: white;
+    background-color: #ffd1af;
+    color: black;
   }
   
   .profesional-list {
