@@ -1,15 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Carrusel from '../components/Carrusel/Carrusel'
 
 export const HomeScreen = () => {
   return (
     <>
-      <h1>HomeScreen</h1>
-      <hr />
-
-      <div className="d-grid gap-2 col-2 mx-auto">
-      <Link to="/turno">
+      <Carrusel></Carrusel>
+      <div className="d-flex justify-content-center mt-5">
+        <Link to="/turno">
           <button type="button" className="btn btn-outline-primary">
             Reservar turno
           </button>
