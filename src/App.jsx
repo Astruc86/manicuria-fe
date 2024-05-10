@@ -2,9 +2,10 @@ import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/navbar/Navbar";
 import { ContactoScreen } from "./pages/ContactoScreen";
 import { HomeScreen } from "./pages/HomeScreen";
-import { TurnoScreen } from "./pages/TurnoScreen";
+import  TurnoScreen  from "./pages/TurnoScreen";
 import Footer from "./components/footer/Footer";
 import "./index.css";
+import { TurnoProvider } from "./context/TurnoContext";
 
 export const App = () => {
   const location = useLocation();
