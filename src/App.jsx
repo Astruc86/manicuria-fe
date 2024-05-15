@@ -2,10 +2,10 @@ import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/navbar/Navbar";
 import { ContactoScreen } from "./pages/ContactoScreen";
 import { HomeScreen } from "./pages/HomeScreen";
-import  TurnoScreen  from "./pages/TurnoScreen";
+import TurnoScreen from "./pages/TurnoScreen";
 import Footer from "./components/footer/Footer";
 import "./index.css";
-import { TurnoProvider } from "./context/TurnoContext";
+import { AppProvider } from "./context/TurnoContext";
 
 export const App = () => {
   const location = useLocation();
@@ -16,14 +16,19 @@ export const App = () => {
   return (
     <div className="app-container">
       <Navbar></Navbar>
-      <div className="container">
-        <Routes>
-          <Route path="/home" element={<HomeScreen></HomeScreen>}></Route>
-          <Route path="/turno" element={<TurnoScreen></TurnoScreen>}></Route>
-          <Route path="/contacto" element={<ContactoScreen></ContactoScreen>}></Route>
-          <Route path="/*" element={<Navigate to="/home"></Navigate>}></Route>
-        </Routes>
-      </div>
+      <AppProvider>
+        <div className="container">
+          <Routes>
+            <Route path="/home" element={<HomeScreen></HomeScreen>}></Route>
+            <Route path="/turno" element={<TurnoScreen></TurnoScreen>}></Route>
+            <Route
+              path="/contacto"
+              element={<ContactoScreen></ContactoScreen>}
+            ></Route>
+            <Route path="/*" element={<Navigate to="/home"></Navigate>}></Route>
+          </Routes>
+        </div>
+      </AppProvider>
       {mostrarFooter && <Footer />}
     </div>
   );
