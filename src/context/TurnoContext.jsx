@@ -25,6 +25,6 @@ export const AppProvider = ({ children }) => {
     );
 };
 
-export const useAppContext = () => useContext(AppContext); // Exporta useAppContext
+export const useAppContext = () => useContext(AppContext);
 
 export default AppContext;
