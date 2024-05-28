@@ -10,11 +10,15 @@ const StepperComponent = ({
   handleNext,
   handleBack,
   getStepContent,
+  seleccionServicio,
+  profesionalSeleccionado,
 }) => {
+  const isNextButtonDisabled = (activeStep === 0 && !seleccionServicio) || (activeStep === 1 && !profesionalSeleccionado);
+
   return (
     <>
       <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label, index) => (
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
@@ -31,7 +35,7 @@ const StepperComponent = ({
             Volver
           </Button>
           <Button
-            disabled={activeStep === steps.length - 1}
+            disabled={isNextButtonDisabled}
             onClick={handleNext}
           >
             Siguiente

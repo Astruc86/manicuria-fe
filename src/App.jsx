@@ -5,7 +5,7 @@ import { HomeScreen } from "./pages/HomeScreen";
 import TurnoScreen from "./pages/TurnoScreen";
 import Footer from "./components/footer/Footer";
 import "./index.css";
-import { AppProvider } from "./context/TurnoContext";
+import { AppProvider } from "./context/StepperContext";
 
 export const App = () => {
   const location = useLocation();

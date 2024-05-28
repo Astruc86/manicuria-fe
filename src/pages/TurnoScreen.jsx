@@ -1,10 +1,9 @@
-// TurnoScreen.js
 import React, { useContext } from 'react';
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
 import ProfesionalInfo from "../components/profesionalList/ProfesionalInfo"; 
-import TurnoContext from '../context/TurnoContext';
+import StepperContext from '../context/StepperContext';
 
 const TurnoScreen = () => {
     const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
@@ -13,9 +12,14 @@ const TurnoScreen = () => {
         setActiveStep,
         seleccionServicio,
         setSeleccionServicio,
-        seleccionProfesional,
-        setSeleccionProfesional
-    } = useContext(TurnoContext);
+        profesionalSeleccionado,
+        setProfesionalSeleccionado,
+    } = useContext(StepperContext);
+
+    console.log('Active Step:', activeStep);
+    console.log('Total Steps:', steps.length);
+    console.log('Seleccion Servicio:', seleccionServicio);
+    console.log('Seleccion Profesional:', profesionalSeleccionado);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -33,7 +37,7 @@ const TurnoScreen = () => {
                 return (
                     <>
                         <ProfesionalInfo />
-                        <ProfesionalList setSeleccion={setSeleccionProfesional} />
+                        <ProfesionalList setSeleccion={setProfesionalSeleccionado} />
                     </>
                 );
             case 2:
@@ -54,6 +58,8 @@ const TurnoScreen = () => {
                 handleNext={handleNext}
                 handleBack={handleBack}
                 getStepContent={getStepContent}
+                seleccionServicio={seleccionServicio}
+                profesionalSeleccionado={profesionalSeleccionado}
             />
         </>
     );

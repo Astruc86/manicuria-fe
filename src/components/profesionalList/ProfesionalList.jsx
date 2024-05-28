@@ -1,6 +1,5 @@
-// ProfesionalList.js
 import React from 'react';
-import { useAppContext } from '../../context/TurnoContext'; 
+import { useAppContext } from '../../context/StepperContext'; 
 import data from "../../json/profesional.json";
 import "./profesional-item.css";
 
@@ -31,7 +30,7 @@ const ProfesionalList = () => {
 
     const handleClick = (profesional) => {
         setProfesionalSeleccionado(profesional);
-        console.log(profesional)
+        console.log(profesional);
     };
 
     return (

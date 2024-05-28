@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import data from "../../json/servicio.json";
-import { useAppContext } from '../../context/TurnoContext'; 
+import { useAppContext } from '../../context/StepperContext'; 
 import "./servicio-item.css";
 
 const ServicioItem = ({ servicio, handleClick, isSelected }) => {
@@ -29,7 +29,7 @@ const ServicioList = () => {
   }, []);
 
   const handleClick = (servicio) => {
-    console.log("Servicio clickeado:", servicio); 
+    console.log("Servicio clickeado:", servicio); //Borrar
     setSeleccionServicio(servicio);
   };
 

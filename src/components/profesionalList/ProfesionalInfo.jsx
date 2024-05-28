@@ -1,6 +1,5 @@
-// ProfesionalInfo.js
 import React from 'react';
-import { useAppContext } from '../../context/TurnoContext'; // Importa useAppContext
+import { useAppContext } from '../../context/StepperContext';
 
 const ProfesionalInfo = () => {
     const { profesionalSeleccionado } = useAppContext();
