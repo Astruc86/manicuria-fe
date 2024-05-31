@@ -5,7 +5,7 @@ import { HomeScreen } from "./pages/HomeScreen";
 import TurnoScreen from "./pages/TurnoScreen";
 import Footer from "./components/footer/Footer";
 import "./index.css";
-import { AppProvider } from "./context/StepperContext";
+import { StepperProvider } from "./context/StepperContext"; // Cambiar AppProvider por StepperProvider
 
 export const App = () => {
   const location = useLocation();
@@ -15,20 +15,17 @@ export const App = () => {
 
   return (
     <div className="app-container">
-      <Navbar></Navbar>
-      <AppProvider>
+      <Navbar />
+      <StepperProvider> {/* Cambiar AppProvider por StepperProvider */}
         <div className="container">
           <Routes>
-            <Route path="/home" element={<HomeScreen></HomeScreen>}></Route>
-            <Route path="/turno" element={<TurnoScreen></TurnoScreen>}></Route>
-            <Route
-              path="/contacto"
-              element={<ContactoScreen></ContactoScreen>}
-            ></Route>
-            <Route path="/*" element={<Navigate to="/home"></Navigate>}></Route>
+            <Route path="/home" element={<HomeScreen />} />
+            <Route path="/turno" element={<TurnoScreen />} />
+            <Route path="/contacto" element={<ContactoScreen />} />
+            <Route path="/*" element={<Navigate to="/home" />} />
           </Routes>
         </div>
-      </AppProvider>
+      </StepperProvider>
       {mostrarFooter && <Footer />}
     </div>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAppContext } from '../../context/StepperContext';
+import { useStepperContext } from '../../context/StepperContext';
 
 const ProfesionalInfo = () => {
-    const { profesionalSeleccionado } = useAppContext();
+    const { profesionalSeleccionado } = useStepperContext();
 
     return (
         <div>

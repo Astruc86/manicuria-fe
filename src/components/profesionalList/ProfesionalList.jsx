@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppContext } from '../../context/StepperContext'; 
+import { useStepperContext } from '../../context/StepperContext'; 
 import data from "../../json/profesional.json";
 import "./profesional-item.css";
 
@@ -16,7 +16,7 @@ const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
 };
 
 const ProfesionalList = () => {
-    const { profesionalSeleccionado, setProfesionalSeleccionado } = useAppContext();
+    const { profesionalSeleccionado, setProfesionalSeleccionado } = useStepperContext();
     const [profesionales, setProfesionales] = React.useState([]);
 
     React.useEffect(() => {

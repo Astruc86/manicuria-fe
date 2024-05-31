@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import data from "../../json/servicio.json";
-import { useAppContext } from '../../context/StepperContext'; 
+import { useStepperContext } from '../../context/StepperContext'; 
 import "./servicio-item.css";
 
 const ServicioItem = ({ servicio, handleClick, isSelected }) => {
@@ -13,23 +13,24 @@ const ServicioItem = ({ servicio, handleClick, isSelected }) => {
         <p>{servicio.duracion} min</p>
         <p>${servicio.precio}</p>
       </div>
-      <>
-        <p>{servicio.descripcion}</p>
-      </>
+      <p>{servicio.descripcion}</p>
     </div>
   );
 };
 
 const ServicioList = () => {
-  const { seleccionServicio, setSeleccionServicio } = useAppContext();
-  const [servicios, setServicios] = React.useState([]);
+  const { seleccionServicio, setSeleccionServicio } = useStepperContext();
+  const [servicios, setServicios] = useState([]);
 
   useEffect(() => {
-    setServicios(data);
+    try {
+      setServicios(data);
+    } catch (error) {
+      console.error("Error loading services data:", error);
+    }
   }, []);
 
   const handleClick = (servicio) => {
-    console.log("Servicio clickeado:", servicio); //Borrar
     setSeleccionServicio(servicio);
   };
 
