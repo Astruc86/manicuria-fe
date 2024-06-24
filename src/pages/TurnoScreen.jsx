@@ -2,7 +2,6 @@ import React from 'react';
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
-import ProfesionalInfo from "../components/profesionalList/ProfesionalInfo"; 
 import { useStepperContext } from '../context/StepperContext';
 
 const TurnoScreen = () => {
@@ -15,12 +14,6 @@ const TurnoScreen = () => {
         profesionalSeleccionado,
         setProfesionalSeleccionado,
     } = useStepperContext();
-
-    console.log('Active Step:', activeStep);
-    console.log('Total Steps:', steps.length);
-    console.log('Seleccion Servicio:', seleccionServicio);
-    console.log('Seleccion Profesional:', profesionalSeleccionado);
-//borrar al final
 
     const handleNext = () => {
         if (activeStep < steps.length - 1) {
@@ -41,7 +34,6 @@ const TurnoScreen = () => {
             case 1:
                 return (
                     <>
-                        <ProfesionalInfo />
                         <ProfesionalList setSeleccion={setProfesionalSeleccionado} />
                     </>
                 );

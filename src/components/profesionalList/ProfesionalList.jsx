@@ -21,7 +21,7 @@ const ProfesionalList = () => {
 
     React.useEffect(() => {
         const primerProfesional = {
-            id: 0,
+            id: '0',
             nombre: "Primer Profesional Disponible",
             listaServicios: []
         };
@@ -30,7 +30,6 @@ const ProfesionalList = () => {
 
     const handleClick = (profesional) => {
         setProfesionalSeleccionado(profesional);
-        console.log(profesional);
     };
 
     return (
@@ -40,7 +39,7 @@ const ProfesionalList = () => {
                     key={index}
                     profesional={profesional}
                     handleClick={handleClick}
-                    isSelected={profesional === profesionalSeleccionado}
+                    isSelected={profesionalSeleccionado && profesional.id === profesionalSeleccionado.id}
                 />
             ))}
         </div>
