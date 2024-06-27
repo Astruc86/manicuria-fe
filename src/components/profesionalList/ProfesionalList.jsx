@@ -21,7 +21,7 @@ const ProfesionalList = () => {
 
     React.useEffect(() => {
         const primerProfesional = {
-            id: '0',
+            id: 0,
             nombre: "Primer Profesional Disponible",
             listaServicios: []
         };
