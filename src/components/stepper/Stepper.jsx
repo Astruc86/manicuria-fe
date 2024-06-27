@@ -18,7 +18,7 @@ const StepperComponent = ({
     (activeStep === 1 && !profesionalSeleccionado);
 
   const isLastStep = activeStep === steps.length - 1;
-  
+
   return (
     <>
       <Stepper activeStep={activeStep} alternativeLabel>

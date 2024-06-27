@@ -13,9 +13,11 @@ const TurnoScreen = () => {
         setSeleccionServicio,
         profesionalSeleccionado,
         setProfesionalSeleccionado,
+        clearFutureSteps 
     } = useStepperContext();
 
     const handleNext = () => {
+        clearFutureSteps(activeStep); 
         if (activeStep < steps.length - 1) {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }

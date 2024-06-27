@@ -7,6 +7,11 @@ export const StepperProvider = ({ children }) => {
     const [seleccionServicio, setSeleccionServicio] = useState(null);
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState(null);
 
+    const clearFutureSteps = (step) => {
+        if (step < 1) setProfesionalSeleccionado(null);
+        //Agrear mas condiciones para limpiar pasos futuros
+    };
+
     return (
         <StepperContext.Provider value={{
             activeStep,
@@ -14,7 +19,8 @@ export const StepperProvider = ({ children }) => {
             seleccionServicio,
             setSeleccionServicio,
             profesionalSeleccionado,
-            setProfesionalSeleccionado
+            setProfesionalSeleccionado,
+            clearFutureSteps
         }}>
             {children}
         </StepperContext.Provider>
