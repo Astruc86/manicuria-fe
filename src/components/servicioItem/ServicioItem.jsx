@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import data from "../../json/servicio.json";
-import { useStepperContext } from '../../context/StepperContext'; 
+import { useStepperContext } from "../../context/StepperContext";
 import "./servicio-item.css";
 
 const ServicioItem = ({ servicio, handleClick, isSelected }) => {
-  const className = isSelected ? 'servicio-item-wrapper selected' : 'servicio-item-wrapper';
+  const className = isSelected
+    ? "servicio-item-wrapper selected"
+    : "servicio-item-wrapper";
 
   return (
     <div className={className} onClick={() => handleClick(servicio)}>
