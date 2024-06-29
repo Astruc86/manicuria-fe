@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
+import { useStepperContext } from "../../context/StepperContext";
 import data from "../../json/profesional.json";
-import "./profesional-item.css"; 
+import "./profesional-item.css";
 
 const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
-  const className = isSelected ? 'profesional-item-wrapper selected' : 'profesional-item-wrapper';
+  const className = isSelected
+    ? "profesional-item-wrapper selected"
+    : "profesional-item-wrapper";
 
   return (
     <div className={className} onClick={() => handleClick(profesional)}>
@@ -15,16 +18,16 @@ const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
 };
 
 const ProfesionalList = () => {
-  const [profesionales, setProfesionales] = useState([]);
-  const [profesionalSeleccionado, setProfesionalSeleccionado] = useState(null);
+  const { profesionalSeleccionado, setProfesionalSeleccionado } =
+    useStepperContext();
+  const [profesionales, setProfesionales] = React.useState([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const primerProfesional = {
       id: 0,
       nombre: "Primer Profesional Disponible",
-      listaServicios: []
+      listaServicios: [],
     };
-
     setProfesionales([primerProfesional, ...data]);
   }, []);
 
@@ -39,7 +42,10 @@ const ProfesionalList = () => {
           key={index}
           profesional={profesional}
           handleClick={handleClick}
-          isSelected={profesional === profesionalSeleccionado}
+          isSelected={
+            profesionalSeleccionado &&
+            profesional.id === profesionalSeleccionado.id
+          }
         />
       ))}
     </div>

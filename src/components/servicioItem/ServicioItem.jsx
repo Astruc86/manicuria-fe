@@ -1,34 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import data from "../../json/servicio.json";
-import "./servicio-item.css"
+import { useStepperContext } from "../../context/StepperContext";
+import "./servicio-item.css";
 
 const ServicioItem = ({ servicio, handleClick, isSelected }) => {
-  const className = isSelected ? 'servicio-item-wrapper selected' : 'servicio-item-wrapper';
+  const className = isSelected
+    ? "servicio-item-wrapper selected"
+    : "servicio-item-wrapper";
 
   return (
-     <div className={className} onClick={() => handleClick(servicio)}>
+    <div className={className} onClick={() => handleClick(servicio)}>
       <div className="servicio-info d-flex justify-content-between">
         <p>{servicio.nombre}</p>
         <p>{servicio.duracion} min</p>
         <p>${servicio.precio}</p>
       </div>
-      <>
-        <p>{servicio.descripcion}</p>
-      </>
+      <p>{servicio.descripcion}</p>
     </div>
   );
 };
 
 const ServicioList = () => {
+  const { seleccionServicio, setSeleccionServicio } = useStepperContext();
   const [servicios, setServicios] = useState([]);
-  const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
 
   useEffect(() => {
-    setServicios(data);
+    try {
+      setServicios(data);
+    } catch (error) {
+      console.error("Error loading services data:", error);
+    }
   }, []);
 
   const handleClick = (servicio) => {
-    setServicioSeleccionado(servicio);
+    setSeleccionServicio(servicio);
   };
 
   return (
@@ -38,7 +43,7 @@ const ServicioList = () => {
           key={index}
           servicio={servicio}
           handleClick={handleClick}
-          isSelected={servicio === servicioSeleccionado}
+          isSelected={servicio === seleccionServicio}
         />
       ))}
     </div>

@@ -28,28 +28,28 @@
 }
 
 .servicio-list {
-  padding: 0.625rem 10.5rem 1.25rem;
+  padding: 2.625rem 10.5rem 1.25rem;
 }
 
 /* Estilos responsivos */
 @media screen and (max-width: 768px) {
   .servicio-item-wrapper {
     padding: 15px;
-    font-size: 1em; /* Ajusta el tamaño de fuente según sea necesario */
+    font-size: 1em;
   }
   
   .servicio-list {
-    padding: 0.625rem 2rem; /* Ajusta el padding horizontal según sea necesario */
+    padding: 0.625rem 2rem;
   }
 }
 
 @media screen and (max-width: 480px) {
   .servicio-item-wrapper {
     padding: 10px;
-    font-size: 0.8em; /* Ajusta el tamaño de fuente según sea necesario */
+    font-size: 0.8em;
   }
   
   .servicio-list {
-    padding: 0.625rem 1rem; /* Ajusta el padding horizontal según sea necesario */
+    padding: 0.625rem 1rem;
   }
 }
