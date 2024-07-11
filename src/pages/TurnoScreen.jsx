@@ -2,24 +2,34 @@ import React, { memo } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
+import HorarioList from "../components/horaSeleccion/HorarioList";
+import Resumen from "../components/resumen/Resumen";
+import "../styles/turnoScreen.css";
 import {
   useActiveStep,
   useSeleccionServicio,
   useProfesionalSeleccionado,
+  useSeleccionHorario,
 } from "../context/StepperContext";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
   const { activeStep, setActiveStep } = useActiveStep();
   const { seleccionServicio, setSeleccionServicio } = useSeleccionServicio();
-  const { profesionalSeleccionado, setProfesionalSeleccionado } =
-    useProfesionalSeleccionado();
+  const { profesionalSeleccionado, setProfesionalSeleccionado } = useProfesionalSeleccionado();
+  const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
+
+  const stepStateMap = {
+    1: setProfesionalSeleccionado,
+    3: setSeleccionHorario,
+  };
 
   const clearFutureSteps = (step) => {
-    if (step < 1) {
-      setProfesionalSeleccionado(null);
-    }
-    //Para agregar mas limpieza de estados
+    Object.keys(stepStateMap).forEach(key => {
+      if (step < key) {
+        stepStateMap[key](null);
+      }
+    });
   };
 
   const handleNext = () => {
@@ -44,25 +54,33 @@ const TurnoScreen = memo(() => {
       case 2:
         return <p>Calendario de selección de Día</p>;
       case 3:
-        return <p>Selección de Hora</p>;
+        return <HorarioList setSeleccion={setSeleccionHorario} />;
       default:
         return <p>Resumen Final</p>;
     }
   };
 
   return (
-    <>
-      <h1>TurnoScreen</h1>
-      <StepperComponent
-        steps={steps}
-        activeStep={activeStep}
-        handleNext={handleNext}
-        handleBack={handleBack}
-        getStepContent={getStepContent}
-        seleccionServicio={seleccionServicio}
-        profesionalSeleccionado={profesionalSeleccionado}
-      />
-    </>
+    <div className={`turno-screen ${[1, 2, 3].includes(activeStep) ? 'split-layout' : ''}`}>
+      <div className="content">
+        <h1>TurnoScreen</h1>
+        <StepperComponent
+          steps={steps}
+          activeStep={activeStep}
+          handleNext={handleNext}
+          handleBack={handleBack}
+          getStepContent={getStepContent}
+          seleccionServicio={seleccionServicio}
+          profesionalSeleccionado={profesionalSeleccionado}
+          seleccionHorario={seleccionHorario}
+        />
+      </div>
+      {[1, 2, 3].includes(activeStep) && (
+        <div className="resumen-container">
+          <Resumen />
+        </div>
+      )}
+    </div>
   );
 });
 

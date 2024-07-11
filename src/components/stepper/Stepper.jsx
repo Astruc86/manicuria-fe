@@ -12,10 +12,12 @@ const StepperComponent = ({
   getStepContent,
   seleccionServicio,
   profesionalSeleccionado,
+  seleccionHorario
 }) => {
   const isNextButtonDisabled =
     (activeStep === 0 && !seleccionServicio) ||
-    (activeStep === 1 && !profesionalSeleccionado);
+    (activeStep === 1 && !profesionalSeleccionado) ||
+    (activeStep === 3 && !seleccionHorario);
 
   const isLastStep = activeStep === steps.length - 1;
 
