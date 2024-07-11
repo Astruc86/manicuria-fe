@@ -5,6 +5,7 @@ import ProfesionalList from "../components/profesionalList/ProfesionalList";
 import Calendar from "../components/calendar/Calendar"; 
 import HorarioList from "../components/horaSeleccion/HorarioList";
 import Resumen from "../components/resumen/Resumen";
+import ResumenFinal from "../components/resumen/ResumenFinal"; // Importar ResumenFinal
 import "../styles/turnoScreen.css";
 import {
   useActiveStep,
@@ -60,7 +61,7 @@ const TurnoScreen = memo(() => {
       case 3:
         return <HorarioList setSeleccion={setSeleccionHorario} />;
       default:
-        return <p>Resumen Final</p>;
+        return <ResumenFinal />; // Mostrar ResumenFinal en el último paso
     }
   };
 

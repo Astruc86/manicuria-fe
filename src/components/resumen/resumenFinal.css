@@ -1,0 +1,21 @@
+.resumen-final {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-left: 30%;
+  padding-right:30%;
+}
+
+.resumen-final h2 {
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.resumen-final p {
+  margin: 10px 0;
+}
+
+h2{
+  text-align: center;
+}
