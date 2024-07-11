@@ -34,7 +34,6 @@ const ProfesionalList = () => {
     const listaProfesionales = [primerProfesional, ...data];
     setProfesionales(listaProfesionales);
     setListaProfesionalesBE(data);
-    console.log("Lista de Profesionales BE:", data);
   }, [setListaProfesionalesBE]);
 
   const handleClick = (profesional) => {
