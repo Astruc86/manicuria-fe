@@ -7,6 +7,8 @@ export const StepperProvider = ({ children }) => {
     const [seleccionServicio, setSeleccionServicio] = useState(null);
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState(null);
     const [seleccionHorario, setSeleccionHorario] = useState(null);
+    const [seleccionDia, setSeleccionDia] = useState(null);
+    const [listaProfesionalesBE, setListaProfesionalesBE] = useState([]);
 
     return (
         <StepperContext.Provider value={{
@@ -17,7 +19,11 @@ export const StepperProvider = ({ children }) => {
             profesionalSeleccionado,
             setProfesionalSeleccionado,
             seleccionHorario,
-            setSeleccionHorario
+            setSeleccionHorario,
+            seleccionDia,
+            setSeleccionDia,
+            listaProfesionalesBE,
+            setListaProfesionalesBE,
         }}>
             {children}
         </StepperContext.Provider>
@@ -40,7 +46,18 @@ export const useProfesionalSeleccionado = () => {
     const { profesionalSeleccionado, setProfesionalSeleccionado } = useContext(StepperContext);
     return { profesionalSeleccionado, setProfesionalSeleccionado };
 };
+
 export const useSeleccionHorario = () => {
     const { seleccionHorario, setSeleccionHorario } = useContext(StepperContext);
     return { seleccionHorario, setSeleccionHorario };
+};
+
+export const useSeleccionDia = () => {
+    const { seleccionDia, setSeleccionDia } = useContext(StepperContext);
+    return { seleccionDia, setSeleccionDia };
+};
+
+export const useListaProfesionalesBE = () => {
+    const { listaProfesionalesBE, setListaProfesionalesBE } = useContext(StepperContext);
+    return { listaProfesionalesBE, setListaProfesionalesBE };
 };
