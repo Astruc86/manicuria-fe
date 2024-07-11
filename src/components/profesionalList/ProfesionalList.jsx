@@ -23,6 +23,7 @@ const ProfesionalList = () => {
     profesionalSeleccionado,
     setProfesionalSeleccionado,
     seleccionServicio,
+    setListaProfesionalesBE,
   } = useStepperContext();
   const [profesionales, setProfesionales] = React.useState([]);
 
@@ -38,6 +39,7 @@ const ProfesionalList = () => {
           listaServicios: [],
         };
         setProfesionales([primerProfesional, ...result]);
+        setListaProfesionalesBE(result);
       } catch (error) {
         console.error("Error fetching profesionales:", error);
       }
