@@ -1,11 +1,12 @@
 import config from "../config";
-import mockServicios from "../json/servicio.json";
+import mockServicios from "../json/servicios.json";
 
 const serviciosService = {
   crear: async (servicioData) => {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para crear un servicio en el mock
       console.log("Crear servicio (mock)");
+      return;
     }
 
     const response = await fetch(
@@ -54,6 +55,7 @@ const serviciosService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para borrar un servicio en el mock
       console.log("Borrar servicio (mock)");
+      return;
     }
 
     const response = await fetch(
@@ -72,6 +74,7 @@ const serviciosService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para editar un servicio en el mock
       console.log("Editar servicio (mock)");
+      return;
     }
 
     const response = await fetch(

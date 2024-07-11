@@ -6,6 +6,7 @@ const imagenesService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para crear una imagen en el mock
       console.log("crear imagen (mock)");
+      return;
     }
 
     const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/crear`, {
@@ -47,6 +48,7 @@ const imagenesService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para borrar una imagen en el mock
       console.log("borrar imagen (mock)");
+      return;
     }
 
     const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/borrar/${id}`, {
@@ -62,6 +64,7 @@ const imagenesService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para editar una imagen en el mock
       console.log("editar imagen (mock)");
+      return;
     }
 
     const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/editar`, {

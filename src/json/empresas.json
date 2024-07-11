@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "nombre": "manicuria",
+    "nombre": "Manicuría",
     "telefono": "0111565559510",
-    "direccion": "coto de lanus",
+    "direccion": "Santa Rosa 31",
     "horarios": ["Lunes a Viernes: 10hs - 20hs", "Sabados: 10hs - 13hs"],
     "urlTwitter": "https://twitter.com/home",
     "urlFacebook": "https://www.facebook.com/home",

@@ -4,7 +4,7 @@
     "fechaCita": "2022-10-10",
     "horaCita": "09:00",
     "nombreServicio": "Manicura",
-    "duracionServicio": 60,
+    "duracionServicio": 30,
     "precioServicio": 25.0,
     "nombreProfesional": "Ana",
     "nombreCliente": "Maria"
@@ -14,7 +14,7 @@
     "fechaCita": "2022-10-12",
     "horaCita": "14:30",
     "nombreServicio": "Pedicura",
-    "duracionServicio": 90,
+    "duracionServicio": 30,
     "precioServicio": 35.0,
     "nombreProfesional": "Laura",
     "nombreCliente": "Sofia"
@@ -24,7 +24,7 @@
     "fechaCita": "2022-10-15",
     "horaCita": "11:00",
     "nombreServicio": "Esmaltado",
-    "duracionServicio": 45,
+    "duracionServicio": 30,
     "precioServicio": 15.0,
     "nombreProfesional": "Maria",
     "nombreCliente": "Luisa"

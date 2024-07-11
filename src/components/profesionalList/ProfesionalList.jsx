@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStepperContext } from "../../context/StepperContext";
-import data from "../../json/profesional.json";
+import data from "../../json/profesionales.json";
 import "./profesional-item.css";
+import profesionalesService from "../../services/profesionalesService";
 
 const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
   const className = isSelected
@@ -18,17 +19,31 @@ const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
 };
 
 const ProfesionalList = () => {
-  const { profesionalSeleccionado, setProfesionalSeleccionado } =
-    useStepperContext();
+  const {
+    profesionalSeleccionado,
+    setProfesionalSeleccionado,
+    seleccionServicio,
+  } = useStepperContext();
   const [profesionales, setProfesionales] = React.useState([]);
 
-  React.useEffect(() => {
-    const primerProfesional = {
-      id: 0,
-      nombre: "Primer Profesional Disponible",
-      listaServicios: [],
+  useEffect(() => {
+    const fetchProfesionales = async () => {
+      try {
+        const result = await profesionalesService.traerPorServicio(
+          seleccionServicio.id
+        );
+        const primerProfesional = {
+          id: 0,
+          nombre: "Primer profesional disponible",
+          listaServicios: [],
+        };
+        setProfesionales([primerProfesional, ...result]);
+      } catch (error) {
+        console.error("Error fetching profesionales:", error);
+      }
     };
-    setProfesionales([primerProfesional, ...data]);
+
+    fetchProfesionales();
   }, []);
 
   const handleClick = (profesional) => {

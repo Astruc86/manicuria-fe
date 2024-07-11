@@ -1,25 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import horarioData from "../../json/citaHoraDTO.json";
-import horarioPrimerProfesionalData from "../../json/citaHoraPrimerProfesionalDTO.json";
-import { useStepperContext } from '../../context/StepperContext'; 
-import HorarioItem from './HorarioItem';
-import './horario-list.css';
+import React, { useEffect, useState } from "react";
+import { useStepperContext } from "../../context/StepperContext";
+import HorarioItem from "./HorarioItem";
+import "./horario-list.css";
+import citasService from "../../services/citasService";
 
 const HorarioList = () => {
-  const { seleccionHorario, setSeleccionHorario, profesionalSeleccionado } = useStepperContext();
+  const { seleccionHorario, setSeleccionHorario, profesionalSeleccionado } =
+    useStepperContext();
   const [horarios, setHorarios] = useState([]);
 
   useEffect(() => {
-    try {
-      if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
-        setHorarios(horarioPrimerProfesionalData)
-      } else {
-        setHorarios(horarioData);
+    const fetchHorarios = async () => {
+      try {
+        // to do: eliminar esta fechaSeleccionada cuando la rama de citas este pusheada
+        // to do: eliminar esta listaProfesionales cuando la rama de citas este pusheada
+        const fechaSeleccionada = "2024-08-27";
+        const listaProfesionalesBE = [
+          {
+            id: 2,
+            nombre: "María",
+            dni: "87654321",
+            sueldo: 2500,
+            listaServicios: [1, 4, 6],
+          },
+          {
+            id: 4,
+            nombre: "Ana",
+            dni: "23456789",
+            sueldo: 3000,
+            listaServicios: [2, 3, 5],
+          },
+          {
+            id: 5,
+            nombre: "Carlos",
+            dni: "34567890",
+            sueldo: 2200,
+            listaServicios: [3, 4, 6],
+          },
+        ];
+
+        if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
+          const result = await citasService.traerHorasPrimerProfesional(
+            fechaSeleccionada,
+            listaProfesionalesBE
+          );
+          setHorarios(result);
+        } else {
+          const result =
+            await citasService.traerHorasDisponiblesPorDiaProfesional(
+              fechaSeleccionada,
+              profesionalSeleccionado.id
+            );
+          setHorarios(result);
+        }
+      } catch (error) {
+        console.error("Error fetching horarios:", error);
       }
-    } catch (error) {
-      console.error("Error al cargar los datos del cronograma:", error);
-    }
-  }, [profesionalSeleccionado]);
+    };
+
+    fetchHorarios();
+  }, []);
 
   const handleClick = (horario) => {
     setSeleccionHorario(horario);

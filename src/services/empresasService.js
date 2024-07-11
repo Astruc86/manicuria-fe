@@ -6,6 +6,7 @@ const empresasService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para crear una empresa en el mock
       console.log("Crear empresa (mock)");
+      return;
     }
 
     const response = await fetch(
@@ -26,6 +27,7 @@ const empresasService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para borrar una empresa en el mock
       console.log("borrar empresa (mock)");
+      return;
     }
 
     const response = await fetch(
@@ -44,6 +46,7 @@ const empresasService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para editar una empresa en el mock
       console.log("Editar empresa (mock)");
+      return;
     }
 
     const response = await fetch(

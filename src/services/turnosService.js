@@ -6,6 +6,7 @@ const turnosService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para crear un turno en el mock
       console.log("Crear turno (mock)");
+      return;
     }
 
     const response = await fetch(`${config.turnosApiBaseUrl}/turnos/crear`, {
@@ -47,6 +48,7 @@ const turnosService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para borrar un turno en el mock
       console.log("borrar turno (mock)");
+      return;
     }
 
     const response = await fetch(`${config.turnosApiBaseUrl}/turnos/borrar/${id}`, {
@@ -62,6 +64,7 @@ const turnosService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para editar un turno en el mock
       console.log("editar turno (mock)");
+      return;
     }
 
     const response = await fetch(`${config.turnosApiBaseUrl}/turnos/editar`, {

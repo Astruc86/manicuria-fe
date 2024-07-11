@@ -6,6 +6,7 @@ const profesionalesService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para crear un profesional en el mock
       console.log("Crear profesional (mock)");
+      return;
     }
 
     const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/crear`, {
@@ -47,6 +48,7 @@ const profesionalesService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para borrar un profesional en el mock
       console.log("Borrar profesional (mock)");
+      return;
     }
 
     const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/borrar/${id}`, {
@@ -62,6 +64,7 @@ const profesionalesService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para editar un profesional en el mock
       console.log("Editar profesional (mock)");
+      return;
     }
     const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/editar`, {
       method: 'PUT',

@@ -1,11 +1,36 @@
 import config from "../config";
 import mockCitas from "../json/citas.json";
 
+const getFechaActualString = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
+
+const getHoraActual = () => {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, "0");
+  const minutes = now.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+};
+
+const ordenarCitas = (citas) => {
+  return citas.sort((a, b) => {
+    if (a.hora < b.hora) return -1;
+    if (a.hora > b.hora) return 1;
+    return 0;
+  });
+};
+
 const citasService = {
   crear: async (citaData) => {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para crear una cita en el mock
       console.log("Crear profesional (mock)");
+      return;
     }
 
     const response = await fetch(`${config.citasApiBaseUrl}/citas/crear`, {
@@ -47,6 +72,7 @@ const citasService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para borrar una cita en el mock
       console.log("Borrar profesional (mock)");
+      return;
     }
 
     const response = await fetch(
@@ -65,6 +91,7 @@ const citasService = {
     if (config.useMockData) {
       //To do: Aquí debería ir la lógica para editar una cita en el mock
       console.log("Editar profesional (mock)");
+      return;
     }
 
     const response = await fetch(`${config.citasApiBaseUrl}/citas/editar`, {
@@ -80,11 +107,9 @@ const citasService = {
 
   traerDisponiblesPorProfesional: async (idProfesional) => {
     if (config.useMockData) {
-      //To do: Aquí debería ir la lógica para traerDisponiblesPorProfesional cita en el mock
-      console.log("traerDisponiblesPorProfesional (mock)");
-      //   return mockCitas.filter(
-      //     (cita) => cita.idProfesional === idProfesional && cita.disponible
-      //   );
+      return mockCitas.filter(
+        (cita) => cita.profesionalesDisponibles === idProfesional
+      );
     }
 
     const response = await fetch(
@@ -98,15 +123,20 @@ const citasService = {
 
   traerFiltradasDisponiblesPorProfesional: async (idProfesional) => {
     if (config.useMockData) {
-      //To do: Aquí debería ir la lógica para traerFiltradasDisponiblesPorProfesional cita en el mock
+      //To do: Revisar cuando se agregue la US citas
       console.log("traerFiltradasDisponiblesPorProfesional (mock)");
-      //   const currentDate = new Date().toISOString().split("T")[0];
-      //   return mockCitas.filter(
-      //     (cita) =>
-      //       cita.idProfesional === idProfesional &&
-      //       cita.disponible &&
-      //       cita.fecha >= currentDate
-      //   );
+      const fechaActual = getFechaActualString();
+      const horaActual = getHoraActual();
+
+      const citasFiltradas = mockCitas.filter(
+        (cita) =>
+          cita.profesionalesDisponibles.includes(idProfesional) &&
+          cita.fecha === fecha &&
+          (cita.fecha > fechaActual ||
+            (cita.fecha === fechaActual && cita.hora >= horaActual))
+      );
+
+      return ordenarCitas(citasFiltradas);
     }
 
     const response = await fetch(
@@ -118,16 +148,17 @@ const citasService = {
     return response.json();
   },
 
-  traerHorasDisponiblesPorDiaProfesional: async (idProfesional, fecha) => {
+  traerHorasDisponiblesPorDiaProfesional: async (fecha, idProfesional) => {
     if (config.useMockData) {
-      //To do: Aquí debería ir la lógica para traerHorasDisponiblesPorDiaProfesional cita en el mock
-      console.log("traerHorasDisponiblesPorDiaProfesional (mock)");
-      //   return mockCitas.filter(
-      //     (cita) =>
-      //       cita.idProfesional === idProfesional &&
-      //       cita.fecha === fecha &&
-      //       cita.disponible
-      //   );
+      const horaActual = getHoraActual();
+
+      const citasFiltradas = mockCitas.filter(
+        (cita) =>
+          cita.profesionalesDisponibles.includes(idProfesional) &&
+          cita.fecha === fecha &&
+          cita.hora >= horaActual
+      );
+      return ordenarCitas(citasFiltradas);
     }
 
     const response = await fetch(
@@ -141,14 +172,27 @@ const citasService = {
 
   traerPrimerProfesional: async (listaProfesionales) => {
     if (config.useMockData) {
-      //To do: Aquí debería ir la lógica para traerPrimerProfesional cita en el mock
+      //To do: Revisar cuando se agregue la US citas
       console.log("traerPrimerProfesional (mock)");
-      //   return mockCitas.filter(
-      //     (cita) =>
-      //       listaIdProfesionales.includes(cita.idProfesional) && cita.disponible
-      //   );
+      const horaActual = getHoraActual();
+      const fechaActual = getFechaActualString();
+
+      let idsProfesionales = listaProfesionales.map(
+        (profesional) => profesional.id
+      );
+
+      const citasFiltradas = mockCitas.filter(
+        (cita) =>
+          idsProfesionales.some((id) =>
+            cita.profesionalesDisponibles.includes(id)
+          ) &&
+          (cita.fecha > fechaActual ||
+            (cita.fecha === fechaActual && cita.hora >= horaActual))
+      );
+
+      return ordenarCitas(citasFiltradas);
     }
-    
+
     let idsProfesionales = listaProfesionales.map(
       (profesional) => profesional.id
     );
@@ -168,20 +212,27 @@ const citasService = {
 
   traerHorasPrimerProfesional: async (fecha, listaProfesionales) => {
     if (config.useMockData) {
-      //To do: Aquí debería ir la lógica para traerHorasPrimerProfesional cita en el mock
-      console.log("traerHorasPrimerProfesional (mock)");
-      //   return mockCitas.filter(
-      //     (cita) =>
-      //       listaIdProfesionales.includes(cita.idProfesional) &&
-      //       cita.fecha === fecha &&
-      //       cita.disponible
-      //   );
+      const horaActual = getHoraActual();
+      let idsProfesionales = listaProfesionales.map(
+        (profesional) => profesional.id
+      );
+
+      const citasFiltradas = mockCitas.filter(
+        (cita) =>
+          idsProfesionales.some((id) =>
+            cita.profesionalesDisponibles.includes(id)
+          ) &&
+          cita.fecha === fecha &&
+          cita.hora >= horaActual
+      );
+
+      return ordenarCitas(citasFiltradas);
     }
 
     let idsProfesionales = listaProfesionales.map(
       (profesional) => profesional.id
     );
-    
+
     let queryParams = idsProfesionales
       .map((id) => `idProfesional=${id}`)
       .join("&");
