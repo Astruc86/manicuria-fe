@@ -18,8 +18,11 @@ const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
 };
 
 const ProfesionalList = () => {
-  const { profesionalSeleccionado, setProfesionalSeleccionado } =
-    useStepperContext();
+  const {
+    profesionalSeleccionado,
+    setProfesionalSeleccionado,
+    setListaProfesionalesBE,
+  } = useStepperContext();
   const [profesionales, setProfesionales] = React.useState([]);
 
   React.useEffect(() => {
@@ -28,8 +31,11 @@ const ProfesionalList = () => {
       nombre: "Primer Profesional Disponible",
       listaServicios: [],
     };
-    setProfesionales([primerProfesional, ...data]);
-  }, []);
+    const listaProfesionales = [primerProfesional, ...data];
+    setProfesionales(listaProfesionales);
+    setListaProfesionalesBE(data);
+    console.log("Lista de Profesionales BE:", data);
+  }, [setListaProfesionalesBE]);
 
   const handleClick = (profesional) => {
     setProfesionalSeleccionado(profesional);

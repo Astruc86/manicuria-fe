@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
+import Calendar from "../components/calendar/Calendar"; 
 import HorarioList from "../components/horaSeleccion/HorarioList";
 import Resumen from "../components/resumen/Resumen";
 import "../styles/turnoScreen.css";
@@ -10,6 +11,7 @@ import {
   useSeleccionServicio,
   useProfesionalSeleccionado,
   useSeleccionHorario,
+  useSeleccionDia,
 } from "../context/StepperContext";
 
 const TurnoScreen = memo(() => {
@@ -18,9 +20,11 @@ const TurnoScreen = memo(() => {
   const { seleccionServicio, setSeleccionServicio } = useSeleccionServicio();
   const { profesionalSeleccionado, setProfesionalSeleccionado } = useProfesionalSeleccionado();
   const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
+  const { seleccionDia, setSeleccionDia } = useSeleccionDia();
 
   const stepStateMap = {
     1: setProfesionalSeleccionado,
+    2: setSeleccionDia, 
     3: setSeleccionHorario,
   };
 
@@ -52,7 +56,7 @@ const TurnoScreen = memo(() => {
       case 1:
         return <ProfesionalList setSeleccion={setProfesionalSeleccionado} />;
       case 2:
-        return <p>Calendario de selección de Día</p>;
+        return <Calendar setSeleccion={setSeleccionDia} />; 
       case 3:
         return <HorarioList setSeleccion={setSeleccionHorario} />;
       default:
@@ -73,6 +77,7 @@ const TurnoScreen = memo(() => {
           seleccionServicio={seleccionServicio}
           profesionalSeleccionado={profesionalSeleccionado}
           seleccionHorario={seleccionHorario}
+          seleccionDia={seleccionDia}
         />
       </div>
       {[1, 2, 3].includes(activeStep) && (
