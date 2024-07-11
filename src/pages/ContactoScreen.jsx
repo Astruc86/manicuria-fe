@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { InformacionContacto } from "../components/informacionContacto/InformacionContacto";
-import "../styles/contactoScreen.css";
 
 export const ContactoScreen = () => {
   /*
