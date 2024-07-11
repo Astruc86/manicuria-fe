@@ -3,8 +3,6 @@ import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import citaData from "../../json/cita.json";
-import citaPrimerProfesionalData from "../../json/citaPrimerProfesional.json";
 import { useStepperContext } from "../../context/StepperContext";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
@@ -22,21 +20,6 @@ const Calendar = () => {
     seleccionDia ? dayjs(seleccionDia) : null
   );
 
-  // useEffect(() => {
-  //   try {
-  //     let citas = citaData;
-
-  //     if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
-  //       citas = citaPrimerProfesionalData;
-  //     }
-
-  //     const fechas = citas.map((cita) => dayjs(cita.fecha));
-  //     setFechasDisponibles(fechas);
-  //   } catch (error) {
-  //     console.error("Error al cargar los datos de citas:", error);
-  //   }
-  // }, [profesionalSeleccionado]);
-
   useEffect(() => {
     const fetchDias = async () => {
       try {
@@ -45,12 +28,10 @@ const Calendar = () => {
           result = await citasService.traerPrimerProfesional(
             listaProfesionalesBE
           );
-          //setFechasDisponibles(result);
         } else {
           result = await citasService.traerFiltradasDisponiblesPorProfesional(
             profesionalSeleccionado.id
           );
-          //setFechasDisponibles(result);
         }
 
         const fechas = result.map((cita) => dayjs(cita.fecha));
