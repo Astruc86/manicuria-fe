@@ -1,23 +1,30 @@
 [
-    {
-       "id":1,
-       "nombre":"Servicio 1",
-       "descripcion":"Esta es la descripcion del servicio",
-       "duracion":30,
-       "precio":20000
-    },
-    {
-        "id":2,
-        "nombre":"Servicio 2",
-        "descripcion":"Esta es la descripcion del servicio",
-        "duracion":30,
-        "precio":20000
-     },
-     {
-        "id":3,
-        "nombre":"Servicio 3",
-        "descripcion":"Esta es la descripcion del servicio",
-        "duracion":"30",
-        "precio":20000
-     }
+  {
+    "id": 1,
+    "nombre": "Servicio 1",
+    "descripcion": "Esta es la descripcion del servicio",
+    "duracion": 30,
+    "precio": 20000
+  },
+  {
+    "id": 2,
+    "nombre": "Servicio 2",
+    "descripcion": "Esta es la descripcion del servicio",
+    "duracion": 30,
+    "precio": 20000
+  },
+  {
+    "id": 3,
+    "nombre": "Servicio 3",
+    "descripcion": "Esta es la descripcion del servicio",
+    "duracion": 30,
+    "precio": 20000
+  },
+  {
+    "id": 10,
+    "nombre": "Servicio sin citas disponibles",
+    "descripcion": "Este servicio se utiliza para probar el caso en que no hayan citas disponibles",
+    "duracion": 30,
+    "precio": 15000
+  }
 ]

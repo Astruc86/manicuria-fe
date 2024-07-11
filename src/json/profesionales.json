@@ -61,5 +61,12 @@
     "dni": "78901234",
     "sueldo": 3200,
     "listaServicios": [1, 2]
+  },
+  {
+    "id": 10,
+    "nombre": "Javier",
+    "dni": "89012345",
+    "sueldo": 2100,
+    "listaServicios": [10]
   }
 ]

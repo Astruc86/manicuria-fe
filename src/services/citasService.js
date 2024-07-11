@@ -123,8 +123,6 @@ const citasService = {
 
   traerFiltradasDisponiblesPorProfesional: async (idProfesional) => {
     if (config.useMockData) {
-      //To do: Revisar cuando se agregue la US citas
-      console.log("traerFiltradasDisponiblesPorProfesional (mock)");
       const fechaActual = getFechaActualString();
       const horaActual = getHoraActual();
 
@@ -172,15 +170,12 @@ const citasService = {
 
   traerPrimerProfesional: async (listaProfesionales) => {
     if (config.useMockData) {
-      //To do: Revisar cuando se agregue la US citas
-      console.log("traerPrimerProfesional (mock)");
       const horaActual = getHoraActual();
       const fechaActual = getFechaActualString();
 
       let idsProfesionales = listaProfesionales.map(
         (profesional) => profesional.id
       );
-
       const citasFiltradas = mockCitas.filter(
         (cita) =>
           idsProfesionales.some((id) =>
@@ -216,7 +211,6 @@ const citasService = {
       let idsProfesionales = listaProfesionales.map(
         (profesional) => profesional.id
       );
-
       const citasFiltradas = mockCitas.filter(
         (cita) =>
           idsProfesionales.some((id) =>

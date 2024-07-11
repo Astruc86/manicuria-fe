@@ -8,29 +8,60 @@ import citaPrimerProfesionalData from "../../json/citaPrimerProfesional.json";
 import { useStepperContext } from "../../context/StepperContext";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
+import citasService from "../../services/citasService";
 
 const Calendar = () => {
-  const { seleccionDia, setSeleccionDia, profesionalSeleccionado } =
-    useStepperContext();
+  const {
+    seleccionDia,
+    setSeleccionDia,
+    profesionalSeleccionado,
+    listaProfesionalesBE,
+  } = useStepperContext();
   const [fechasDisponibles, setFechasDisponibles] = useState([]);
   const [selectedDate, setSelectedDate] = useState(
     seleccionDia ? dayjs(seleccionDia) : null
   );
 
+  // useEffect(() => {
+  //   try {
+  //     let citas = citaData;
+
+  //     if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
+  //       citas = citaPrimerProfesionalData;
+  //     }
+
+  //     const fechas = citas.map((cita) => dayjs(cita.fecha));
+  //     setFechasDisponibles(fechas);
+  //   } catch (error) {
+  //     console.error("Error al cargar los datos de citas:", error);
+  //   }
+  // }, [profesionalSeleccionado]);
+
   useEffect(() => {
-    try {
-      let citas = citaData;
+    const fetchDias = async () => {
+      try {
+        let result;
+        if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
+          result = await citasService.traerPrimerProfesional(
+            listaProfesionalesBE
+          );
+          //setFechasDisponibles(result);
+        } else {
+          result = await citasService.traerFiltradasDisponiblesPorProfesional(
+            profesionalSeleccionado.id
+          );
+          //setFechasDisponibles(result);
+        }
 
-      if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
-        citas = citaPrimerProfesionalData;
+        const fechas = result.map((cita) => dayjs(cita.fecha));
+        setFechasDisponibles(fechas);
+      } catch (error) {
+        console.error("Error fetching días calendario:", error);
       }
+    };
 
-      const fechas = citas.map((cita) => dayjs(cita.fecha));
-      setFechasDisponibles(fechas);
-    } catch (error) {
-      console.error("Error al cargar los datos de citas:", error);
-    }
-  }, [profesionalSeleccionado]);
+    fetchDias();
+  }, []);
 
   const isDateSelectable = (date) => {
     const today = dayjs();
