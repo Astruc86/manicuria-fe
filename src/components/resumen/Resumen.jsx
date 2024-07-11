@@ -4,7 +4,6 @@ import './resumen.css';
 import {
   useSeleccionServicio,
   useProfesionalSeleccionado,
-  useSeleccionHorario,
   useSeleccionDia,
   useActiveStep,
 } from "../../context/StepperContext";
@@ -13,7 +12,6 @@ const Resumen = () => {
   const { activeStep } = useActiveStep();
   const { seleccionServicio } = useSeleccionServicio();
   const { profesionalSeleccionado } = useProfesionalSeleccionado();
-  const { seleccionHorario } = useSeleccionHorario();
   const { seleccionDia } = useSeleccionDia();
 
   const servicio = seleccionServicio?.nombre;
