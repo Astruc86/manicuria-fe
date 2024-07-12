@@ -1,15 +1,41 @@
-import React from 'react';
-import './resumen.css';
+import React from "react";
+import dayjs from "dayjs";
+import "./resumen.css";
+import {
+  useSeleccionServicio,
+  useProfesionalSeleccionado,
+  useSeleccionDia,
+  useActiveStep,
+} from "../../context/StepperContext";
 
 const Resumen = () => {
+  const { activeStep } = useActiveStep();
+  const { seleccionServicio } = useSeleccionServicio();
+  const { profesionalSeleccionado } = useProfesionalSeleccionado();
+  const { seleccionDia } = useSeleccionDia();
+
+  const servicio = seleccionServicio?.nombre;
+  const precio = `$${seleccionServicio.precio}`;
+  const duracion = seleccionServicio?.duracion;
+  const profesional = profesionalSeleccionado?.nombre;
+  const dia = dayjs(seleccionDia).format("DD-MM-YYYY");
+
   return (
     <div className="resumen">
-      <h2>Resumen</h2>
-      <p>Servicio: servicio seleccionado</p>
-      <p>Precio: $20000</p>
-      <p>Duración: 30 min</p>
-      <p>Profesional: profesional seleccionado</p>
-      <p>Día: DD/MM/AAAA</p>
+      <h2 className="bold-text">Resumen</h2>
+      {activeStep >= 0 && <p><span className="bold-text">Servicio:</span> {servicio}</p>}
+      {activeStep >= 1 && (
+        <>
+          <p><span className="bold-text">Precio:</span> {precio}</p>
+          <p><span className="bold-text">Duración:</span> {duracion} min</p>
+        </>
+      )}
+      {activeStep >= 2 && <p><span className="bold-text">Profesional:</span> {profesional}</p>}
+      {activeStep >= 3 && (
+        <>
+          <p><span className="bold-text">Día:</span> {dia}</p>
+        </>
+      )}
     </div>
   );
 };
