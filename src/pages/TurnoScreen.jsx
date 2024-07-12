@@ -68,7 +68,6 @@ const TurnoScreen = memo(() => {
   return (
     <div className={`turno-screen ${[1, 2, 3].includes(activeStep) ? 'split-layout' : ''}`}>
       <div className="content">
-        <h1>TurnoScreen</h1>
         <StepperComponent
           steps={steps}
           activeStep={activeStep}
