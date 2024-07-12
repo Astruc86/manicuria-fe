@@ -23,13 +23,13 @@ const ResumenFinal = () => {
 
   return (
     <div className="resumen-final">
-      <h2>Resumen</h2>
-      <p>Servicio: {servicio}</p>
-      <p>Precio: {precio}</p>
-      <p>Duración: {duracion} min</p>
-      <p>Profesional: {profesional}</p>
-      <p>Día: {dia}</p>
-      <p>Hora: {hora}</p>
+      <h2 className="bold-text">Resumen</h2>
+      <p><span className="bold-text">Servicio:</span> {servicio}</p>
+      <p><span className="bold-text">Precio:</span> {precio}</p>
+      <p><span className="bold-text">Duración:</span> {duracion} min</p>
+      <p><span className="bold-text">Profesional:</span> {profesional}</p>
+      <p><span className="bold-text">Día: </span>{dia}</p>
+      <p><span className="bold-text">Hora: </span>{hora}</p>
     </div>
   );
 };
