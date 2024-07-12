@@ -3,10 +3,15 @@ import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useStepperContext } from "../../context/StepperContext";
 import dayjs from "dayjs";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import "dayjs/locale/es";
+import { useStepperContext } from "../../context/StepperContext";
 import citasService from "../../services/citasService";
+
+dayjs.extend(isSameOrAfter);
+dayjs.extend(isSameOrBefore);
 
 const Calendar = () => {
   const {
@@ -49,8 +54,8 @@ const Calendar = () => {
 
     return (
       fechasDisponibles.some((f) => f.isSame(date, "day")) &&
-      date.isAfter(today, "day") &&
-      date.isBefore(maxDate, "day")
+      date.isSameOrAfter(today, "day") &&
+      date.isSameOrBefore(maxDate, "day")
     );
   };
 

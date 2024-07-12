@@ -147,12 +147,14 @@ const citasService = {
   traerHorasDisponiblesPorDiaProfesional: async (fecha, idProfesional) => {
     if (config.useMockData) {
       const horaActual = getHoraActual();
+      const fechaActual = getFechaActualString();
 
       const citasFiltradas = mockCitas.filter(
         (cita) =>
           cita.profesionalesDisponibles.includes(idProfesional) &&
-          cita.fecha === fecha &&
-          cita.hora >= horaActual
+          (fecha == fechaActual
+            ? cita.fecha === fecha && cita.hora >= horaActual
+            : cita.fecha === fecha)
       );
 
       let citaHora = [];
@@ -215,16 +217,20 @@ const citasService = {
   traerHorasPrimerProfesional: async (fecha, listaProfesionales) => {
     if (config.useMockData) {
       const horaActual = getHoraActual();
+      const fechaActual = getFechaActualString();
+
       let idsProfesionales = listaProfesionales.map(
         (profesional) => profesional.id
       );
-      const citasFiltradas = mockCitas.filter(
-        (cita) =>
-          idsProfesionales.some((id) =>
-            cita.profesionalesDisponibles.includes(id)
-          ) &&
-          cita.fecha === fecha &&
-          cita.hora >= horaActual
+
+      const citasFiltradas = mockCitas.filter((cita) =>
+        idsProfesionales.some(
+          (id) =>
+            cita.profesionalesDisponibles.includes(id) &&
+            (fecha == fechaActual
+              ? cita.fecha === fecha && cita.hora >= horaActual
+              : cita.fecha === fecha)
+        )
       );
 
       let citaHora = [];
@@ -239,7 +245,7 @@ const citasService = {
         };
         citaHora.push(hora);
       }
-      
+
       return ordenarHoras(citaHora);
     }
 
