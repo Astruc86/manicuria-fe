@@ -103,5 +103,26 @@
     "fecha": "2024-08-08",
     "profesionalesDisponibles": [5],
     "profesionalesReservados": [1, 2, 3]
+  },
+  {
+    "id": 16,
+    "hora": "22:30",
+    "fecha": "2024-07-13",
+    "profesionalesDisponibles": [1],
+    "profesionalesReservados": [2, 3]
+  },
+  {
+    "id": 17,
+    "hora": "10:30",
+    "fecha": "2024-07-13",
+    "profesionalesDisponibles": [1, 3, 5],
+    "profesionalesReservados": [2, 3]
+  },
+  {
+    "id": 18,
+    "hora": "08:30",
+    "fecha": "2024-07-13",
+    "profesionalesDisponibles": [9],
+    "profesionalesReservados": [2, 3]
   }
 ]

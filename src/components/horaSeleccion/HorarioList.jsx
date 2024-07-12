@@ -12,7 +12,6 @@ const HorarioList = () => {
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-
         if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
           const result = await citasService.traerHorasPrimerProfesional(
             seleccionDia,

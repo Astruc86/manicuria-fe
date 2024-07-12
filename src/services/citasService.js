@@ -17,7 +17,7 @@ const getHoraActual = () => {
   return `${hours}:${minutes}`;
 };
 
-const ordenarCitas = (citas) => {
+const ordenarHoras = (citas) => {
   return citas.sort((a, b) => {
     if (a.hora < b.hora) return -1;
     if (a.hora > b.hora) return 1;
@@ -125,16 +125,14 @@ const citasService = {
     if (config.useMockData) {
       const fechaActual = getFechaActualString();
       const horaActual = getHoraActual();
-
       const citasFiltradas = mockCitas.filter(
         (cita) =>
           cita.profesionalesDisponibles.includes(idProfesional) &&
-          cita.fecha === fecha &&
           (cita.fecha > fechaActual ||
             (cita.fecha === fechaActual && cita.hora >= horaActual))
       );
 
-      return ordenarCitas(citasFiltradas);
+      return ordenarHoras(citasFiltradas);
     }
 
     const response = await fetch(
@@ -156,9 +154,18 @@ const citasService = {
           cita.fecha === fecha &&
           cita.hora >= horaActual
       );
-      return ordenarCitas(citasFiltradas);
-    }
 
+      let citaHora = [];
+      for (let i = 0; i < citasFiltradas.length; i++) {
+        let hora = {
+          id: i,
+          hora: citasFiltradas[i].hora,
+        };
+        citaHora.push(hora);
+      }
+
+      return ordenarHoras(citaHora);
+    }
     const response = await fetch(
       `${config.citasApiBaseUrl}/citas/traer/disponible/profesional/horas/${idProfesional}/${fecha}`
     );
@@ -185,7 +192,7 @@ const citasService = {
             (cita.fecha === fechaActual && cita.hora >= horaActual))
       );
 
-      return ordenarCitas(citasFiltradas);
+      return ordenarHoras(citasFiltradas);
     }
 
     let idsProfesionales = listaProfesionales.map(
@@ -220,7 +227,20 @@ const citasService = {
           cita.hora >= horaActual
       );
 
-      return ordenarCitas(citasFiltradas);
+      let citaHora = [];
+      for (let i = 0; i < citasFiltradas.length; i++) {
+        let profesionales = citasFiltradas[i].profesionalesDisponibles.filter(
+          (id) => idsProfesionales.includes(id)
+        );
+        let hora = {
+          id: i,
+          hora: citasFiltradas[i].hora,
+          listaProfesionales: profesionales,
+        };
+        citaHora.push(hora);
+      }
+      
+      return ordenarHoras(citaHora);
     }
 
     let idsProfesionales = listaProfesionales.map(
