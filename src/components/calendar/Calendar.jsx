@@ -33,7 +33,6 @@ const Calendar = () => {
             profesionalSeleccionado.id
           );
         }
-
         const fechas = result.map((cita) => dayjs(cita.fecha));
         setFechasDisponibles(fechas);
       } catch (error) {
