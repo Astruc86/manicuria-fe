@@ -16,24 +16,24 @@ const Resumen = () => {
 
   const servicio = seleccionServicio?.nombre;
   const precio = `$${seleccionServicio.precio}`;
-  const duracion = seleccionServicio?.duracion || 30;
+  const duracion = seleccionServicio?.duracion;
   const profesional = profesionalSeleccionado?.nombre;
   const dia = dayjs(seleccionDia).format("DD-MM-YYYY");
 
   return (
     <div className="resumen">
-      <h2>Resumen</h2>
-      {activeStep >= 0 && <p>Servicio: {servicio}</p>}
+      <h2 className="bold-text">Resumen</h2>
+      {activeStep >= 0 && <p><span className="bold-text">Servicio:</span> {servicio}</p>}
       {activeStep >= 1 && (
         <>
-          <p>Precio: {precio}</p>
-          <p>Duración: {duracion} min</p>
+          <p><span className="bold-text">Precio:</span> {precio}</p>
+          <p><span className="bold-text">Duración:</span> {duracion} min</p>
         </>
       )}
-      {activeStep >= 2 && <p>Profesional: {profesional}</p>}
+      {activeStep >= 2 && <p><span className="bold-text">Profesional:</span> {profesional}</p>}
       {activeStep >= 3 && (
         <>
-          <p>Día: {dia}</p>
+          <p><span className="bold-text">Día:</span> {dia}</p>
         </>
       )}
     </div>
