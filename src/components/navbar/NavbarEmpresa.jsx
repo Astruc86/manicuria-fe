@@ -25,7 +25,7 @@ export const NavbarEmpresa = () => {
             <NavLink to="/contacto" className="nav-link ">
               <span className="align-middle">Contacto</span>
             </NavLink>
-            <NavLink to="/turnos" className="nav-link ">
+            <NavLink to="/agenda" className="nav-link ">
               <span className="align-middle">Agenda</span>
             </NavLink>
             <NavLink to="/inicio-sesion" className="nav-link">
