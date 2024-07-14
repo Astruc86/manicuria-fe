@@ -265,6 +265,24 @@ const citasService = {
     }
     return response.json();
   },
+  traerPorProfesionalFechaHora: async (fecha, idProfesional, hora) => {
+    if (config.useMockData) {
+      return mockCitas.find(
+        (cita) =>
+          cita.hora == hora &&
+          cita.fecha == fecha &&
+          cita.profesionalesDisponibles.includes(idProfesional)
+      );
+    }
+
+    const response = await fetch(
+      `${config.citasApiBaseUrl}/citas/filtrar/profesional-fecha-hora?idProfesional=${idProfesional}&fecha=${fecha}&hora=${hora}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  },
 };
 
 export default citasService;
