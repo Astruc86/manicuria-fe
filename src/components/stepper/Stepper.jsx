@@ -9,16 +9,17 @@ const StepperComponent = ({
   activeStep,
   handleNext,
   handleBack,
+  handleConfirmar,
   getStepContent,
   seleccionServicio,
   profesionalSeleccionado,
   seleccionHorario,
-  seleccionDia
+  seleccionDia,
 }) => {
   const isNextButtonDisabled =
     (activeStep === 0 && !seleccionServicio) ||
     (activeStep === 1 && !profesionalSeleccionado) ||
-    (activeStep === 2 && !seleccionDia) || 
+    (activeStep === 2 && !seleccionDia) ||
     (activeStep === 3 && !seleccionHorario);
 
   const isLastStep = activeStep === steps.length - 1;
@@ -42,12 +43,15 @@ const StepperComponent = ({
           >
             Volver
           </Button>
-          <Button
-            disabled={isNextButtonDisabled}
-            onClick={handleNext}
-          >
-            {isLastStep ? "CONFIRMAR" : "Siguiente"}
-          </Button>
+          {isLastStep ? (
+            <Button disabled={isNextButtonDisabled} onClick={handleConfirmar}>
+              CONFIRMAR
+            </Button>
+          ) : (
+            <Button disabled={isNextButtonDisabled} onClick={handleNext}>
+              SIGUIENTE
+            </Button>
+          )}
         </Box>
       </div>
     </>

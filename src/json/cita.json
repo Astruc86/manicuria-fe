@@ -19,6 +19,13 @@
         "fecha":"2024-07-08",
         "profesionalesDisponibles":[2],
         "profesionalesReservados":[1,3]
+    },
+    {
+        "id": 4,
+        "hora": "20:00",
+        "fecha":"2024-07-20",
+        "profesionalesDisponibles":[1,2],
+        "profesionalesReservados":[1,3]
     }
 ]
     

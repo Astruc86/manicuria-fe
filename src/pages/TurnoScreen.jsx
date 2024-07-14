@@ -2,10 +2,10 @@ import React, { memo } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
-import Calendar from "../components/calendar/Calendar"; 
+import Calendar from "../components/calendar/Calendar";
 import HorarioList from "../components/horaSeleccion/HorarioList";
 import Resumen from "../components/resumen/Resumen";
-import ResumenFinal from "../components/resumen/ResumenFinal"; // Importar ResumenFinal
+import ResumenFinal from "../components/resumen/ResumenFinal";
 import "../styles/turnoScreen.css";
 import {
   useActiveStep,
@@ -13,24 +13,28 @@ import {
   useProfesionalSeleccionado,
   useSeleccionHorario,
   useSeleccionDia,
+  useSeleccionCita,
 } from "../context/StepperContext";
+import citas from "../json/cita.json";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
   const { activeStep, setActiveStep } = useActiveStep();
   const { seleccionServicio, setSeleccionServicio } = useSeleccionServicio();
-  const { profesionalSeleccionado, setProfesionalSeleccionado } = useProfesionalSeleccionado();
+  const { profesionalSeleccionado, setProfesionalSeleccionado } =
+    useProfesionalSeleccionado();
   const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
+  const { seleccionCita, setSeleccionCita } = useSeleccionCita();
 
   const stepStateMap = {
     1: setProfesionalSeleccionado,
-    2: setSeleccionDia, 
+    2: setSeleccionDia,
     3: setSeleccionHorario,
   };
 
   const clearFutureSteps = (step) => {
-    Object.keys(stepStateMap).forEach(key => {
+    Object.keys(stepStateMap).forEach((key) => {
       if (step < key) {
         stepStateMap[key](null);
       }
@@ -50,6 +54,34 @@ const TurnoScreen = memo(() => {
     }
   };
 
+  const handleConfirmar = () => {
+    // To do: cuando este la integracion hecha, descomentar el siguiente bloque de codigo y elimar el descomentado
+    // const fetchCita = async () => {
+    //   try {
+    //     const result = await citasService.traerPorProfesionalFechaHora(
+    //       seleccionDia,
+    //       profesionalSeleccionado.id,
+    //       seleccionHorario.hora
+    //     );
+    //     setSeleccionCita(result);
+    //   } catch (error) {
+    //     console.error("Error fetching citas:", error);
+    //   }
+    // };
+    // fetchCita();
+
+    // To do: eliminar el siguiente bloque de codigo cuando este la integracion hecha
+    // Hasta que no se haga la US de PPD, cuando es PPD no va a encontrar una cita dado que id=0
+    const cita = citas.find(
+      (cita) =>
+        cita.hora == seleccionHorario.hora &&
+        cita.fecha == seleccionDia &&
+        cita.profesionalesDisponibles.includes(profesionalSeleccionado.id)
+    );
+
+    setSeleccionCita(cita);
+  };
+
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -57,7 +89,7 @@ const TurnoScreen = memo(() => {
       case 1:
         return <ProfesionalList setSeleccion={setProfesionalSeleccionado} />;
       case 2:
-        return <Calendar setSeleccion={setSeleccionDia} />; 
+        return <Calendar setSeleccion={setSeleccionDia} />;
       case 3:
         return <HorarioList setSeleccion={setSeleccionHorario} />;
       default:
@@ -66,13 +98,18 @@ const TurnoScreen = memo(() => {
   };
 
   return (
-    <div className={`turno-screen ${[1, 2, 3].includes(activeStep) ? 'split-layout' : ''}`}>
+    <div
+      className={`turno-screen ${
+        [1, 2, 3].includes(activeStep) ? "split-layout" : ""
+      }`}
+    >
       <div className="content">
         <StepperComponent
           steps={steps}
           activeStep={activeStep}
           handleNext={handleNext}
           handleBack={handleBack}
+          handleConfirmar={handleConfirmar}
           getStepContent={getStepContent}
           seleccionServicio={seleccionServicio}
           profesionalSeleccionado={profesionalSeleccionado}
