@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
-import Calendar from "../components/calendar/Calendar"; 
+import Calendar from "../components/calendar/Calendar";
 import HorarioList from "../components/horaSeleccion/HorarioList";
 import Resumen from "../components/resumen/Resumen";
 import ResumenFinal from "../components/resumen/ResumenFinal"; // Importar ResumenFinal
@@ -13,28 +13,37 @@ import {
   useProfesionalSeleccionado,
   useSeleccionHorario,
   useSeleccionDia,
+  useProfesionalViejo,
 } from "../context/StepperContext";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
   const { activeStep, setActiveStep } = useActiveStep();
   const { seleccionServicio, setSeleccionServicio } = useSeleccionServicio();
-  const { profesionalSeleccionado, setProfesionalSeleccionado } = useProfesionalSeleccionado();
+  const { profesionalSeleccionado, setProfesionalSeleccionado } =
+    useProfesionalSeleccionado();
   const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
-
+  const { profesionalViejo, setProfesionalViejo } = useProfesionalViejo();
   const stepStateMap = {
     1: setProfesionalSeleccionado,
-    2: setSeleccionDia, 
+    2: setSeleccionDia,
     3: setSeleccionHorario,
   };
 
   const clearFutureSteps = (step) => {
-    Object.keys(stepStateMap).forEach(key => {
+    Object.keys(stepStateMap).forEach((key) => {
       if (step < key) {
         stepStateMap[key](null);
       }
     });
+  };
+
+  const clearPastStep = (step) => {
+    if (step === 3 && profesionalViejo) {
+      setProfesionalViejo(null);
+      setProfesionalSeleccionado({ id: 0 });
+    }
   };
 
   const handleNext = () => {
@@ -45,6 +54,7 @@ const TurnoScreen = memo(() => {
   };
 
   const handleBack = () => {
+    clearPastStep(activeStep);
     if (activeStep > 0) {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
     }
@@ -57,7 +67,7 @@ const TurnoScreen = memo(() => {
       case 1:
         return <ProfesionalList setSeleccion={setProfesionalSeleccionado} />;
       case 2:
-        return <Calendar setSeleccion={setSeleccionDia} />; 
+        return <Calendar setSeleccion={setSeleccionDia} />;
       case 3:
         return <HorarioList setSeleccion={setSeleccionHorario} />;
       default:
@@ -66,7 +76,11 @@ const TurnoScreen = memo(() => {
   };
 
   return (
-    <div className={`turno-screen ${[1, 2, 3].includes(activeStep) ? 'split-layout' : ''}`}>
+    <div
+      className={`turno-screen ${
+        [1, 2, 3].includes(activeStep) ? "split-layout" : ""
+      }`}
+    >
       <div className="content">
         <StepperComponent
           steps={steps}
