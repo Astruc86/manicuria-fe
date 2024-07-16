@@ -2,7 +2,7 @@ import * as React from "react";
 import { useUsuarioContext } from "../context/UsuarioContext";
 import { FormIniciarSesion } from "../components/formIniciarSesion/FormIniciarSesion";
 
-export const InicioSesionScreen = () => {
+export const IniciarSesionScreen = () => {
   const { usuario, setUsuario } = useUsuarioContext();
 
   return (
