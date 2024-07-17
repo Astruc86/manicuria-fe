@@ -3,12 +3,16 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ConfirmarTurnoModal from "../confirmarTurnoModal/ConfirmarTurnoModal";
+import * as React from "react";
+import useModal from "../../hooks/useModal";
 
 const StepperComponent = ({
   steps,
   activeStep,
   handleNext,
   handleBack,
+  handleConfirmar,
   getStepContent,
   seleccionServicio,
   profesionalSeleccionado,
@@ -18,10 +22,13 @@ const StepperComponent = ({
   const isNextButtonDisabled =
     (activeStep === 0 && !seleccionServicio) ||
     (activeStep === 1 && !profesionalSeleccionado) ||
-    (activeStep === 2 && !seleccionDia) || 
+    (activeStep === 2 && !seleccionDia) ||
     (activeStep === 3 && !seleccionHorario);
 
   const isLastStep = activeStep === steps.length - 1;
+  const { open, handleOpen, handleClose } = useModal();
+
+  
 
   return (
     <>
@@ -42,12 +49,22 @@ const StepperComponent = ({
           >
             Volver
           </Button>
-          <Button
-            disabled={isNextButtonDisabled}
-            onClick={handleNext}
-          >
-            {isLastStep ? "CONFIRMAR" : "Siguiente"}
-          </Button>
+          {isLastStep ? (
+            <>
+              <Button disabled={isNextButtonDisabled} onClick={handleOpen}>
+                CONFIRMAR
+              </Button>
+              <ConfirmarTurnoModal
+                open={open}
+                handleClose={handleClose}
+                handleConfirmar={handleConfirmar}
+              ></ConfirmarTurnoModal>
+            </>
+          ) : (
+            <Button disabled={isNextButtonDisabled} onClick={handleNext}>
+              SIGUIENTE
+            </Button>
+          )}
         </Box>
       </div>
     </>

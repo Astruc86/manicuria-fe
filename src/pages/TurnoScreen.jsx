@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
@@ -14,7 +14,10 @@ import {
   useSeleccionHorario,
   useSeleccionDia,
   useProfesionalViejo,
+  useSeleccionDni,
 } from "../context/StepperContext";
+import { useTurno } from "../context/TurnoContext";
+import turnosService from "../services/turnosService";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
@@ -25,6 +28,8 @@ const TurnoScreen = memo(() => {
   const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
   const { profesionalViejo, setProfesionalViejo } = useProfesionalViejo();
+  const { seleccionDni, setSeleccionDni } = useSeleccionDni();
+  const { turnos, agregarTurno, generarId } = useTurno();
   const stepStateMap = {
     1: setProfesionalSeleccionado,
     2: setSeleccionDia,
@@ -60,6 +65,39 @@ const TurnoScreen = memo(() => {
     }
   };
 
+  const handleConfirmar = (dni) => {
+    setSeleccionDni(dni);
+  };
+
+  useEffect(() => {
+    if (seleccionDni == null) return;
+    const fetchTurno = async () => {
+      try {
+        //To do: cambiar seleccionCita cuando se implemente MIA-77
+        const seleccionCita = {
+          id: 1,
+          hora: "10:00",
+          fecha: "2022-12-31",
+          profesionalesDisponibles: [1, 2, 3],
+          profesionalesReservados: [4, 5],
+        };
+        const turno = {
+          cita: seleccionCita,
+          servicio: seleccionServicio,
+          profesional: profesionalSeleccionado,
+          dni: seleccionDni
+        };
+
+        await turnosService.crear(turno, agregarTurno, generarId);
+        //To do: cambiar alerta y agregar navegacion
+        alert("Turno creado con éxito");
+      } catch (error) {
+        console.error("Error fetching turnos:", error);
+      }
+    };
+    fetchTurno();
+  }, [seleccionDni]);
+
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -87,6 +125,7 @@ const TurnoScreen = memo(() => {
           activeStep={activeStep}
           handleNext={handleNext}
           handleBack={handleBack}
+          handleConfirmar={handleConfirmar}
           getStepContent={getStepContent}
           seleccionServicio={seleccionServicio}
           profesionalSeleccionado={profesionalSeleccionado}

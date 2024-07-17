@@ -10,7 +10,7 @@ export const StepperProvider = ({ children }) => {
   const [seleccionDia, setSeleccionDia] = useState(null);
   const [listaProfesionalesBE, setListaProfesionalesBE] = useState([]);
   const [profesionalViejo, setProfesionalViejo] = useState(null);
-
+  const [seleccionDni, setSeleccionDni] = useState(null)
   return (
     <StepperContext.Provider
       value={{
@@ -28,6 +28,8 @@ export const StepperProvider = ({ children }) => {
         setSeleccionDia,
         listaProfesionalesBE,
         setListaProfesionalesBE,
+        seleccionDni,
+        setSeleccionDni
       }}
     >
       {children}
@@ -73,4 +75,9 @@ export const useListaProfesionalesBE = () => {
 export const useProfesionalViejo = () => {
   const { profesionalViejo, setProfesionalViejo } = useContext(StepperContext);
   return { profesionalViejo, setProfesionalViejo };
+};
+
+export const useSeleccionDni = () => {
+  const { seleccionDni, setSeleccionDni } = useContext(StepperContext);
+  return { seleccionDni, setSeleccionDni };
 };

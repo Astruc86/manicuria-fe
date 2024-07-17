@@ -11,6 +11,7 @@ import { MisTurnosScreen } from "./pages/MisTurnosScreen";
 import Layout from "./components/navbar/Layout";
 import { UsuarioProvider } from "./context/UsuarioContext";
 import { AgendaScreen } from "./pages/AgendaScreen";
+import { TurnoProvider } from "./context/TurnoContext";
 
 export const App = () => {
   const location = useLocation();
@@ -22,17 +23,22 @@ export const App = () => {
       <UsuarioProvider>
         <Layout></Layout>
         <StepperProvider>
-          <div className="container">
-            <Routes>
-              <Route path="/home" element={<HomeScreen />} />
-              <Route path="/turno" element={<TurnoScreen />} />
-              <Route path="/contacto" element={<ContactoScreen />} />
-              <Route path="/turnos" element={<MisTurnosScreen />} />
-              <Route path="/inicio-sesion" element={<IniciarSesionScreen />} />
-              <Route path="/agenda" element={<AgendaScreen />} />
-              <Route path="/*" element={<Navigate to="/home" />} />
-            </Routes>
-          </div>
+          <TurnoProvider>
+            <div className="container">
+              <Routes>
+                <Route path="/home" element={<HomeScreen />} />
+                <Route path="/turno" element={<TurnoScreen />} />
+                <Route path="/contacto" element={<ContactoScreen />} />
+                <Route path="/turnos" element={<MisTurnosScreen />} />
+                <Route
+                  path="/inicio-sesion"
+                  element={<IniciarSesionScreen />}
+                />
+                <Route path="/agenda" element={<AgendaScreen />} />
+                <Route path="/*" element={<Navigate to="/home" />} />
+              </Routes>
+            </div>
+          </TurnoProvider>
         </StepperProvider>
       </UsuarioProvider>
       {!mostrarFooter && <Footer />}
