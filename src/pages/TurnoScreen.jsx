@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
@@ -14,6 +14,7 @@ import {
   useSeleccionHorario,
   useSeleccionDia,
   useSeleccionCita,
+  useProfesionalViejo,
 } from "../context/StepperContext";
 import citas from "../json/citas.json";
 import citasService from "../services/citasService";
@@ -28,6 +29,7 @@ const TurnoScreen = memo(() => {
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
   const { seleccionCita, setSeleccionCita } = useSeleccionCita();
 
+  const { profesionalViejo, setProfesionalViejo } = useProfesionalViejo();
   const stepStateMap = {
     1: setProfesionalSeleccionado,
     2: setSeleccionDia,
@@ -42,6 +44,13 @@ const TurnoScreen = memo(() => {
     });
   };
 
+  const clearPastStep = (step) => {
+    if (step === 3 && profesionalViejo) {
+      setProfesionalViejo(null);
+      setProfesionalSeleccionado({ id: 0 });
+    }
+  };
+
   const handleNext = () => {
     clearFutureSteps(activeStep);
     if (activeStep < steps.length - 1) {
@@ -50,6 +59,7 @@ const TurnoScreen = memo(() => {
   };
 
   const handleBack = () => {
+    clearPastStep(activeStep);
     if (activeStep > 0) {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
     }
