@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import data from "../../json/servicio.json";
 import { useStepperContext } from "../../context/StepperContext";
 import "./servicio-item.css";
+import serviciosService from "../../services/serviciosService";
 
 const ServicioItem = ({ servicio, handleClick, isSelected }) => {
   const className = isSelected
@@ -25,11 +25,16 @@ const ServicioList = () => {
   const [servicios, setServicios] = useState([]);
 
   useEffect(() => {
-    try {
-      setServicios(data);
-    } catch (error) {
-      console.error("Error loading services data:", error);
-    }
+    const fetchServicios = async () => {
+      try {
+        const result = await serviciosService.traerTodos();
+        setServicios(result);
+      } catch (error) {
+        console.error("Error fetching servicios:", error);
+      }
+    };
+
+    fetchServicios();
   }, []);
 
   const handleClick = (servicio) => {

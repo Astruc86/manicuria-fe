@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Carrusel from '../components/Carrusel/Carrusel'
+import Carrusel from "../components/Carrusel/Carrusel";
 
-export const HomeScreen = () => {
+export const HomeScreen = () => {  
   return (
     <>
       <Carrusel></Carrusel>

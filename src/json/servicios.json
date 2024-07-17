@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "nombre": "Manicura Básica",
+    "descripcion": "Corte, limado y esmaltado de uñas.",
+    "duracion": 30,
+    "precio": 15000
+  },
+  {
+    "id": 2,
+    "nombre": "Manicura Francesa",
+    "descripcion": "Esmalte clásico con diseño francés.",
+    "duracion": 30,
+    "precio": 20000
+  },
+  {
+    "id": 3,
+    "nombre": "Manicura Gel",
+    "descripcion": "Esmalte de gel con larga duración.",
+    "duracion": 30,
+    "precio": 25000
+  },
+  {
+    "id": 4,
+    "nombre": "Manicura Spa",
+    "descripcion": "Tratamiento hidratante con masajes.",
+    "duracion": 30,
+    "precio": 30000
+  },
+  {    
+    "id": 10,
+    "nombre": "Manicura con Decoración",
+    "descripcion": "Esmalte con diseño artístico. Este servicio contempla el caso en que no hayan citas disponibles para el servicio de Manicura Francesa.", 
+    "duracion": 30,
+    "precio": 35050
+  }
+]
