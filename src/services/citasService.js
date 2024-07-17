@@ -267,9 +267,6 @@ const citasService = {
   },
   traerPorProfesionalFechaHora: async (fecha, idProfesional, hora) => {
     if (config.useMockData) {
-      console.log("fecha", fecha);
-      console.log("idProfesional", idProfesional);
-      console.log("hora", hora);
       return mockCitas.find(
         (cita) =>
           cita.hora == hora &&

@@ -74,10 +74,9 @@ export const useListaProfesionalesBE = () => {
 };
 
 export const useSeleccionCita = () => {
-    const { seleccionCita, setSeleccionCita } =
-      useContext(StepperContext);
-    return { seleccionCita, setSeleccionCita };
-  };
+  const { seleccionCita, setSeleccionCita } = useContext(StepperContext);
+  return { seleccionCita, setSeleccionCita };
+};
 export const useProfesionalViejo = () => {
   const { profesionalViejo, setProfesionalViejo } = useContext(StepperContext);
   return { profesionalViejo, setProfesionalViejo };

@@ -16,7 +16,6 @@ import {
   useSeleccionCita,
   useProfesionalViejo,
 } from "../context/StepperContext";
-import citas from "../json/citas.json";
 import citasService from "../services/citasService";
 
 const TurnoScreen = memo(() => {
@@ -66,7 +65,6 @@ const TurnoScreen = memo(() => {
   };
 
   const handleConfirmar = () => {
-    // To do: cuando este la integracion hecha, descomentar el siguiente bloque de codigo y elimar el descomentado
     const fetchCita = async () => {
       try {
         const result = await citasService.traerPorProfesionalFechaHora(
@@ -74,7 +72,6 @@ const TurnoScreen = memo(() => {
           profesionalSeleccionado.id,
           seleccionHorario.hora
         );
-        console.log("Cita encontrada:", result);
     
         setSeleccionCita(result);
       } catch (error) {
@@ -82,19 +79,6 @@ const TurnoScreen = memo(() => {
       }
     };
     fetchCita();
-
-    // To do: eliminar el siguiente bloque de codigo cuando este la integracion hecha
-    // Hasta que no se haga la US de PPD, cuando es PPD no va a encontrar una cita dado que id=0
-    // const cita = citas.find(
-    //   (cita) =>
-    //     cita.hora == seleccionHorario.hora &&
-    //     cita.fecha == seleccionDia &&
-    //     cita.profesionalesDisponibles.includes(profesionalSeleccionado.id)
-    // );
-
-    // console.log("Cita encontrada:", cita);
-
-    // setSeleccionCita(cita);
   };
 
   const getStepContent = (step) => {
