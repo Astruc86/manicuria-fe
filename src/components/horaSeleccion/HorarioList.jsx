@@ -5,14 +5,25 @@ import "./horario-list.css";
 import citasService from "../../services/citasService";
 
 const HorarioList = () => {
-  const { seleccionHorario, setSeleccionHorario, profesionalSeleccionado, seleccionDia, listaProfesionalesBE } =
-    useStepperContext();
+  const {
+    seleccionHorario,
+    setSeleccionHorario,
+    profesionalSeleccionado,
+    setProfesionalSeleccionado,
+    profesionalViejo,
+    setProfesionalViejo,
+    seleccionDia,
+    listaProfesionalesBE,
+  } = useStepperContext();
   const [horarios, setHorarios] = useState([]);
 
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-        if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
+        if (
+          profesionalSeleccionado &&
+          (profesionalSeleccionado.id === 0 || profesionalViejo)
+        ) {
           const result = await citasService.traerHorasPrimerProfesional(
             seleccionDia,
             listaProfesionalesBE
@@ -36,6 +47,10 @@ const HorarioList = () => {
 
   const handleClick = (horario) => {
     setSeleccionHorario(horario);
+    if (profesionalSeleccionado.id === 0 || profesionalViejo) {
+      setProfesionalViejo(profesionalSeleccionado);
+      setProfesionalSeleccionado({ id: horario.listaProfesionales[0] });
+    }
   };
 
   return (
@@ -45,7 +60,7 @@ const HorarioList = () => {
           key={horario.id}
           horario={horario}
           handleClick={handleClick}
-          isSelected={horario === seleccionHorario}
+          isSelected={horario.id === seleccionHorario?.id}
         />
       ))}
     </div>

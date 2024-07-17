@@ -37,21 +37,21 @@
   {
     "id": 19,
     "hora": "21:30",
-    "fecha": "2024-07-12",
+    "fecha": "2024-07-22",
     "profesionalesDisponibles": [9],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 20,
     "hora": "19:30",
-    "fecha": "2024-07-12",
+    "fecha": "2024-07-22",
     "profesionalesDisponibles": [9],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 20,
     "hora": "23:30",
-    "fecha": "2024-07-12",
+    "fecha": "2024-07-22",
     "profesionalesDisponibles": [1,5],
     "profesionalesReservados": [2, 3]
   }
