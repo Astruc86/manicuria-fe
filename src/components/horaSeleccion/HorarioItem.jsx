@@ -1,12 +1,13 @@
-import React from 'react';
-import './horario-item.css';
+import React from "react";
+import "./horario-item.css";
 
 const HorarioItem = ({ horario, handleClick, isSelected }) => {
-  const className = isSelected ? 'horario-item-wrapper selected' : 'horario-item-wrapper';
-
+  const className = isSelected
+    ? "horario-item-wrapper selected"
+    : "horario-item-wrapper";
   return (
     <div className={className} onClick={() => handleClick(horario)}>
-      <>{horario.hora}</>
+      <>{horario.hora.substring(0, 5)}</>
     </div>
   );
 };
