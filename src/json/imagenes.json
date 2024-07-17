@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fimagen1.jpg?alt=media&token=277e5a74-bae7-4c24-ab46-c6ee87ebf661",
+    "alt": "manos 01"
+  },
+  {
+    "id": 2,
+    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fimagen2.jpg?alt=media&token=49d2bef6-1f29-4c18-8b76-32fba3478799",
+    "alt": "manos 02"
+  },
+  {
+    "id": 3,
+    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fimagen3.jpg?alt=media&token=9d8097db-4656-4b49-b8ed-793a098c7048",
+    "alt": "manos 03"
+  },
+  {
+    "id": 4,
+    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/logo%2Flogo.jpg?alt=media&token=ad610bf4-cd71-4ec0-92ec-12c2efb9d794",
+    "alt": "logo"
+  }
+]

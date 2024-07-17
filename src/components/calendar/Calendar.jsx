@@ -3,34 +3,50 @@ import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import citaData from "../../json/cita.json";
-import citaPrimerProfesionalData from "../../json/citaPrimerProfesional.json";
-import { useStepperContext } from "../../context/StepperContext";
 import dayjs from "dayjs";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import "dayjs/locale/es";
+import { useStepperContext } from "../../context/StepperContext";
+import citasService from "../../services/citasService";
+
+dayjs.extend(isSameOrAfter);
+dayjs.extend(isSameOrBefore);
 
 const Calendar = () => {
-  const { seleccionDia, setSeleccionDia, profesionalSeleccionado } =
-    useStepperContext();
+  const {
+    seleccionDia,
+    setSeleccionDia,
+    profesionalSeleccionado,
+    listaProfesionalesBE,
+  } = useStepperContext();
   const [fechasDisponibles, setFechasDisponibles] = useState([]);
   const [selectedDate, setSelectedDate] = useState(
     seleccionDia ? dayjs(seleccionDia) : null
   );
 
   useEffect(() => {
-    try {
-      let citas = citaData;
-
-      if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
-        citas = citaPrimerProfesionalData;
+    const fetchDias = async () => {
+      try {
+        let result;
+        if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
+          result = await citasService.traerPrimerProfesional(
+            listaProfesionalesBE
+          );
+        } else {
+          result = await citasService.traerFiltradasDisponiblesPorProfesional(
+            profesionalSeleccionado.id
+          );
+        }
+        const fechas = result.map((cita) => dayjs(cita.fecha));
+        setFechasDisponibles(fechas);
+      } catch (error) {
+        console.error("Error fetching días calendario:", error);
       }
+    };
 
-      const fechas = citas.map((cita) => dayjs(cita.fecha));
-      setFechasDisponibles(fechas);
-    } catch (error) {
-      console.error("Error al cargar los datos de citas:", error);
-    }
-  }, [profesionalSeleccionado]);
+    fetchDias();
+  }, []);
 
   const isDateSelectable = (date) => {
     const today = dayjs();
@@ -38,8 +54,8 @@ const Calendar = () => {
 
     return (
       fechasDisponibles.some((f) => f.isSame(date, "day")) &&
-      date.isAfter(today, "day") &&
-      date.isBefore(maxDate, "day")
+      date.isSameOrAfter(today, "day") &&
+      date.isSameOrBefore(maxDate, "day")
     );
   };
 

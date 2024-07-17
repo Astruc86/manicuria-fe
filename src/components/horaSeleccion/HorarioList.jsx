@@ -1,25 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import horarioData from "../../json/citaHoraDTO.json";
-import horarioPrimerProfesionalData from "../../json/citaHoraPrimerProfesionalDTO.json";
-import { useStepperContext } from '../../context/StepperContext'; 
-import HorarioItem from './HorarioItem';
-import './horario-list.css';
+import React, { useEffect, useState } from "react";
+import { useStepperContext } from "../../context/StepperContext";
+import HorarioItem from "./HorarioItem";
+import "./horario-list.css";
+import citasService from "../../services/citasService";
 
 const HorarioList = () => {
-  const { seleccionHorario, setSeleccionHorario, profesionalSeleccionado } = useStepperContext();
+  const { seleccionHorario, setSeleccionHorario, profesionalSeleccionado, seleccionDia, listaProfesionalesBE } =
+    useStepperContext();
   const [horarios, setHorarios] = useState([]);
 
   useEffect(() => {
-    try {
-      if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
-        setHorarios(horarioPrimerProfesionalData)
-      } else {
-        setHorarios(horarioData);
+    const fetchHorarios = async () => {
+      try {
+        if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
+          const result = await citasService.traerHorasPrimerProfesional(
+            seleccionDia,
+            listaProfesionalesBE
+          );
+          setHorarios(result);
+        } else {
+          const result =
+            await citasService.traerHorasDisponiblesPorDiaProfesional(
+              seleccionDia,
+              profesionalSeleccionado.id
+            );
+          setHorarios(result);
+        }
+      } catch (error) {
+        console.error("Error fetching horarios:", error);
       }
-    } catch (error) {
-      console.error("Error al cargar los datos del cronograma:", error);
-    }
-  }, [profesionalSeleccionado]);
+    };
+
+    fetchHorarios();
+  }, []);
 
   const handleClick = (horario) => {
     setSeleccionHorario(horario);
