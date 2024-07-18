@@ -10,7 +10,19 @@ export const StepperProvider = ({ children }) => {
   const [seleccionDia, setSeleccionDia] = useState(null);
   const [listaProfesionalesBE, setListaProfesionalesBE] = useState([]);
   const [profesionalViejo, setProfesionalViejo] = useState(null);
-  const [seleccionDni, setSeleccionDni] = useState(null)
+  const [seleccionDni, setSeleccionDni] = useState(null);
+
+  const limpiarStepper = () => {
+    setActiveStep(0);
+    setSeleccionServicio(null);
+    setProfesionalSeleccionado(null);
+    setSeleccionHorario(null);
+    setSeleccionDia(null);
+    setListaProfesionalesBE([]);
+    setProfesionalViejo(null);
+    setSeleccionDni(null);
+  };
+
   return (
     <StepperContext.Provider
       value={{
@@ -29,7 +41,8 @@ export const StepperProvider = ({ children }) => {
         listaProfesionalesBE,
         setListaProfesionalesBE,
         seleccionDni,
-        setSeleccionDni
+        setSeleccionDni,
+        limpiarStepper,
       }}
     >
       {children}
@@ -80,4 +93,9 @@ export const useProfesionalViejo = () => {
 export const useSeleccionDni = () => {
   const { seleccionDni, setSeleccionDni } = useContext(StepperContext);
   return { seleccionDni, setSeleccionDni };
+};
+
+export const useLimpiarStepper = () => {
+  const { limpiarStepper } = useContext(StepperContext);
+  return { limpiarStepper };
 };

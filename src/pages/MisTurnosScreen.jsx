@@ -1,5 +1,5 @@
 import React from "react";
-import { useTurno } from "../context/TurnoContext";
+import { useTurno } from "../context/TurnosContext";
 
 export const MisTurnosScreen = () => {
   console.log("MisTurnosScreen");

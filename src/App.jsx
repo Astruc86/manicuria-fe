@@ -11,7 +11,7 @@ import { MisTurnosScreen } from "./pages/MisTurnosScreen";
 import Layout from "./components/navbar/Layout";
 import { UsuarioProvider } from "./context/UsuarioContext";
 import { AgendaScreen } from "./pages/AgendaScreen";
-import { TurnoProvider } from "./context/TurnoContext";
+import { TurnosProvider } from "./context/TurnosContext";
 
 export const App = () => {
   const location = useLocation();
@@ -23,7 +23,7 @@ export const App = () => {
       <UsuarioProvider>
         <Layout></Layout>
         <StepperProvider>
-          <TurnoProvider>
+          <TurnosProvider>
             <div className="container">
               <Routes>
                 <Route path="/home" element={<HomeScreen />} />
@@ -38,7 +38,7 @@ export const App = () => {
                 <Route path="/*" element={<Navigate to="/home" />} />
               </Routes>
             </div>
-          </TurnoProvider>
+          </TurnosProvider>
         </StepperProvider>
       </UsuarioProvider>
       {!mostrarFooter && <Footer />}

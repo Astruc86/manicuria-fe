@@ -1,8 +1,8 @@
 import React, { createContext, useState, useContext } from "react";
 
-const TurnoContext = createContext();
+const TurnosContext = createContext();
 
-export const TurnoProvider = ({ children }) => {
+export const TurnosProvider = ({ children }) => {
   const [turnos, setTurnos] = useState([]);
   const agregarTurno = (newTurno) => {
     setTurnos([...turnos, newTurno]);
@@ -13,7 +13,7 @@ export const TurnoProvider = ({ children }) => {
   };
 
   return (
-    <TurnoContext.Provider
+    <TurnosContext.Provider
       value={{
         turnos,
         agregarTurno,
@@ -21,13 +21,13 @@ export const TurnoProvider = ({ children }) => {
       }}
     >
       {children}
-    </TurnoContext.Provider>
+    </TurnosContext.Provider>
   );
 };
 
-export const useTurnoContext = () => useContext(TurnoContext);
+export const useTurnosContext = () => useContext(TurnosContext);
 
 export const useTurno = () => {
-  const { turnos, agregarTurno, generarId } = useContext(TurnoContext);
+  const { turnos, agregarTurno, generarId } = useContext(TurnosContext);
   return { turnos, agregarTurno, generarId };
 };

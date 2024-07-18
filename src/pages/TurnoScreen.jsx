@@ -14,10 +14,11 @@ import {
   useSeleccionHorario,
   useSeleccionDia,
   useProfesionalViejo,
-  useSeleccionDni,
+  useSeleccionDni
 } from "../context/StepperContext";
-import { useTurno } from "../context/TurnoContext";
+import { useTurno } from "../context/TurnosContext";
 import turnosService from "../services/turnosService";
+import MensajeConfirmacionTurno from "../components/mensajeConfirmacionTurno/MensajeConfirmacionTurno";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
@@ -29,12 +30,13 @@ const TurnoScreen = memo(() => {
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
   const { profesionalViejo, setProfesionalViejo } = useProfesionalViejo();
   const { seleccionDni, setSeleccionDni } = useSeleccionDni();
-  const { turnos, agregarTurno, generarId } = useTurno();
+  const { agregarTurno, generarId } = useTurno();
   const stepStateMap = {
     1: setProfesionalSeleccionado,
     2: setSeleccionDia,
     3: setSeleccionHorario,
   };
+  const [estadoTurno, setEstadoTurno] = useState(null);
 
   const clearFutureSteps = (step) => {
     Object.keys(stepStateMap).forEach((key) => {
@@ -85,14 +87,14 @@ const TurnoScreen = memo(() => {
           cita: seleccionCita,
           servicio: seleccionServicio,
           profesional: profesionalSeleccionado,
-          dni: seleccionDni
+          dni: seleccionDni,
         };
 
         await turnosService.crear(turno, agregarTurno, generarId);
-        //To do: cambiar alerta y agregar navegacion
-        alert("Turno creado con éxito");
+        setEstadoTurno("creado");
       } catch (error) {
         console.error("Error fetching turnos:", error);
+        setEstadoTurno("error");
       }
     };
     fetchTurno();
@@ -108,37 +110,45 @@ const TurnoScreen = memo(() => {
         return <Calendar setSeleccion={setSeleccionDia} />;
       case 3:
         return <HorarioList setSeleccion={setSeleccionHorario} />;
+      case 4:
+        return <ResumenFinal />;
       default:
-        return <ResumenFinal />; // Mostrar ResumenFinal en el último paso
+        return null; 
     }
   };
 
   return (
-    <div
-      className={`turno-screen ${
-        [1, 2, 3].includes(activeStep) ? "split-layout" : ""
-      }`}
-    >
-      <div className="content">
-        <StepperComponent
-          steps={steps}
-          activeStep={activeStep}
-          handleNext={handleNext}
-          handleBack={handleBack}
-          handleConfirmar={handleConfirmar}
-          getStepContent={getStepContent}
-          seleccionServicio={seleccionServicio}
-          profesionalSeleccionado={profesionalSeleccionado}
-          seleccionHorario={seleccionHorario}
-          seleccionDia={seleccionDia}
-        />
-      </div>
-      {[1, 2, 3].includes(activeStep) && (
-        <div className="resumen-container">
-          <Resumen />
+    <>
+      {estadoTurno ? (
+        <MensajeConfirmacionTurno estadoTurno={estadoTurno} />
+      ) : (
+        <div
+          className={`turno-screen ${
+            [1, 2, 3].includes(activeStep) ? "split-layout" : ""
+          }`}
+        >
+          <div className="content">
+            <StepperComponent
+              steps={steps}
+              activeStep={activeStep}
+              handleNext={handleNext}
+              handleBack={handleBack}
+              handleConfirmar={handleConfirmar}
+              getStepContent={getStepContent}
+              seleccionServicio={seleccionServicio}
+              profesionalSeleccionado={profesionalSeleccionado}
+              seleccionHorario={seleccionHorario}
+              seleccionDia={seleccionDia}
+            />
+          </div>
+          {[1, 2, 3].includes(activeStep) && (
+            <div className="resumen-container">
+              <Resumen />
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 });
 

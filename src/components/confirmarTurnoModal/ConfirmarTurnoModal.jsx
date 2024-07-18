@@ -32,6 +32,11 @@ export default function ConfirmarTurnoModal({
     console.log("DNI en la modal:", dni); // Aquí tienes el DNI
   };
 
+  const handleCancel = () => {
+    setDni("");
+    handleClose();
+  }
+
   return (
     <>
       <Dialog
@@ -52,7 +57,7 @@ export default function ConfirmarTurnoModal({
           <NumericoInput value={dni} onChange={handleDniChange} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
+          <Button onClick={handleCancel}>Cancelar</Button>
           <Button type="submit">Confirmar</Button>
         </DialogActions>
       </Dialog>
