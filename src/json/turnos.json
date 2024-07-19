@@ -1,32 +1,42 @@
 [
   {
     "id": 1,
-    "fechaCita": "2022-10-10",
+    "fechaCita": "2024-07-19",
+    "horaCita": "05:00",
+    "nombreServicio": "Manicura",
+    "duracionServicio": 30,
+    "precioServicio": 25.0,
+    "nombreProfesional": "Ana",
+    "dni": "12345678"
+  },
+  {
+    "id": 4,
+    "fechaCita": "2024-07-19",
     "horaCita": "09:00",
     "nombreServicio": "Manicura",
     "duracionServicio": 30,
     "precioServicio": 25.0,
     "nombreProfesional": "Ana",
-    "nombreCliente": "Maria"
+    "dni": "12345678"
   },
   {
     "id": 2,
-    "fechaCita": "2022-10-12",
+    "fechaCita": "2024-10-15",
     "horaCita": "14:30",
     "nombreServicio": "Pedicura",
     "duracionServicio": 30,
     "precioServicio": 35.0,
     "nombreProfesional": "Laura",
-    "nombreCliente": "Sofia"
+    "dni": "12345678"
   },
   {
     "id": 3,
-    "fechaCita": "2022-10-15",
+    "fechaCita": "2024-10-15",
     "horaCita": "11:00",
     "nombreServicio": "Esmaltado",
     "duracionServicio": 30,
     "precioServicio": 15.0,
     "nombreProfesional": "Maria",
-    "nombreCliente": "Luisa"
+    "dni": "22222222"
   }
 ]
