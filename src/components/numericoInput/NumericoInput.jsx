@@ -14,15 +14,14 @@ const CustomNumberInput = styled(TextField)`
   }
 `;
 
-export default function NumericoInput({ value, onChange }) {
+export default function NumericoInput({ value, onChange, error }) {
+
   const handleKeyDown = (event) => {
     const { key, ctrlKey, metaKey } = event;
-  
-    // Allow control keys like Ctrl+C, Ctrl+V, etc.
     if (ctrlKey || metaKey) {
       return;
     }
-  
+
     if (
       !/^[0-9]*$/.test(key) &&
       key !== "Backspace" &&
@@ -35,7 +34,6 @@ export default function NumericoInput({ value, onChange }) {
       event.preventDefault();
     }
   };
-  
 
   const handlePaste = (event) => {
     const paste = (event.clipboardData || window.clipboardData).getData("text");
@@ -44,8 +42,7 @@ export default function NumericoInput({ value, onChange }) {
     }
   };
   const handleChange = (event) => {
-    const newValue = event.target.value;
-    // Permitir solo valores numéricos y limitar la longitud a 8
+    const newValue = event.target.value;    
     if (/^\d*$/.test(newValue) && newValue.length <= 8) {
       onChange(event);
     }
@@ -53,6 +50,7 @@ export default function NumericoInput({ value, onChange }) {
 
   return (
     <CustomNumberInput
+      error={error}
       label="DNI"
       required
       autoFocus

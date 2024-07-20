@@ -14,8 +14,10 @@ export default function ConfirmarTurnoModal({
   handleConfirmar,
 }) {
   const [dni, setDni] = useState("");
+  const [error, setError] = useState(false);
 
   const handleDniChange = (event) => {
+    setError(false);
     setDni(event.target.value);
   };
 
@@ -25,23 +27,25 @@ export default function ConfirmarTurnoModal({
       handleConfirmar(dni);
       handleClose();
     } else {
-      //To do:mostrar de alguna forma que el tamaño del dni tiene que ser de 8
-      console.log("El dni tiene que tener 8 numeros");
-      alert("El dni tiene que tener 8 numeros");
+      setError(true);
     }
-    console.log("DNI en la modal:", dni); // Aquí tienes el DNI
   };
 
   const handleCancel = () => {
     setDni("");
     handleClose();
-  }
+  };
+
+  const handleDialogClose = () => {
+    setDni(""); 
+    handleClose();
+  };
 
   return (
     <>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleDialogClose}
         PaperProps={{
           component: "form",
           onSubmit: handleSubmit,
@@ -54,7 +58,7 @@ export default function ConfirmarTurnoModal({
             DNI.
           </DialogContentText>
 
-          <NumericoInput value={dni} onChange={handleDniChange} />
+          <NumericoInput value={dni} onChange={handleDniChange} error={error} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>Cancelar</Button>

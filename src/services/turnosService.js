@@ -41,12 +41,10 @@ const ordenarTurnos = (turnos) => {
 
 const ordenarTurnosPorFechaYHora = (turnos) => {
   turnos.sort((t1, t2) => {
-    // Comparar las fechas
     const dateComparison = new Date(t1.fechaCita) - new Date(t2.fechaCita);
     if (dateComparison !== 0) {
       return dateComparison;
     }
-    // Si las fechas son iguales, comparar las horas
     return t1.horaCita.localeCompare(t2.horaCita);
   });
 };
@@ -84,7 +82,6 @@ const turnosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
   },
 
   traerTodos: async () => {

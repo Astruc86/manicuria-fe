@@ -75,51 +75,47 @@ const TurnoScreen = memo(() => {
     setSeleccionDni(dni);
   };
 
-  useEffect(() => {
-    if (seleccionDni == null) return;
-    const fetchTurno = async () => {
-      try {
-        //To do: cambiar seleccionCita cuando se implemente MIA-77
-        const seleccionCita = {
-          id: 1,
-          hora: "10:00",
-          fecha: "2022-12-31",
-          profesionalesDisponibles: [1, 2, 3],
-          profesionalesReservados: [4, 5],
-        };
-        const turno = {
-          cita: seleccionCita,
-          servicio: seleccionServicio,
-          profesional: profesionalSeleccionado,
-          dni: seleccionDni,
-        };
+  const fetchCita = async () => {
+    try {
+      const result = await citasService.traerPorProfesionalFechaHora(
+        seleccionDia,
+        profesionalSeleccionado.id,
+        seleccionHorario.hora
+      );
+      setSeleccionCita(result);
+    } catch (error) {
+      console.error("Error fetching citas:", error);
+    }
+  };
 
-        await turnosService.crear(turno, agregarTurno, generarId);
-        setEstadoTurno("creado");
-      } catch (error) {
-        console.error("Error fetching turnos:", error);
-        setEstadoTurno("error");
-      }
-    };
-    fetchTurno();
+  const fetchTurno = async () => {
+    if (!seleccionCita) return;
+
+    try {
+      const turno = {
+        cita: seleccionCita,
+        servicio: seleccionServicio,
+        profesional: profesionalSeleccionado,
+        dni: seleccionDni,
+      };
+
+      await turnosService.crear(turno, agregarTurno, generarId);
+      setEstadoTurno("creado");
+    } catch (error) {
+      console.error("Error fetching turnos:", error);
+      setEstadoTurno("error");
+    }
+  };
+
+  useEffect(() => {
+    if (!seleccionDni) return;
+    fetchCita();
   }, [seleccionDni]);
 
-  const fetchCita = () => {
-    const fetchCita = async () => {
-      try {
-        const result = await citasService.traerPorProfesionalFechaHora(
-          seleccionDia,
-          profesionalSeleccionado.id,
-          seleccionHorario.hora
-        );
-
-        setSeleccionCita(result);
-      } catch (error) {
-        console.error("Error fetching citas:", error);
-      }
-    };
-    fetchCita();
-  };
+  useEffect(() => {
+    if (!seleccionCita || !seleccionDni) return;
+    fetchTurno();
+  }, [seleccionCita, seleccionDni]);
 
   const getStepContent = (step) => {
     switch (step) {
