@@ -27,11 +27,11 @@ export const FormIniciarSesion = () => {
   };
   return (
     <FormControl defaultValue="" required>
-      <Box sx={{ width: 350, border: "1px solid black", borderRadius: 4 }}>
+      <Box sx={{ width: 370, border: "1px solid black", borderRadius: 4 }}>
         <Stack spacing={3} sx={{ padding: 5 }}>
           <h2>¡Bienvenido/a!</h2>
           <p>
-            Estás por iniciar sesión como {isCliente ? "cliente" : "empresa"}
+            Estás por iniciar sesión como <strong>{isCliente ? "cliente" : "empresa"}</strong>
           </p>
           <Button variant="contained" onClick={handleClickIngresar}>
             INGRESAR

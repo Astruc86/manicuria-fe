@@ -45,7 +45,7 @@
     "id": 20,
     "hora": "19:30",
     "fecha": "2024-07-22",
-    "profesionalesDisponibles": [9],
+    "profesionalesDisponibles": [1,9],
     "profesionalesReservados": [2, 3]
   },
   {
