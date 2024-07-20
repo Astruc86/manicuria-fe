@@ -28,44 +28,48 @@ const StepperComponent = ({
   const isLastStep = activeStep === steps.length - 1;
   const { open, handleOpen, handleClose } = useModal();
 
+  const boton = isLastStep ? (
+    <Button disabled={isNextButtonDisabled} onClick={handleOpen}>
+      CONFIRMAR
+    </Button>
+  ) : (
+    <Button disabled={isNextButtonDisabled} onClick={handleNext}>
+      SIGUIENTE
+    </Button>
+  );
+
+  const modal = isLastStep && (
+    <ConfirmarTurnoModal
+      open={open}
+      handleClose={handleClose}
+      handleConfirmar={handleConfirmar}
+    ></ConfirmarTurnoModal>
+  );
+
   return (
-      <>
-        <Stepper activeStep={activeStep} alternativeLabel>
-          {steps.map((label, index) => (
-            <Step key={index}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        <div>
-          {getStepContent(activeStep)}
-          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-            >
-              Volver
-            </Button>
-            {isLastStep ? (
-              <>
-                <Button disabled={isNextButtonDisabled} onClick={handleOpen}>
-                  CONFIRMAR
-                </Button>
-                <ConfirmarTurnoModal
-                  open={open}
-                  handleClose={handleClose}
-                  handleConfirmar={handleConfirmar}
-                ></ConfirmarTurnoModal>
-              </>
-            ) : (
-              <Button disabled={isNextButtonDisabled} onClick={handleNext}>
-                SIGUIENTE
-              </Button>
-            )}
-          </Box>
-        </div>
-      </>
+    <>
+      <Stepper activeStep={activeStep} alternativeLabel>
+        {steps.map((label, index) => (
+          <Step key={index}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <div>
+        {getStepContent(activeStep)}
+        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+          <Button
+            color="inherit"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+          >
+            Volver
+          </Button>
+          {boton}
+          {modal}
+        </Box>
+      </div>
+    </>
   );
 };
 

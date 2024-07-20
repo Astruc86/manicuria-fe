@@ -21,29 +21,37 @@ const MensajeConfirmacionTurno = ({ estadoTurno }) => {
     navigate("/turnos");
   };
 
+  const titulo =
+    estadoTurno === "creado"
+      ? "Su turno ha sido creado con éxito."
+      : "No se pudo crear su turno.";
+
+  const mensaje =
+    estadoTurno === "creado"
+      ? "Puede ver los detalles de sus turnos haciendo clic aquí."
+      : "Hubo un error al confirmar su turno. Por favor, inténtelo de nuevo más tarde.";
+
+  const icono =
+    estadoTurno === "creado" ? (
+      <CheckCircleIcon sx={{ fontSize: 60 }} color="success" />
+    ) : (
+      <UnpublishedIcon sx={{ fontSize: 60 }} color="error" />
+    );
+
+  const boton = estadoTurno === "creado" && (
+    <Button variant="contained" onClick={handleMisTurnos}>
+      MIS TURNOS
+    </Button>
+  );
+
   return (
     <>
       <Box sx={{ width: 350, border: "1px solid black", borderRadius: 4 }}>
         <Stack spacing={3} sx={{ padding: 5 }}>
-          {estadoTurno === "creado" ? (
-            <>
-              <CheckCircleIcon sx={{ fontSize: 60 }} color="success" />
-              <h3>Su turno ha sido creado con éxito.</h3>
-              <p>Puede ver los detalles de sus turnos haciendo clic aquí.</p>
-              <Button variant="contained" onClick={handleMisTurnos}>
-                MIS TURNOS
-              </Button>
-            </>
-          ) : (
-            <>
-              <UnpublishedIcon sx={{ fontSize: 60 }} color="error" />
-              <h3>No se pudo crear su turno.</h3>
-              <p>
-                Hubo un error al confirmar su turno. Por favor, inténtelo de
-                nuevo más tarde.
-              </p>
-            </>
-          )}
+          {icono}
+          <h3>{titulo}</h3>
+          <p>{mensaje}</p>
+          {boton}
         </Stack>
       </Box>
     </>

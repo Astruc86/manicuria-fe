@@ -15,7 +15,6 @@ const CustomNumberInput = styled(TextField)`
 `;
 
 export default function NumericoInput({ value, onChange, error }) {
-
   const handleKeyDown = (event) => {
     const { key, ctrlKey, metaKey } = event;
     if (ctrlKey || metaKey) {
@@ -42,7 +41,7 @@ export default function NumericoInput({ value, onChange, error }) {
     }
   };
   const handleChange = (event) => {
-    const newValue = event.target.value;    
+    const newValue = event.target.value;
     if (/^\d*$/.test(newValue) && newValue.length <= 8) {
       onChange(event);
     }
@@ -51,7 +50,7 @@ export default function NumericoInput({ value, onChange, error }) {
   return (
     <CustomNumberInput
       error={error}
-      helperText={error? "El DNI debe tener 8 dígitos.": " "}
+      helperText={error ? "El DNI debe tener 8 dígitos." : " "}
       label="DNI"
       required
       autoFocus

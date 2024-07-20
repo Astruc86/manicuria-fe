@@ -38,7 +38,7 @@ export default function ConfirmarTurnoModal({
   };
 
   const handleDialogClose = () => {
-    setDni(""); 
+    setDni("");
     setError(false);
     handleClose();
   };

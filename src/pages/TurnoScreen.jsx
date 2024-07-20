@@ -21,6 +21,7 @@ import { useTurno } from "../context/TurnosContext";
 import turnosService from "../services/turnosService";
 import MensajeConfirmacionTurno from "../components/mensajeConfirmacionTurno/MensajeConfirmacionTurno";
 import citasService from "../services/citasService";
+import Box from "@mui/material/Box";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
@@ -137,7 +138,15 @@ const TurnoScreen = memo(() => {
   return (
     <>
       {estadoTurno ? (
-        <MensajeConfirmacionTurno estadoTurno={estadoTurno} />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <MensajeConfirmacionTurno estadoTurno={estadoTurno} />
+        </Box>
       ) : (
         <div
           className={`turno-screen ${
