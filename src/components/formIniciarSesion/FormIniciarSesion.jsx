@@ -23,7 +23,7 @@ export const FormIniciarSesion = () => {
 
   const handleClickIngresar = () => {
     setUsuario(isCliente ? 2 : 1);
-    navigate("/path/home");
+    navigate("/home");
   };
   return (
     <FormControl defaultValue="" required>
