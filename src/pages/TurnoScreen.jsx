@@ -5,7 +5,7 @@ import ProfesionalList from "../components/profesionalList/ProfesionalList";
 import Calendar from "../components/calendar/Calendar";
 import HorarioList from "../components/horaSeleccion/HorarioList";
 import Resumen from "../components/resumen/Resumen";
-import ResumenFinal from "../components/resumen/ResumenFinal"; // Importar ResumenFinal
+import ResumenFinal from "../components/resumen/ResumenFinal";
 import "../styles/turnoScreen.css";
 import {
   useActiveStep,
@@ -13,8 +13,10 @@ import {
   useProfesionalSeleccionado,
   useSeleccionHorario,
   useSeleccionDia,
+  useSeleccionCita,
   useProfesionalViejo,
 } from "../context/StepperContext";
+import citasService from "../services/citasService";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
@@ -24,6 +26,8 @@ const TurnoScreen = memo(() => {
     useProfesionalSeleccionado();
   const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
+  const { seleccionCita, setSeleccionCita } = useSeleccionCita();
+
   const { profesionalViejo, setProfesionalViejo } = useProfesionalViejo();
   const stepStateMap = {
     1: setProfesionalSeleccionado,
@@ -60,6 +64,23 @@ const TurnoScreen = memo(() => {
     }
   };
 
+  const handleConfirmar = () => {
+    const fetchCita = async () => {
+      try {
+        const result = await citasService.traerPorProfesionalFechaHora(
+          seleccionDia,
+          profesionalSeleccionado.id,
+          seleccionHorario.hora
+        );
+    
+        setSeleccionCita(result);
+      } catch (error) {
+        console.error("Error fetching citas:", error);
+      }
+    };
+    fetchCita();
+  };
+
   const getStepContent = (step) => {
     switch (step) {
       case 0:
@@ -87,6 +108,7 @@ const TurnoScreen = memo(() => {
           activeStep={activeStep}
           handleNext={handleNext}
           handleBack={handleBack}
+          handleConfirmar={handleConfirmar}
           getStepContent={getStepContent}
           seleccionServicio={seleccionServicio}
           profesionalSeleccionado={profesionalSeleccionado}
