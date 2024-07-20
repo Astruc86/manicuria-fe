@@ -24,7 +24,7 @@ const ordenarTurnos = (turnos) => {
   const turnosNuevos = turnos.filter(
     (turno) =>
       turno.fechaCita > fechaActual ||
-      (turno.fechaCita == fechaActual && turno.horaCita > horaActual)
+      (turno.fechaCita == fechaActual && turno.horaCita >= horaActual)
   );
 
   const turnosViejos = turnos.filter(
