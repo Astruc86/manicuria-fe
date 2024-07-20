@@ -51,6 +51,7 @@ export default function NumericoInput({ value, onChange, error }) {
   return (
     <CustomNumberInput
       error={error}
+      helperText={error? "El DNI debe tener 8 dígitos.": " "}
       label="DNI"
       required
       autoFocus
