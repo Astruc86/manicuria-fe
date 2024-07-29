@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from "react";
 import StepperComponent from "../components/stepper/Stepper";
-import ServicioItem from "../components/servicioItem/ServicioItem";
+import ServicioList from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
 import Calendar from "../components/calendar/Calendar";
 import HorarioList from "../components/horaSeleccion/HorarioList";
@@ -84,7 +84,7 @@ const TurnoScreen = memo(() => {
   const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <ServicioItem setSeleccion={setSeleccionServicio} />;
+        return <ServicioList setSeleccion={setSeleccionServicio} />;
       case 1:
         return <ProfesionalList setSeleccion={setProfesionalSeleccionado} />;
       case 2:

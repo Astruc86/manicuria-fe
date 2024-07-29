@@ -1,4 +1,5 @@
-export const MisTurnosScreen = () => {
-    return <>Mis Turnos screen</>;
-  };
-  
+const MisTurnosScreen = () => {
+  return <>Mis Turnos screen</>;
+};
+
+export default MisTurnosScreen;
