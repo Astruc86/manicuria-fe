@@ -3,6 +3,8 @@ import { useStepperContext } from "../../context/StepperContext";
 import data from "../../json/profesionales.json";
 import "./profesional-item.css";
 import profesionalesService from "../../services/profesionalesService";
+import { useQuery } from "@tanstack/react-query";
+import CircularIndeterminate from "../Progress/CircularIndeterminate";
 
 const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
   const className = isSelected
@@ -26,6 +28,30 @@ const ProfesionalList = () => {
     setListaProfesionalesBE,
   } = useStepperContext();
   const [profesionales, setProfesionales] = React.useState([]);
+  
+  // const {
+  //   data: profesionales = [],
+  //   error,
+  //   isLoading,
+  // } = useQuery({
+  //   queryKey: ["profesionales", seleccionServicio.id],
+  //   queryFn: () => profesionalesService.traerPorServicio(seleccionServicio.id),
+  //   select: (data) => {
+  //     // Agrega el primer profesional a los datos obtenidos
+  //     const primerProfesional = { id: 0, nombre: "Primer Profesional" };
+  //     return [primerProfesional, ...data];
+  //   },
+  //   onSuccess: (data) => {
+  //     // Configura el contexto con los datos originales (sin el primer profesional añadido)
+  //     setListaProfesionalesBE(data.slice(1));
+  //   },
+  // });
+
+  useEffect(() => {
+    if (profesionales) {
+      setListaProfesionalesBE(profesionales);
+    }
+  }, [profesionales]);
 
   useEffect(() => {
     const fetchProfesionales = async () => {
