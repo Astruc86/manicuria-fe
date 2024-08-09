@@ -11,6 +11,18 @@ export const StepperProvider = ({ children }) => {
   const [listaProfesionalesBE, setListaProfesionalesBE] = useState([]);
   const [seleccionCita, setSeleccionCita] = useState(null);
   const [esPrimerProfesional, setEsPrimerProfesional] = useState(false);
+  const [seleccionDni, setSeleccionDni] = useState(null);
+
+  const limpiarStepper = () => {
+    setActiveStep(0);
+    setSeleccionServicio(null);
+    setProfesionalSeleccionado(null);
+    setSeleccionHorario(null);
+    setSeleccionDia(null);
+    setListaProfesionalesBE([]);
+    setProfesionalViejo(null);
+    setSeleccionDni(null);
+  };
 
   return (
     <StepperContext.Provider
@@ -27,6 +39,9 @@ export const StepperProvider = ({ children }) => {
         setSeleccionDia,
         listaProfesionalesBE,
         setListaProfesionalesBE,
+        seleccionDni,
+        setSeleccionDni,
+        limpiarStepper,
         seleccionCita,
         setSeleccionCita,
         esPrimerProfesional,
@@ -79,6 +94,17 @@ export const useSeleccionCita = () => {
 };
 
 export const useEsPrimerProfesional = () => {
-  const { esPrimerProfesional, setEsPrimerProfesional } = useContext(StepperContext);
+  const { esPrimerProfesional, setEsPrimerProfesional } =
+    useContext(StepperContext);
   return { esPrimerProfesional, setEsPrimerProfesional };
+};
+
+export const useSeleccionDni = () => {
+  const { seleccionDni, setSeleccionDni } = useContext(StepperContext);
+  return { seleccionDni, setSeleccionDni };
+};
+
+export const useLimpiarStepper = () => {
+  const { limpiarStepper } = useContext(StepperContext);
+  return { limpiarStepper };
 };

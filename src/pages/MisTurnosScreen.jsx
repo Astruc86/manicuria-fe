@@ -1,5 +1,9 @@
-const MisTurnosScreen = () => {
-  return <>Mis Turnos screen</>;
-};
+import React from "react";
 
-export default MisTurnosScreen;
+export const MisTurnosScreen = () => {
+  return (
+    <>
+      <h1>Mis turnos screen</h1>
+    </>
+  );
+};
