@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioItem from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
@@ -15,8 +15,13 @@ import {
   useSeleccionDia,
   useSeleccionCita,
   useProfesionalViejo,
+  useSeleccionDni,
 } from "../context/StepperContext";
+import { useTurno } from "../context/TurnosContext";
+import turnosService from "../services/turnosService";
+import MensajeConfirmacionTurno from "../components/mensajeConfirmacionTurno/MensajeConfirmacionTurno";
 import citasService from "../services/citasService";
+import Box from "@mui/material/Box";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
@@ -29,11 +34,14 @@ const TurnoScreen = memo(() => {
   const { seleccionCita, setSeleccionCita } = useSeleccionCita();
 
   const { profesionalViejo, setProfesionalViejo } = useProfesionalViejo();
+  const { seleccionDni, setSeleccionDni } = useSeleccionDni();
+  const { agregarTurno, generarId } = useTurno();
   const stepStateMap = {
     1: setProfesionalSeleccionado,
     2: setSeleccionDia,
     3: setSeleccionHorario,
   };
+  const [estadoTurno, setEstadoTurno] = useState(null);
 
   const clearFutureSteps = (step) => {
     Object.keys(stepStateMap).forEach((key) => {
@@ -64,22 +72,51 @@ const TurnoScreen = memo(() => {
     }
   };
 
-  const handleConfirmar = () => {
-    const fetchCita = async () => {
-      try {
-        const result = await citasService.traerPorProfesionalFechaHora(
-          seleccionDia,
-          profesionalSeleccionado.id,
-          seleccionHorario.hora
-        );
-    
-        setSeleccionCita(result);
-      } catch (error) {
-        console.error("Error fetching citas:", error);
-      }
-    };
-    fetchCita();
+  const handleConfirmar = (dni) => {
+    setSeleccionDni(dni);
   };
+
+  const fetchCita = async () => {
+    try {
+      const result = await citasService.traerPorProfesionalFechaHora(
+        seleccionDia,
+        profesionalSeleccionado.id,
+        seleccionHorario.hora
+      );
+      setSeleccionCita(result);
+    } catch (error) {
+      console.error("Error fetching citas:", error);
+    }
+  };
+
+  const fetchTurno = async () => {
+    if (!seleccionCita) return;
+
+    try {
+      const turno = {
+        cita: seleccionCita,
+        servicio: seleccionServicio,
+        profesional: profesionalSeleccionado,
+        dni: seleccionDni,
+      };
+
+      await turnosService.crear(turno, agregarTurno, generarId);
+      setEstadoTurno("creado");
+    } catch (error) {
+      console.error("Error fetching turnos:", error);
+      setEstadoTurno("error");
+    }
+  };
+
+  useEffect(() => {
+    if (!seleccionDni) return;
+    fetchCita();
+  }, [seleccionDni]);
+
+  useEffect(() => {
+    if (!seleccionCita || !seleccionDni) return;
+    fetchTurno();
+  }, [seleccionCita, seleccionDni]);
 
   const getStepContent = (step) => {
     switch (step) {
@@ -91,37 +128,53 @@ const TurnoScreen = memo(() => {
         return <Calendar setSeleccion={setSeleccionDia} />;
       case 3:
         return <HorarioList setSeleccion={setSeleccionHorario} />;
+      case 4:
+        return <ResumenFinal />;
       default:
-        return <ResumenFinal />; // Mostrar ResumenFinal en el último paso
+        return null;
     }
   };
 
   return (
-    <div
-      className={`turno-screen ${
-        [1, 2, 3].includes(activeStep) ? "split-layout" : ""
-      }`}
-    >
-      <div className="content">
-        <StepperComponent
-          steps={steps}
-          activeStep={activeStep}
-          handleNext={handleNext}
-          handleBack={handleBack}
-          handleConfirmar={handleConfirmar}
-          getStepContent={getStepContent}
-          seleccionServicio={seleccionServicio}
-          profesionalSeleccionado={profesionalSeleccionado}
-          seleccionHorario={seleccionHorario}
-          seleccionDia={seleccionDia}
-        />
-      </div>
-      {[1, 2, 3].includes(activeStep) && (
-        <div className="resumen-container">
-          <Resumen />
+    <>
+      {estadoTurno ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <MensajeConfirmacionTurno estadoTurno={estadoTurno} />
+        </Box>
+      ) : (
+        <div
+          className={`turno-screen ${
+            [1, 2, 3].includes(activeStep) ? "split-layout" : ""
+          }`}
+        >
+          <div className="content">
+            <StepperComponent
+              steps={steps}
+              activeStep={activeStep}
+              handleNext={handleNext}
+              handleBack={handleBack}
+              handleConfirmar={handleConfirmar}
+              getStepContent={getStepContent}
+              seleccionServicio={seleccionServicio}
+              profesionalSeleccionado={profesionalSeleccionado}
+              seleccionHorario={seleccionHorario}
+              seleccionDia={seleccionDia}
+            />
+          </div>
+          {[1, 2, 3].includes(activeStep) && (
+            <div className="resumen-container">
+              <Resumen />
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 });
 
