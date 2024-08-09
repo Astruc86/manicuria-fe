@@ -73,6 +73,7 @@ const empresasService = {
     const response = await fetch(
       `${config.empresasApiBaseUrl}/empresas/traer/${id}`
     );
+    if (response.status == 404) return null
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }

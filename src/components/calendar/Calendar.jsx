@@ -9,44 +9,45 @@ import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import "dayjs/locale/es";
 import { useStepperContext } from "../../context/StepperContext";
 import citasService from "../../services/citasService";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import CircularIndeterminate from "../Progress/CircularIndeterminate";
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
 const Calendar = () => {
-  const {
-    seleccionDia,
-    setSeleccionDia,
-    profesionalSeleccionado,
-    listaProfesionalesBE,
-  } = useStepperContext();
-  const [fechasDisponibles, setFechasDisponibles] = useState([]);
+  const { seleccionDia, setSeleccionDia, profesionalSeleccionado } =
+    useStepperContext();
   const [selectedDate, setSelectedDate] = useState(
     seleccionDia ? dayjs(seleccionDia) : null
   );
 
-  useEffect(() => {
-    const fetchDias = async () => {
-      try {
-        let result;
-        if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
-          result = await citasService.traerPrimerProfesional(
-            listaProfesionalesBE
-          );
-        } else {
-          result = await citasService.traerFiltradasDisponiblesPorProfesional(
-            profesionalSeleccionado.id
-          );
-        }
-        const fechas = result.map((cita) => dayjs(cita.fecha));
-        setFechasDisponibles(fechas);
-      } catch (error) {
-        console.error("Error fetching días calendario:", error);
-      }
-    };
+  const queryClient = useQueryClient();
 
-    fetchDias();
-  }, []);
+  const fetchFechas = () => {
+    if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
+      const storedProfesionales = queryClient.getQueryData(["profesionales"]);
+      return citasService.traerPrimerProfesional(storedProfesionales);
+    } else {
+      return citasService.traerFiltradasDisponiblesPorProfesional(
+        profesionalSeleccionado.id
+      );
+    }
+  };
+
+  const {
+    isLoading,
+    isError,
+    data: fechasDisponibles = [],
+  } = useQuery({
+    queryKey: ["dias"],
+    queryFn: fetchFechas,
+    select: (data) => {
+      if (data.length === 0) return [];
+      const fechas = data.map((cita) => dayjs(cita.fecha));
+      return [...fechas];
+    },
+  });
 
   const isDateSelectable = (date) => {
     const today = dayjs();
@@ -79,16 +80,27 @@ const Calendar = () => {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
-      <StaticDatePicker
-        displayStaticWrapperAs="desktop"
-        value={selectedDate}
-        onChange={handleDateChange}
-        shouldDisableDate={(date) => !isDateSelectable(date)}
-        sx={customStyles}
-        slots={{ textField: (params) => <TextField {...params} /> }}
-      />
-    </LocalizationProvider>
+    <>
+      {fechasDisponibles.length > 0 && (
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
+          <StaticDatePicker
+            displayStaticWrapperAs="desktop"
+            value={selectedDate}
+            onChange={handleDateChange}
+            shouldDisableDate={(date) => !isDateSelectable(date)}
+            sx={customStyles}
+            slots={{ textField: (params) => <TextField {...params} /> }}
+          />
+        </LocalizationProvider>
+      )}
+      {isLoading && <CircularIndeterminate />}
+      {isError && (
+        <h1>Error cargando los días. Por favor, intente de nuevo más tarde.</h1>
+      )}
+      {!isError && !isLoading && fechasDisponibles.length === 0 && (
+        <h1>No hay fechas disponibles.</h1>
+      )}
+    </>
   );
 };
 

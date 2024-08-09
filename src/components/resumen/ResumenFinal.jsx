@@ -6,18 +6,19 @@ import {
   useProfesionalSeleccionado,
   useSeleccionHorario,
   useSeleccionDia,
-  useProfesionalViejo,
+  useEsPrimerProfesional,
 } from "../../context/StepperContext";
 import profesionalesService from "../../services/profesionalesService";
+import { useQuery } from "@tanstack/react-query";
 
 const ResumenFinal = () => {
   const { seleccionServicio } = useSeleccionServicio();
-  const { profesionalSeleccionado, setProfesionalSeleccionado } = useProfesionalSeleccionado();
+  const { profesionalSeleccionado, setProfesionalSeleccionado } =
+    useProfesionalSeleccionado();
   const { seleccionHorario } = useSeleccionHorario();
   const { seleccionDia } = useSeleccionDia();
-  const { profesionalViejo, setProfesionalViejo } = useProfesionalViejo();
-
-  const [profesional, setProfesional] = useState();
+  const { esPrimerProfesional, setEsPrimerProfesional } =
+    useEsPrimerProfesional();
 
   const servicio = seleccionServicio.nombre;
   const precio = `$${seleccionServicio.precio}`;
@@ -25,23 +26,20 @@ const ResumenFinal = () => {
   const dia = dayjs(seleccionDia).format("DD-MM-YYYY");
   const hora = seleccionHorario.hora;
 
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["profesional"],
+    queryFn: () => profesionalesService.traerId(profesionalSeleccionado.id),
+    enabled: esPrimerProfesional,
+  });
+
   useEffect(() => {
-    const fetchProfesional = async () => {
-      try {
-        const result = await profesionalesService.traerId(profesionalSeleccionado.id);
-        setProfesional(result.nombre);
-        setProfesionalSeleccionado(result);
-      } catch (error) {
-        console.error("Error fetching empresas:", error);
-      }
-    };
-    if (profesionalViejo) {
-      fetchProfesional();
-    }
-    else {
-      setProfesional(profesionalSeleccionado.nombre)
-    }
-  }, []);
+    if (!data || !esPrimerProfesional) return;
+    setProfesionalSeleccionado(data);
+  }, [data]);
+
+  const profesional =
+    esPrimerProfesional && data ? data : profesionalSeleccionado;
+  const profesionalNombre = profesional.nombre;
 
   return (
     <div className="resumen-final-container">
@@ -57,7 +55,7 @@ const ResumenFinal = () => {
           <span className="bold-text">Duración:</span> {duracion} min
         </p>
         <p>
-          <span className="bold-text">Profesional:</span> {profesional}
+          <span className="bold-text">Profesional:</span> {profesionalNombre}
         </p>
         <p>
           <span className="bold-text">Día: </span>

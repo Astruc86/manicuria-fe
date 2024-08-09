@@ -76,6 +76,7 @@ const turnosService = {
     }
 
     const response = await fetch(`${config.turnosApiBaseUrl}/turnos/traer`);
+    if (response.status == 404) return []
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -142,6 +143,7 @@ const turnosService = {
     const response = await fetch(
       `${config.turnosApiBaseUrl}/turnos/traer/dni/${dni}`
     );
+    if (response.status == 404) return []
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }

@@ -14,7 +14,7 @@ import {
   useSeleccionHorario,
   useSeleccionDia,
   useSeleccionCita,
-  useProfesionalViejo,
+  useEsPrimerProfesional,
 } from "../context/StepperContext";
 import citasService from "../services/citasService";
 
@@ -28,7 +28,9 @@ const TurnoScreen = memo(() => {
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
   const { seleccionCita, setSeleccionCita } = useSeleccionCita();
 
-  const { profesionalViejo, setProfesionalViejo } = useProfesionalViejo();
+  const { esPrimerProfesional, setEsPrimerProfesional } =
+    useEsPrimerProfesional();
+
   const stepStateMap = {
     1: setProfesionalSeleccionado,
     2: setSeleccionDia,
@@ -44,9 +46,11 @@ const TurnoScreen = memo(() => {
   };
 
   const clearPastStep = (step) => {
-    if (step === 3 && profesionalViejo) {
-      setProfesionalViejo(null);
+    if (step === 4 && esPrimerProfesional) {
       setProfesionalSeleccionado({ id: 0 });
+    }
+    if (step === 1 && esPrimerProfesional) {
+      setEsPrimerProfesional(false);
     }
   };
 
@@ -72,7 +76,7 @@ const TurnoScreen = memo(() => {
           profesionalSeleccionado.id,
           seleccionHorario.hora
         );
-    
+
         setSeleccionCita(result);
       } catch (error) {
         console.error("Error fetching citas:", error);

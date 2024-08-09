@@ -25,73 +25,67 @@ const ProfesionalList = () => {
     profesionalSeleccionado,
     setProfesionalSeleccionado,
     seleccionServicio,
-    setListaProfesionalesBE,
+    setEsPrimerProfesional
   } = useStepperContext();
-  const [profesionales, setProfesionales] = React.useState([]);
-  
-  // const {
-  //   data: profesionales = [],
-  //   error,
-  //   isLoading,
-  // } = useQuery({
-  //   queryKey: ["profesionales", seleccionServicio.id],
-  //   queryFn: () => profesionalesService.traerPorServicio(seleccionServicio.id),
-  //   select: (data) => {
-  //     // Agrega el primer profesional a los datos obtenidos
-  //     const primerProfesional = { id: 0, nombre: "Primer Profesional" };
-  //     return [primerProfesional, ...data];
-  //   },
-  //   onSuccess: (data) => {
-  //     // Configura el contexto con los datos originales (sin el primer profesional añadido)
-  //     setListaProfesionalesBE(data.slice(1));
-  //   },
-  // });
 
-  useEffect(() => {
-    if (profesionales) {
-      setListaProfesionalesBE(profesionales);
-    }
-  }, [profesionales]);
+  const {
+    data: profesionales = [],
+    isError,
+    isLoading,
+  } = useQuery({
+    queryKey: ["profesionales"],
+    queryFn: () => profesionalesService.traerPorServicio(seleccionServicio.id),
+  });
 
-  useEffect(() => {
-    const fetchProfesionales = async () => {
-      try {
-        const result = await profesionalesService.traerPorServicio(
-          seleccionServicio.id
-        );
-        const primerProfesional = {
-          id: 0,
-          nombre: "Primer profesional disponible",
-          listaServicios: [],
-        };
-        setProfesionales([primerProfesional, ...result]);
-        setListaProfesionalesBE(result);
-      } catch (error) {
-        console.error("Error fetching profesionales:", error);
-      }
-    };
+  const primerProfesional = {
+    id: 0,
+    nombre: "Primer Profesional Disponible",
+    listaServicios: [],
+  };
 
-    fetchProfesionales();
-  }, []);
+  const profesionalesPrimerProfesional = profesionales && [
+    primerProfesional,
+    ...profesionales,
+  ];
 
   const handleClick = (profesional) => {
     setProfesionalSeleccionado(profesional);
+    if(profesional.id === 0) {
+      setEsPrimerProfesional(true)
+    }
+    else {
+      setEsPrimerProfesional(false)
+    }
   };
 
   return (
-    <div className="profesional-list">
-      {profesionales.map((profesional, index) => (
-        <ProfesionalItem
-          key={index}
-          profesional={profesional}
-          handleClick={handleClick}
-          isSelected={
-            profesionalSeleccionado &&
-            profesional.id === profesionalSeleccionado.id
-          }
-        />
-      ))}
-    </div>
+    <>
+      {profesionalesPrimerProfesional.length > 0 && (
+        <div className="profesional-list">
+          {profesionalesPrimerProfesional.map((profesional, index) => (
+            <ProfesionalItem
+              key={index}
+              profesional={profesional}
+              handleClick={handleClick}
+              isSelected={
+                profesionalSeleccionado &&
+                profesional.id === profesionalSeleccionado.id
+              }
+            />
+          ))}
+        </div>
+      )}
+      {isLoading && <CircularIndeterminate />}
+      {!isError && !isLoading && profesionales.length === 0 && (
+        <h1>No hay profesionales disponibles.</h1>
+      )}
+      {isError && (
+        <h1>
+          Error cargando los profesionales. Por favor, intente de nuevo más
+          tarde.
+        </h1>
+      )}
+    </>
   );
 };
 
