@@ -50,7 +50,7 @@ const citasService = {
     }
 
     const response = await fetch(`${config.citasApiBaseUrl}/citas/traer`);
-    if (response.status == 404) return []
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -116,7 +116,7 @@ const citasService = {
     const response = await fetch(
       `${config.citasApiBaseUrl}/citas/traer/disponible/profesional/${idProfesional}`
     );
-    if (response.status == 404) return []
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -140,7 +140,7 @@ const citasService = {
     const response = await fetch(
       `${config.citasApiBaseUrl}/citas/traer/filtradas/disponible/profesional/${idProfesional}`
     );
-    if (response.status == 404) return []
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -174,7 +174,7 @@ const citasService = {
     const response = await fetch(
       `${config.citasApiBaseUrl}/citas/traer/disponible/profesional/horas/${idProfesional}/${fecha}`
     );
-    if (response.status == 404) return []
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -197,7 +197,6 @@ const citasService = {
           (cita.fecha > fechaActual ||
             (cita.fecha === fechaActual && cita.hora >= horaActual))
       );
-
       return ordenarHoras(citasFiltradas);
     }
 
@@ -212,7 +211,7 @@ const citasService = {
     const response = await fetch(
       `${config.citasApiBaseUrl}/citas/traer/primer-profesional?${queryParams}`
     );
-    if (response.status == 404) return []
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -265,7 +264,7 @@ const citasService = {
     const response = await fetch(
       `${config.citasApiBaseUrl}/citas/traer/primer-profesional/horas/${fecha}?${queryParams}`
     );
-    if (response.status == 404) return []
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -284,7 +283,7 @@ const citasService = {
     const response = await fetch(
       `${config.citasApiBaseUrl}/citas/filtrar/profesional-fecha-hora?idProfesional=${idProfesional}&fecha=${fecha}&hora=${hora}`
     );
-    if (response.status == 404) return []
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }

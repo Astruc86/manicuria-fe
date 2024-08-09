@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -7,48 +7,26 @@ import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import "dayjs/locale/es";
-import { useStepperContext } from "../../context/StepperContext";
-import citasService from "../../services/citasService";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import CircularIndeterminate from "../Progress/CircularIndeterminate";
+import { useCalendario } from "../../hooks/useCalendario";
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
+
 const Calendar = () => {
-  const { seleccionDia, setSeleccionDia, profesionalSeleccionado } =
-    useStepperContext();
+  const {
+    fechasDisponibles,
+    isError,
+    isLoading,
+    seleccionDia,
+    setSeleccionDia,
+  } = useCalendario();
+
   const [selectedDate, setSelectedDate] = useState(
     seleccionDia ? dayjs(seleccionDia) : null
   );
-
-  const queryClient = useQueryClient();
-
-  const fetchFechas = () => {
-    if (profesionalSeleccionado && profesionalSeleccionado.id === 0) {
-      const storedProfesionales = queryClient.getQueryData(["profesionales"]);
-      return citasService.traerPrimerProfesional(storedProfesionales);
-    } else {
-      return citasService.traerFiltradasDisponiblesPorProfesional(
-        profesionalSeleccionado.id
-      );
-    }
-  };
-
-  const {
-    isLoading,
-    isError,
-    data: fechasDisponibles = [],
-  } = useQuery({
-    queryKey: ["dias"],
-    queryFn: fetchFechas,
-    select: (data) => {
-      if (data.length === 0) return [];
-      const fechas = data.map((cita) => dayjs(cita.fecha));
-      return [...fechas];
-    },
-  });
-
+ 
   const isDateSelectable = (date) => {
     const today = dayjs();
     const maxDate = today.add(30, "day");

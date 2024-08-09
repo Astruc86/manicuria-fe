@@ -1,9 +1,7 @@
 import React from "react";
-import { useStepperContext } from "../../context/StepperContext";
 import "./servicio-item.css";
-import serviciosService from "../../services/serviciosService";
-import { useQuery } from "@tanstack/react-query";
 import CircularIndeterminate from "../Progress/CircularIndeterminate";
+import { useServicios } from "../../hooks/useServicios";
 
 const ServicioItem = ({ servicio, handleClick, isSelected }) => {
   const className = isSelected
@@ -23,19 +21,13 @@ const ServicioItem = ({ servicio, handleClick, isSelected }) => {
 };
 
 const ServicioList = () => {
-  const { seleccionServicio, setSeleccionServicio } = useStepperContext();
   const {
-    isLoading,
+    servicios,
+    seleccionServicio,
     isError,
-    data: servicios = [],
-  } = useQuery({
-    queryKey: ["servicios"],
-    queryFn: serviciosService.traerTodos,
-  });
-
-  const handleClick = (servicio) => {
-    setSeleccionServicio(servicio);
-  };
+    isLoading,
+    seleccionarServicio,
+  } = useServicios();
 
   return (
     <>
@@ -45,7 +37,7 @@ const ServicioList = () => {
             <ServicioItem
               key={index}
               servicio={servicio}
-              handleClick={handleClick}
+              handleClick={seleccionarServicio}
               isSelected={servicio === seleccionServicio}
             />
           ))}

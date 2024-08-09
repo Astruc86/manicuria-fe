@@ -1,53 +1,12 @@
 import React from "react";
-import { useStepperContext } from "../../context/StepperContext";
 import HorarioItem from "./HorarioItem";
 import "./horario-list.css";
-import citasService from "../../services/citasService";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import CircularIndeterminate from "../Progress/CircularIndeterminate";
+import { useHorarios } from "../../hooks/useHorarios";
 
 const HorarioList = () => {
-  const {
-    seleccionHorario,
-    setSeleccionHorario,
-    profesionalSeleccionado,
-    setProfesionalSeleccionado,
-    seleccionDia,
-    esPrimerProfesional,
-  } = useStepperContext();
-
-  const queryClient = useQueryClient();
-  const fetchHorarios = () => {
-    if (esPrimerProfesional) {
-      const storedProfesionales = queryClient.getQueryData(["profesionales"]);
-
-      return citasService.traerHorasPrimerProfesional(
-        seleccionDia,
-        storedProfesionales
-      );
-    } else {
-      return citasService.traerHorasDisponiblesPorDiaProfesional(
-        seleccionDia,
-        profesionalSeleccionado.id
-      );
-    }
-  };
-
-  const {
-    isLoading,
-    isError,
-    data: horarios = [],
-  } = useQuery({
-    queryKey: ["horarios"],
-    queryFn: fetchHorarios,
-  });
-
-  const handleClick = (horario) => {
-    if (esPrimerProfesional) {
-      setProfesionalSeleccionado({ id: horario.listaProfesionales[0] });
-    }
-    setSeleccionHorario(horario);
-  };
+  const { horarios, isLoading, isError, seleccionarHorario, seleccionHorario } =
+    useHorarios();
 
   return (
     <>
@@ -57,7 +16,7 @@ const HorarioList = () => {
             <HorarioItem
               key={horario.id}
               horario={horario}
-              handleClick={handleClick}
+              handleClick={seleccionarHorario}
               isSelected={horario.id === seleccionHorario?.id}
             />
           ))}

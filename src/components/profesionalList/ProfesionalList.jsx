@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
-import { useStepperContext } from "../../context/StepperContext";
-import data from "../../json/profesionales.json";
+import React from "react";
 import "./profesional-item.css";
-import profesionalesService from "../../services/profesionalesService";
-import { useQuery } from "@tanstack/react-query";
 import CircularIndeterminate from "../Progress/CircularIndeterminate";
+import { useProfesionales } from "../../hooks/useProfesionales";
 
 const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
   const className = isSelected
@@ -22,41 +19,12 @@ const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
 
 const ProfesionalList = () => {
   const {
+    profesionalesPrimerProfesional,
     profesionalSeleccionado,
-    setProfesionalSeleccionado,
-    seleccionServicio,
-    setEsPrimerProfesional
-  } = useStepperContext();
-
-  const {
-    data: profesionales = [],
     isError,
     isLoading,
-  } = useQuery({
-    queryKey: ["profesionales"],
-    queryFn: () => profesionalesService.traerPorServicio(seleccionServicio.id),
-  });
-
-  const primerProfesional = {
-    id: 0,
-    nombre: "Primer Profesional Disponible",
-    listaServicios: [],
-  };
-
-  const profesionalesPrimerProfesional = profesionales && [
-    primerProfesional,
-    ...profesionales,
-  ];
-
-  const handleClick = (profesional) => {
-    setProfesionalSeleccionado(profesional);
-    if(profesional.id === 0) {
-      setEsPrimerProfesional(true)
-    }
-    else {
-      setEsPrimerProfesional(false)
-    }
-  };
+    seleccionarProfesional
+  } = useProfesionales();
 
   return (
     <>
@@ -66,7 +34,7 @@ const ProfesionalList = () => {
             <ProfesionalItem
               key={index}
               profesional={profesional}
-              handleClick={handleClick}
+              handleClick={seleccionarProfesional}
               isSelected={
                 profesionalSeleccionado &&
                 profesional.id === profesionalSeleccionado.id
@@ -76,7 +44,7 @@ const ProfesionalList = () => {
         </div>
       )}
       {isLoading && <CircularIndeterminate />}
-      {!isError && !isLoading && profesionales.length === 0 && (
+      {!isError && !isLoading && profesionalesPrimerProfesional.length === 0 && (
         <h1>No hay profesionales disponibles.</h1>
       )}
       {isError && (

@@ -8,6 +8,7 @@ import {
   useActiveStep,
   useEsPrimerProfesional,
 } from "../../context/StepperContext";
+import { useDatosResumen } from "../../hooks/useDatosResumen";
 
 const Resumen = () => {
   const { activeStep } = useActiveStep();
@@ -16,13 +17,13 @@ const Resumen = () => {
   const { seleccionDia } = useSeleccionDia();
   const { esPrimerProfesional } = useEsPrimerProfesional();
 
-  const servicio = seleccionServicio?.nombre;
-  const precio = `$${seleccionServicio.precio}`;
-  const duracion = seleccionServicio?.duracion;
+  const { servicio, precio, duracion, dia } = useDatosResumen({
+    tipo: "parcial",
+  });
+
   const profesional = esPrimerProfesional
     ? "Por definir"
     : profesionalSeleccionado?.nombre;
-  const dia = dayjs(seleccionDia).format("DD-MM-YYYY");
 
   return (
     <div className="resumen">

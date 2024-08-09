@@ -26,7 +26,7 @@ const TurnoScreen = memo(() => {
     useProfesionalSeleccionado();
   const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
-  const { seleccionCita, setSeleccionCita } = useSeleccionCita();
+  const { setSeleccionCita } = useSeleccionCita();
 
   const { esPrimerProfesional, setEsPrimerProfesional } =
     useEsPrimerProfesional();
@@ -46,7 +46,7 @@ const TurnoScreen = memo(() => {
   };
 
   const clearPastStep = (step) => {
-    if (step === 4 && esPrimerProfesional) {
+    if (step === 3 && esPrimerProfesional) {
       setProfesionalSeleccionado({ id: 0 });
     }
     if (step === 1 && esPrimerProfesional) {
