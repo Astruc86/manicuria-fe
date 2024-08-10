@@ -23,7 +23,7 @@ import CircularIndeterminate from "../components/Progress/CircularIndeterminate"
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
   const { activeStep, setActiveStep } = useActiveStep();
-  const { seleccionServicio, setSeleccionServicio } = useSeleccionServicio();
+  const { seleccionServicio } = useSeleccionServicio();
   const { profesionalSeleccionado, setProfesionalSeleccionado } =
     useProfesionalSeleccionado();
   const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
@@ -31,8 +31,7 @@ const TurnoScreen = memo(() => {
 
   const { esPrimerProfesional, setEsPrimerProfesional } =
     useEsPrimerProfesional();
-  const { isError, isLoading, limpiarTurnoScreen, isSuccess } =
-    useTurno();
+  const { isError, isLoading, limpiarTurnoScreen, isSuccess } = useTurno();
 
   const stepStateMap = {
     1: setProfesionalSeleccionado,
@@ -80,13 +79,13 @@ const TurnoScreen = memo(() => {
   const getStepContent = (step) => {
     switch (step) {
       case 0:
-        return <ServicioList setSeleccion={setSeleccionServicio} />;
+        return <ServicioList />;
       case 1:
-        return <ProfesionalList setSeleccion={setProfesionalSeleccionado} />;
+        return <ProfesionalList />;
       case 2:
-        return <Calendar setSeleccion={setSeleccionDia} />;
+        return <Calendar />;
       case 3:
-        return <HorarioList setSeleccion={setSeleccionHorario} />;
+        return <HorarioList />;
       case 4:
         return <ResumenFinal />;
       default:

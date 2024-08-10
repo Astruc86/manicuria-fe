@@ -12,12 +12,11 @@ export function useTurno() {
     setSeleccionCita,
     seleccionServicio,
     profesionalSeleccionado,
-    setSeleccionDni,
     seleccionDni,
     seleccionHorario,
     limpiarStepper,
   } = useStepperContext();
-  const { generarId, agregarTurno } = useTurnosContext();
+  const { agregarTurno } = useTurnosContext();
   const queryClient = useQueryClient();
 
   const {
@@ -42,7 +41,7 @@ export function useTurno() {
       profesional: profesionalSeleccionado,
       dni: seleccionDni,
     };
-    return turnosService.crear(turno, agregarTurno, generarId);
+    return turnosService.crear(turno);
   };
 
   const {
@@ -52,7 +51,14 @@ export function useTurno() {
     isSuccess,
     reset,
   } = useMutation({
-    mutationFn: fetchTurno
+    mutationFn: fetchTurno,
+    onSuccess: () =>
+      agregarTurno({
+        cita: seleccionCita,
+        servicio: seleccionServicio,
+        profesional: profesionalSeleccionado,
+        dni: seleccionDni,
+      }),
   });
 
   useEffect(() => {
@@ -62,7 +68,6 @@ export function useTurno() {
 
   useEffect(() => {
     if (!seleccionCita && !seleccionDni) return;
-
     mutate();
   }, [seleccionCita]);
 

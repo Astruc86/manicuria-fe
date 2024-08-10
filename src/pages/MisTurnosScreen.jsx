@@ -11,8 +11,9 @@ const MisTurnosScreen = () => {
           return (
             <div key={turno.id}>
               <h3>{turno.nombreServicio}</h3>
-              <p>{turno.precioServicio}</p>
+              <p>${turno.precioServicio} - {turno.duracionServicio} min</p>
               <p>{turno.nombreProfesional}</p>
+              <p>{turno.fechaCita} - {turno.horaCita}</p>
               <p>{turno.dni}</p>
             </div>
           );

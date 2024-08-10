@@ -20,22 +20,18 @@ export default function ConfirmarTurnoModal({ handleClose, open }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (dni.length === 8) {
-      handleConfirmar(dni);
-      handleClose();
-    } else {
+    if (dni.length !== 8) {
       setError(true);
+      return;
     }
+    setSeleccionDni(dni);
+    handleClose();
   };
 
   const handleDialogClose = () => {
     setDni("");
     setError(false);
     handleClose();
-  };
-
-  const handleConfirmar = (dni) => {
-    setSeleccionDni(dni);
   };
 
   return (
