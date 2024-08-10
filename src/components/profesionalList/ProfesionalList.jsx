@@ -19,7 +19,7 @@ const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
 
 const ProfesionalList = () => {
   const {
-    profesionalesPrimerProfesional,
+    profesionales,
     profesionalSeleccionado,
     isError,
     isLoading,
@@ -28,9 +28,9 @@ const ProfesionalList = () => {
 
   return (
     <>
-      {profesionalesPrimerProfesional.length > 0 && (
+      {profesionales.length > 0 && (
         <div className="profesional-list">
-          {profesionalesPrimerProfesional.map((profesional, index) => (
+          {profesionales.map((profesional, index) => (
             <ProfesionalItem
               key={index}
               profesional={profesional}
@@ -44,7 +44,7 @@ const ProfesionalList = () => {
         </div>
       )}
       {isLoading && <CircularIndeterminate />}
-      {!isError && !isLoading && profesionalesPrimerProfesional.length === 0 && (
+      {!isError && !isLoading && profesionales.length === 0 && (
         <h1>No hay profesionales disponibles.</h1>
       )}
       {isError && (

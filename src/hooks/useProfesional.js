@@ -4,9 +4,11 @@ import {
   useProfesionalSeleccionado,
 } from "../context/StepperContext";
 import profesionalesService from "../services/profesionalesService";
+import { useEffect } from "react";
 
 export function useProfesional(estaHabilitado) {
-  const { profesionalSeleccionado } = useProfesionalSeleccionado();
+  const { profesionalSeleccionado, setProfesionalSeleccionado } =
+    useProfesionalSeleccionado();
   const { esPrimerProfesional } = useEsPrimerProfesional();
 
   const { isLoading, isError, data } = useQuery({
@@ -15,8 +17,15 @@ export function useProfesional(estaHabilitado) {
     enabled: estaHabilitado && esPrimerProfesional,
   });
 
-  const profesional =
-    esPrimerProfesional && data ? data : profesionalSeleccionado;
+  useEffect(() => {
+    if (data && esPrimerProfesional) {
+      setProfesionalSeleccionado(data);
+    }
+  }, [data]);
 
-  return { profesional, isError, isLoading };
+  return {
+    profesionalSeleccionado,
+    isError,
+    isLoading,
+  };
 }

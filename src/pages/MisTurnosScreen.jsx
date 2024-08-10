@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useTurnosContext } from "../context/TurnosContext";
 
 const MisTurnosScreen = () => {
@@ -12,6 +12,7 @@ const MisTurnosScreen = () => {
             <div key={turno.id}>
               <h3>{turno.nombreServicio}</h3>
               <p>{turno.precioServicio}</p>
+              <p>{turno.nombreProfesional}</p>
               <p>{turno.dni}</p>
             </div>
           );

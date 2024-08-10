@@ -271,6 +271,7 @@ const citasService = {
     return response.json();
   },
   traerPorProfesionalFechaHora: async (fecha, idProfesional, hora) => {
+
     if (config.useMockData) {
       return mockCitas.find(
         (cita) =>

@@ -10,17 +10,17 @@ export function useDatosResumen({ tipo }) {
   const { seleccionServicio } = useSeleccionServicio();
   const { seleccionHorario } = useSeleccionHorario();
   const { seleccionDia } = useSeleccionDia();
-  const { profesional, isLoading, isError } = useProfesional(tipo == "final");
+  const { profesionalSeleccionado, isLoading, isError } = useProfesional(tipo == "final");
 
   const servicio = seleccionServicio.nombre;
   const precio = `$${seleccionServicio.precio}`;
   const duracion = seleccionServicio.duracion;
-  const profesionalNombre = profesional?.nombre;
+  const profesional = profesionalSeleccionado?.nombre;
   const dia = dayjs(seleccionDia).format("DD-MM-YYYY");
   const hora = seleccionHorario?.hora;
 
   return {
-    profesionalNombre,
+    profesional,
     servicio,
     precio,
     duracion,

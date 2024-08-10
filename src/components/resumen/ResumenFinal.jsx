@@ -5,7 +5,7 @@ import { useDatosResumen } from "../../hooks/useDatosResumen";
 
 const ResumenFinal = () => {
   const {
-    profesionalNombre,
+    profesional,
     servicio,
     precio,
     duracion,
@@ -15,10 +15,9 @@ const ResumenFinal = () => {
     isError,
   } = useDatosResumen({ tipo: "final" });
 
-  //TODO: AGREGAR EL CONDICIONAL DE QUE LA CITA EXISTA
   return (
     <>
-      {profesionalNombre && (
+      {profesional && (
         <div className="resumen-final-container">
           <div className="resumen-final">
             <h2 className="bold-text">Resumen</h2>
@@ -32,8 +31,7 @@ const ResumenFinal = () => {
               <span className="bold-text">Duración:</span> {duracion} min
             </p>
             <p>
-              <span className="bold-text">Profesional:</span>{" "}
-              {profesionalNombre}
+              <span className="bold-text">Profesional:</span> {profesional}
             </p>
             <p>
               <span className="bold-text">Día: </span>
@@ -46,6 +44,7 @@ const ResumenFinal = () => {
           </div>
         </div>
       )}
+
       {isLoading && <CircularIndeterminate />}
       {isError && (
         <h1>

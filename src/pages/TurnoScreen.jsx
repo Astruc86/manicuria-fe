@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import ServicioList from "../components/servicioItem/ServicioItem";
 import ProfesionalList from "../components/profesionalList/ProfesionalList";
@@ -13,15 +13,12 @@ import {
   useProfesionalSeleccionado,
   useSeleccionHorario,
   useSeleccionDia,
-  useSeleccionCita,
   useEsPrimerProfesional,
-  useSeleccionDni,
 } from "../context/StepperContext";
-import { useTurno } from "../context/TurnosContext";
-import turnosService from "../services/turnosService";
 import MensajeConfirmacionTurno from "../components/mensajeConfirmacionTurno/MensajeConfirmacionTurno";
-import citasService from "../services/citasService";
 import Box from "@mui/material/Box";
+import { useTurno } from "../hooks/useTurno";
+import CircularIndeterminate from "../components/Progress/CircularIndeterminate";
 
 const TurnoScreen = memo(() => {
   const steps = ["Servicio", "Profesional", "Día", "Hora", "Finalizar"];
@@ -31,19 +28,17 @@ const TurnoScreen = memo(() => {
     useProfesionalSeleccionado();
   const { seleccionHorario, setSeleccionHorario } = useSeleccionHorario();
   const { seleccionDia, setSeleccionDia } = useSeleccionDia();
-  const { seleccionCita, setSeleccionCita } = useSeleccionCita();
 
   const { esPrimerProfesional, setEsPrimerProfesional } =
     useEsPrimerProfesional();
+  const { isError, isLoading, limpiarTurnoScreen, isSuccess } =
+    useTurno();
 
-  const { seleccionDni, setSeleccionDni } = useSeleccionDni();
-  const { agregarTurno, generarId } = useTurno();
   const stepStateMap = {
     1: setProfesionalSeleccionado,
     2: setSeleccionDia,
     3: setSeleccionHorario,
   };
-  const [estadoTurno, setEstadoTurno] = useState(null);
 
   const clearFutureSteps = (step) => {
     Object.keys(stepStateMap).forEach((key) => {
@@ -76,51 +71,11 @@ const TurnoScreen = memo(() => {
     }
   };
 
-  const handleConfirmar = (dni) => {
-    setSeleccionDni(dni);
-  };
-
-  const fetchCita = async () => {
-    try {
-      const result = await citasService.traerPorProfesionalFechaHora(
-        seleccionDia,
-        profesionalSeleccionado.id,
-        seleccionHorario.hora
-      );
-      setSeleccionCita(result);
-    } catch (error) {
-      console.error("Error fetching citas:", error);
-    }
-  };
-
-  const fetchTurno = async () => {
-    if (!seleccionCita) return;
-
-    try {
-      const turno = {
-        cita: seleccionCita,
-        servicio: seleccionServicio,
-        profesional: profesionalSeleccionado,
-        dni: seleccionDni,
-      };
-
-      await turnosService.crear(turno, agregarTurno, generarId);
-      setEstadoTurno("creado");
-    } catch (error) {
-      console.error("Error fetching turnos:", error);
-      setEstadoTurno("error");
-    }
-  };
-
   useEffect(() => {
-    if (!seleccionDni) return;
-    fetchCita();
-  }, [seleccionDni]);
-
-  useEffect(() => {
-    if (!seleccionCita || !seleccionDni) return;
-    fetchTurno();
-  }, [seleccionCita, seleccionDni]);
+    return () => {
+      limpiarTurnoScreen();
+    };
+  }, []);
 
   const getStepContent = (step) => {
     switch (step) {
@@ -141,17 +96,7 @@ const TurnoScreen = memo(() => {
 
   return (
     <>
-      {estadoTurno ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <MensajeConfirmacionTurno estadoTurno={estadoTurno} />
-        </Box>
-      ) : (
+      {!isError && !isLoading && !isSuccess && (
         <div
           className={`turno-screen ${
             [1, 2, 3].includes(activeStep) ? "split-layout" : ""
@@ -163,7 +108,6 @@ const TurnoScreen = memo(() => {
               activeStep={activeStep}
               handleNext={handleNext}
               handleBack={handleBack}
-              handleConfirmar={handleConfirmar}
               getStepContent={getStepContent}
               seleccionServicio={seleccionServicio}
               profesionalSeleccionado={profesionalSeleccionado}
@@ -177,6 +121,19 @@ const TurnoScreen = memo(() => {
             </div>
           )}
         </div>
+      )}
+
+      {isLoading && <CircularIndeterminate />}
+      {(isSuccess || isError) && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <MensajeConfirmacionTurno isSuccess={isSuccess} />
+        </Box>
       )}
     </>
   );

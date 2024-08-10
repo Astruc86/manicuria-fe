@@ -12,7 +12,6 @@ const StepperComponent = ({
   activeStep,
   handleNext,
   handleBack,
-  handleConfirmar,
   getStepContent,
   seleccionServicio,
   profesionalSeleccionado,
@@ -42,7 +41,6 @@ const StepperComponent = ({
     <ConfirmarTurnoModal
       open={open}
       handleClose={handleClose}
-      handleConfirmar={handleConfirmar}
     ></ConfirmarTurnoModal>
   );
 

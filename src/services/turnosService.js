@@ -52,6 +52,7 @@ const ordenarTurnosPorFechaYHora = (turnos) => {
 const turnosService = {
   crear: async (turnoData, agregarTurno, generarId) => {
     if (config.useMockData) {
+
       const idNuevo = generarId();
       const turnoNuevo = {
         fechaCita: turnoData.cita.fecha,

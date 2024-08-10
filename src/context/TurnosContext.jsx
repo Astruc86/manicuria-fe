@@ -26,8 +26,3 @@ export const TurnosProvider = ({ children }) => {
 };
 
 export const useTurnosContext = () => useContext(TurnosContext);
-
-export const useTurno = () => {
-  const { turnos, agregarTurno, generarId } = useContext(TurnosContext);
-  return { turnos, agregarTurno, generarId };
-};

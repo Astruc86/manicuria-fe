@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useStepperContext } from "../context/StepperContext";
 import profesionalesService from "../services/profesionalesService";
 import { useQuery } from "@tanstack/react-query";
@@ -10,6 +11,16 @@ export function useProfesionales() {
     setEsPrimerProfesional,
   } = useStepperContext();
 
+  const agregarPrimerProfesional = useCallback((profesionales) => {
+    if (!profesionales) return;
+    const primerProfesional = {
+      id: 0,
+      nombre: "Primer Profesional Disponible",
+      listaServicios: [],
+    };
+    return [primerProfesional, ...profesionales];
+  }, []);
+
   const {
     data: profesionales = [],
     isError,
@@ -17,18 +28,8 @@ export function useProfesionales() {
   } = useQuery({
     queryKey: ["profesionales"],
     queryFn: () => profesionalesService.traerPorServicio(seleccionServicio.id),
+    select: agregarPrimerProfesional,
   });
-
-  const primerProfesional = {
-    id: 0,
-    nombre: "Primer Profesional Disponible",
-    listaServicios: [],
-  };
-
-  const profesionalesPrimerProfesional = profesionales && [
-    primerProfesional,
-    ...profesionales,
-  ];
 
   const seleccionarProfesional = (profesional) => {
     setProfesionalSeleccionado(profesional);
@@ -40,10 +41,10 @@ export function useProfesionales() {
   };
 
   return {
-    profesionalesPrimerProfesional,
+    profesionales,
     profesionalSeleccionado,
     isError,
     isLoading,
-    seleccionarProfesional
+    seleccionarProfesional,
   };
 }
