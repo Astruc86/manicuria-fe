@@ -37,6 +37,7 @@ export default function ConfirmarTurnoModal({ handleClose, open }) {
   return (
     <>
       <Dialog
+        role="dialog"
         open={open}
         onClose={handleDialogClose}
         PaperProps={{
@@ -54,7 +55,9 @@ export default function ConfirmarTurnoModal({ handleClose, open }) {
           <NumericoInput value={dni} onChange={handleDniChange} error={error} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose}>Cancelar</Button>
+          <Button onClick={handleDialogClose} color="inherit">
+            Cancelar
+          </Button>
           <Button type="submit">Confirmar</Button>
         </DialogActions>
       </Dialog>
