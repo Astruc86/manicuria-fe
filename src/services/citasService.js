@@ -280,7 +280,6 @@ const citasService = {
           cita.profesionalesDisponibles.includes(idProfesional)
       );
     }
-
     const response = await fetch(
       `${config.citasApiBaseUrl}/citas/filtrar/profesional-fecha-hora?idProfesional=${idProfesional}&fecha=${fecha}&hora=${hora}`
     );

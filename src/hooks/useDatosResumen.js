@@ -17,7 +17,7 @@ export function useDatosResumen({ tipo }) {
   const duracion = seleccionServicio.duracion;
   const profesional = profesionalSeleccionado?.nombre;
   const dia = dayjs(seleccionDia).format("DD-MM-YYYY");
-  const hora = seleccionHorario?.hora;
+  const hora = seleccionHorario?.hora.slice(0,5);
 
   return {
     profesional,

@@ -6,8 +6,7 @@ import turnosService from "../services/turnosService";
 import { useEffect } from "react";
 
 export function useTurno() {
-  const {
-    seleccionCita,
+  const {    
     seleccionDia,
     setSeleccionCita,
     seleccionServicio,
@@ -36,7 +35,7 @@ export function useTurno() {
 
   const fetchTurno = () => {
     const turno = {
-      cita: seleccionCita,
+      cita: cita,
       servicio: seleccionServicio,
       profesional: profesionalSeleccionado,
       dni: seleccionDni,
@@ -54,26 +53,22 @@ export function useTurno() {
     mutationFn: fetchTurno,
     onSuccess: () =>
       agregarTurno({
-        cita: seleccionCita,
+        cita: cita,
         servicio: seleccionServicio,
         profesional: profesionalSeleccionado,
         dni: seleccionDni,
       }),
   });
 
-  useEffect(() => {
+  useEffect(() => {    
     if (!cita || !seleccionDni) return;
     setSeleccionCita(cita);
-  }, [cita]);
-
-  useEffect(() => {
-    if (!seleccionCita && !seleccionDni) return;
     mutate();
-  }, [seleccionCita]);
+  }, [cita]);
 
   const limpiarTurnoScreen = () => {
     limpiarStepper();
-    queryClient.invalidateQueries();
+    queryClient.removeQueries()
     reset();
   };
 

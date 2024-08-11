@@ -60,7 +60,7 @@ const turnosService = {
       idServicio: turnoData.servicio.id,
       idProfesional: turnoData.profesional.id,
       dni: turnoData.dni,
-    };
+    };   
 
     const response = await fetch(`${config.turnosApiBaseUrl}/turnos/crear`, {
       method: "POST",
