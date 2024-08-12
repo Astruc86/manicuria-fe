@@ -20,7 +20,8 @@ const serviciosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerTodos: async () => {
@@ -31,11 +32,12 @@ const serviciosService = {
     const response = await fetch(
       `${config.serviciosApiBaseUrl}/servicios/traer`
     );
-    if (response.status == 404) return []
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerId: async (id) => {
@@ -49,7 +51,8 @@ const serviciosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   borrarId: async (id) => {
@@ -68,7 +71,8 @@ const serviciosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   editar: async (servicioData) => {
@@ -89,7 +93,8 @@ const serviciosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 };
 

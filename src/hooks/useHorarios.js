@@ -1,6 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useStepperContext } from "../context/StepperContext";
 import citasService from "../services/citasService";
+import { useTurnosContext } from "../context/TurnosContext";
 
 export function useHorarios() {
   const {
@@ -12,6 +13,8 @@ export function useHorarios() {
     esPrimerProfesional,
   } = useStepperContext();
 
+  const { turnos } = useTurnosContext();
+
   const queryClient = useQueryClient();
   const fetchHorarios = () => {
     if (esPrimerProfesional) {
@@ -19,12 +22,14 @@ export function useHorarios() {
 
       return citasService.traerHorasPrimerProfesional(
         seleccionDia,
-        storedProfesionales
+        storedProfesionales,
+        turnos
       );
     } else {
       return citasService.traerHorasDisponiblesPorDiaProfesional(
         seleccionDia,
-        profesionalSeleccionado.id
+        profesionalSeleccionado.id,
+        turnos
       );
     }
   };

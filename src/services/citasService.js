@@ -41,7 +41,8 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerTodas: async () => {
@@ -54,7 +55,8 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerId: async (id) => {
@@ -66,7 +68,8 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   borrarId: async (id) => {
@@ -85,7 +88,8 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   editar: async (citaData) => {
@@ -103,7 +107,8 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerDisponiblesPorProfesional: async (idProfesional) => {
@@ -120,10 +125,14 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
-  traerFiltradasDisponiblesPorProfesional: async (idProfesional) => {
+  traerFiltradasDisponiblesPorProfesional: async (
+    idProfesional,
+    turnos = []
+  ) => {
     if (config.useMockData) {
       const fechaActual = getFechaActualString();
       const horaActual = getHoraActual();
@@ -131,7 +140,11 @@ const citasService = {
         (cita) =>
           cita.profesionalesDisponibles.includes(idProfesional) &&
           (cita.fecha > fechaActual ||
-            (cita.fecha === fechaActual && cita.hora >= horaActual))
+            (cita.fecha === fechaActual && cita.hora >= horaActual)) &&
+          !turnos.some(
+            (turno) =>
+              turno.fechaCita === cita.fecha && turno.horaCita === cita.hora
+          )
       );
 
       return ordenarHoras(citasFiltradas);
@@ -144,10 +157,15 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
-  traerHorasDisponiblesPorDiaProfesional: async (fecha, idProfesional) => {
+  traerHorasDisponiblesPorDiaProfesional: async (
+    fecha,
+    idProfesional,
+    turnos = []
+  ) => {
     if (config.useMockData) {
       const horaActual = getHoraActual();
       const fechaActual = getFechaActualString();
@@ -157,7 +175,11 @@ const citasService = {
           cita.profesionalesDisponibles.includes(idProfesional) &&
           (fecha == fechaActual
             ? cita.fecha === fecha && cita.hora >= horaActual
-            : cita.fecha === fecha)
+            : cita.fecha === fecha) &&
+          !turnos.some(
+            (turno) =>
+              turno.fechaCita === cita.fecha && turno.horaCita === cita.hora
+          )
       );
 
       let citaHora = [];
@@ -178,10 +200,11 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
-  traerPrimerProfesional: async (listaProfesionales) => {
+  traerPrimerProfesional: async (listaProfesionales, turnos = []) => {
     if (config.useMockData) {
       const horaActual = getHoraActual();
       const fechaActual = getFechaActualString();
@@ -189,14 +212,20 @@ const citasService = {
       let idsProfesionales = listaProfesionales.map(
         (profesional) => profesional.id
       );
+
       const citasFiltradas = mockCitas.filter(
         (cita) =>
           idsProfesionales.some((id) =>
             cita.profesionalesDisponibles.includes(id)
           ) &&
           (cita.fecha > fechaActual ||
-            (cita.fecha === fechaActual && cita.hora >= horaActual))
+            (cita.fecha === fechaActual && cita.hora >= horaActual)) &&
+          !turnos.some(
+            (turno) =>
+              turno.fechaCita === cita.fecha && turno.horaCita === cita.hora
+          )
       );
+
       return ordenarHoras(citasFiltradas);
     }
 
@@ -215,10 +244,15 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
-  traerHorasPrimerProfesional: async (fecha, listaProfesionales) => {
+  traerHorasPrimerProfesional: async (
+    fecha,
+    listaProfesionales,
+    turnos = []
+  ) => {
     if (config.useMockData) {
       const horaActual = getHoraActual();
       const fechaActual = getFechaActualString();
@@ -233,7 +267,11 @@ const citasService = {
             cita.profesionalesDisponibles.includes(id) &&
             (fecha == fechaActual
               ? cita.fecha === fecha && cita.hora >= horaActual
-              : cita.fecha === fecha)
+              : cita.fecha === fecha) &&
+            !turnos.some(
+              (turno) =>
+                turno.fechaCita === cita.fecha && turno.horaCita === cita.hora
+            )
         )
       );
 
@@ -268,10 +306,10 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
   traerPorProfesionalFechaHora: async (fecha, idProfesional, hora) => {
-
     if (config.useMockData) {
       return mockCitas.find(
         (cita) =>
@@ -287,7 +325,8 @@ const citasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 };
 

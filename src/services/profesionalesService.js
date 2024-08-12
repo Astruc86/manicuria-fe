@@ -9,15 +9,19 @@ const profesionalesService = {
       return;
     }
 
-    const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/crear`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(profesionalData),
-    });
+    const response = await fetch(
+      `${config.profesionalesApiBaseUrl}/profesionales/crear`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(profesionalData),
+      }
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerTodos: async () => {
@@ -25,11 +29,14 @@ const profesionalesService = {
       return mockProfesionales;
     }
 
-    const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/traer`);
+    const response = await fetch(
+      `${config.profesionalesApiBaseUrl}/profesionales/traer`
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerId: async (id) => {
@@ -37,11 +44,14 @@ const profesionalesService = {
       return mockProfesionales.find((profesional) => profesional.id === id);
     }
 
-    const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/traer/${id}`);
+    const response = await fetch(
+      `${config.profesionalesApiBaseUrl}/profesionales/traer/${id}`
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   borrarId: async (id) => {
@@ -51,13 +61,17 @@ const profesionalesService = {
       return;
     }
 
-    const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/borrar/${id}`, {
-      method: 'DELETE',
-    });
+    const response = await fetch(
+      `${config.profesionalesApiBaseUrl}/profesionales/borrar/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   editar: async (profesionalData) => {
@@ -66,28 +80,37 @@ const profesionalesService = {
       console.log("Editar profesional (mock)");
       return;
     }
-    const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/editar`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(profesionalData),
-    });
+    const response = await fetch(
+      `${config.profesionalesApiBaseUrl}/profesionales/editar`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(profesionalData),
+      }
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerPorServicio: async (idServicio) => {
     if (config.useMockData) {
-      return mockProfesionales.filter((profesional) => profesional.listaServicios.find((servicio) => servicio === idServicio))
+      return mockProfesionales.filter((profesional) =>
+        profesional.listaServicios.find((servicio) => servicio === idServicio)
+      );
     }
 
-    const response = await fetch(`${config.profesionalesApiBaseUrl}/profesionales/traer/servicio/${idServicio}`);
-    if (response.status == 404) return []
+    const response = await fetch(
+      `${config.profesionalesApiBaseUrl}/profesionales/traer/servicio/${idServicio}`
+    );
+    if (response.status == 404) return [];
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 };
 

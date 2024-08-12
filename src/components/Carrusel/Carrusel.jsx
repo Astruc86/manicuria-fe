@@ -1,32 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Carousel } from "react-bootstrap";
 import "./carrusel.css";
-import empresasService from "../../services/empresasService";
+import { useEmpresa } from "../../hooks/useEmpresa";
+import CircularIndeterminate from "../Progress/CircularIndeterminate";
 
 const Carrusel = () => {
-  const [listaCarrusel, setListaCarrusel] = useState([]);
-
-  useEffect(() => {
-    const fetchEmpresa = async () => {
-      try {
-        const result = await empresasService.traerId(1);
-        setListaCarrusel(result.listaCarrusel);
-      } catch (error) {
-        console.error("Error fetching empresas:", error);
-      }
-    };
-
-    fetchEmpresa();
-  }, []);
+  const { listaCarrusel, isLoading, isError } = useEmpresa();
 
   return (
-    <Carousel className="d-flex align-items-center justify-content-center ">
-      {listaCarrusel.map((item) => (
-        <Carousel.Item key={item.id}>
-          <img className="d-block w-100" src={item.url} alt={item.alt} />
-        </Carousel.Item>
-      ))}
-    </Carousel>
+    <>
+      {listaCarrusel?.length > 0 && (
+        <Carousel className="d-flex align-items-center justify-content-center ">
+          {listaCarrusel?.map((item) => (
+            <Carousel.Item key={item.id}>
+              <img className="d-block w-100" src={item.url} alt={item.alt} />
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      )}
+      {isLoading && <CircularIndeterminate></CircularIndeterminate>}
+      {isError && <h1>Error cargando las imágenes</h1>}
+    </>
   );
 };
 

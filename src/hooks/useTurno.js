@@ -6,7 +6,7 @@ import turnosService from "../services/turnosService";
 import { useEffect } from "react";
 
 export function useTurno() {
-  const {    
+  const {
     seleccionDia,
     setSeleccionCita,
     seleccionServicio,
@@ -60,15 +60,38 @@ export function useTurno() {
       }),
   });
 
-  useEffect(() => {    
+  useEffect(() => {
     if (!cita || !seleccionDni) return;
     setSeleccionCita(cita);
     mutate();
   }, [cita]);
 
+  const limpiarQueries = () => {
+    const queryKeysToRemove = [
+      "profesionales",
+      "servicios",
+      "citas",
+      "turnos",
+      "dias",
+      "horarios",
+      "profesional",
+      "cita",
+    ];
+
+    queryKeysToRemove.forEach((key) => {
+      const query = queryClient.getQueryData([key]);
+      if (query) {
+        queryClient.removeQueries({
+          queryKey: [key],
+          exact: true,
+        });
+      }
+    });
+  };
+
   const limpiarTurnoScreen = () => {
     limpiarStepper();
-    queryClient.removeQueries()
+    limpiarQueries();
     reset();
   };
 
