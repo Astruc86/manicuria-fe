@@ -11,7 +11,8 @@ export function useEmpresa() {
   } = useQuery({
     queryKey: ["empresa"],
     queryFn: () => empresasService.traerId(1),
-    enabled: !storedEmpresa
+    enabled: !storedEmpresa,
+    cacheTime: 1000 * 60 * 20
   });
 
   const listaCarrusel = empresa.listaCarrusel;

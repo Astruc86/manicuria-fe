@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import StepperComponent from "../components/stepper/Stepper";
 import Resumen from "../components/resumen/Resumen";
 import "../styles/turnoScreen.css";
@@ -11,6 +11,8 @@ import CircularIndeterminate from "../components/Progress/CircularIndeterminate"
 const TurnoScreen = memo(() => {
   const { activeStep } = useActiveStep();
   const { isError, isLoading, limpiarTurnoScreen, isSuccess } = useTurno();
+  const [showConfirmacion, setShowConfirmacion] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -18,9 +20,31 @@ const TurnoScreen = memo(() => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isLoading) {
+      setShowLoading(true);
+    } else if (isSuccess || isError) {
+      setShowLoading(false);
+      setShowConfirmacion(true);
+    }
+  }, [isLoading, isSuccess, isError]);
+
   return (
     <>
-      {!isError && !isLoading && !isSuccess && (
+      {showLoading && <CircularIndeterminate />}
+      {showConfirmacion && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <MensajeConfirmacionTurno isSuccess={isSuccess} />
+        </Box>
+      )}
+
+      {!isError && !showLoading && !showConfirmacion && (
         <div
           className={`turno-screen ${
             [1, 2, 3].includes(activeStep) ? "split-layout" : ""
@@ -35,19 +59,6 @@ const TurnoScreen = memo(() => {
             </div>
           )}
         </div>
-      )}
-
-      {isLoading && <CircularIndeterminate />}
-      {(isSuccess || isError) && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <MensajeConfirmacionTurno isSuccess={isSuccess} />
-        </Box>
       )}
     </>
   );

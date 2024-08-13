@@ -18,7 +18,7 @@ export const StepperProvider = ({ children }) => {
     setProfesionalSeleccionado(null);
     setSeleccionHorario(null);
     setSeleccionDia(null);
-    setSeleccionCita(null)
+    setSeleccionCita(null);
     setEsPrimerProfesional(false);
     setSeleccionDni(null);
   };

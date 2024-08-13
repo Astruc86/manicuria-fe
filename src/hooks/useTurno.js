@@ -17,6 +17,7 @@ export function useTurno() {
   } = useStepperContext();
   const { agregarTurno } = useTurnosContext();
   const queryClient = useQueryClient();
+  const storedCita = queryClient.getQueryData(["cita"]);
 
   const {
     isLoading,
@@ -30,7 +31,9 @@ export function useTurno() {
         profesionalSeleccionado.id,
         seleccionHorario.hora
       ),
-    enabled: !!seleccionDni,
+    enabled: !!seleccionDni && !storedCita,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   const fetchTurno = () => {
