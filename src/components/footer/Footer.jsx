@@ -38,7 +38,6 @@ export default function Footer() {
           </div>
         </footer>
       )}
-      {isLoading && <CircularIndeterminate />}
       {isError && <h1>Error cargando las redes sociales</h1>}
     </>
   );
