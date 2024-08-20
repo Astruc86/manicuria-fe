@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
-export const IniciarSesionScreen = () => {
+const IniciarSesionScreen = () => {
   const { usuario, setUsuario } = useUsuarioContext();
   const navigate = useNavigate();
 
@@ -32,3 +32,5 @@ export const IniciarSesionScreen = () => {
     </>
   );
 };
+
+export default IniciarSesionScreen;

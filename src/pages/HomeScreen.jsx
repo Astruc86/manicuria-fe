@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Carrusel from "../components/Carrusel/Carrusel";
 
-export const HomeScreen = () => {  
+const HomeScreen = () => {  
   return (
     <>
       <Carrusel></Carrusel>
@@ -16,3 +16,5 @@ export const HomeScreen = () => {
     </>
   );
 };
+
+export default HomeScreen;

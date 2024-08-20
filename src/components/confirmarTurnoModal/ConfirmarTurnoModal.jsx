@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import NumericoInput from "../numericoInput/NumericoInput";
+import { useStepperContext } from "../../context/StepperContext";
 
-export default function ConfirmarTurnoModal({
-  handleClose,
-  open,
-  handleConfirmar,
-}) {
+export default function ConfirmarTurnoModal({ handleClose, open }) {
+  const { setSeleccionDni } = useStepperContext();
   const [dni, setDni] = useState("");
   const [error, setError] = useState(false);
 
@@ -23,17 +20,11 @@ export default function ConfirmarTurnoModal({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (dni.length === 8) {
-      handleConfirmar(dni);
-      handleClose();
-    } else {
+    if (dni.length !== 8) {
       setError(true);
+      return;
     }
-  };
-
-  const handleCancel = () => {
-    setDni("");
-    setError(false);
+    setSeleccionDni(dni);
     handleClose();
   };
 
@@ -46,6 +37,7 @@ export default function ConfirmarTurnoModal({
   return (
     <>
       <Dialog
+        role="dialog"
         open={open}
         onClose={handleDialogClose}
         PaperProps={{
@@ -63,7 +55,9 @@ export default function ConfirmarTurnoModal({
           <NumericoInput value={dni} onChange={handleDniChange} error={error} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancel}>Cancelar</Button>
+          <Button onClick={handleDialogClose} color="inherit">
+            Cancelar
+          </Button>
           <Button type="submit">Confirmar</Button>
         </DialogActions>
       </Dialog>

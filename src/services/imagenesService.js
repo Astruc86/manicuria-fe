@@ -9,15 +9,19 @@ const imagenesService = {
       return;
     }
 
-    const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/crear`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(imagenData),
-    });
+    const response = await fetch(
+      `${config.imagenesApiBaseUrl}/imagenes/crear`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(imagenData),
+      }
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerTodas: async () => {
@@ -27,9 +31,10 @@ const imagenesService = {
 
     const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/traer`);
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerId: async (id) => {
@@ -37,11 +42,14 @@ const imagenesService = {
       return mockImagenes.find((imagen) => imagen.id === id);
     }
 
-    const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/traer/${id}`);
+    const response = await fetch(
+      `${config.imagenesApiBaseUrl}/imagenes/traer/${id}`
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   borrarId: async (id) => {
@@ -51,13 +59,17 @@ const imagenesService = {
       return;
     }
 
-    const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/borrar/${id}`, {
-      method: 'DELETE',
-    });
+    const response = await fetch(
+      `${config.imagenesApiBaseUrl}/imagenes/borrar/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   editar: async (imagenData) => {
@@ -67,15 +79,19 @@ const imagenesService = {
       return;
     }
 
-    const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/editar`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(imagenData),
-    });
+    const response = await fetch(
+      `${config.imagenesApiBaseUrl}/imagenes/editar`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(imagenData),
+      }
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerPorUrl: async (url) => {
@@ -84,11 +100,16 @@ const imagenesService = {
     }
 
     //to do: revisar si el endpoint es correcto
-    const response = await fetch(`${config.imagenesApiBaseUrl}/imagenes/traer/url?url=${encodeURIComponent(url)}`);
+    const response = await fetch(
+      `${config.imagenesApiBaseUrl}/imagenes/traer/url?url=${encodeURIComponent(
+        url
+      )}`
+    );
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 };
 

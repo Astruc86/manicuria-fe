@@ -6,24 +6,24 @@ import {
   useProfesionalSeleccionado,
   useSeleccionDia,
   useActiveStep,
-  useProfesionalViejo,
+  useEsPrimerProfesional,
 } from "../../context/StepperContext";
+import { useDatosResumen } from "../../hooks/useDatosResumen";
 
 const Resumen = () => {
   const { activeStep } = useActiveStep();
   const { seleccionServicio } = useSeleccionServicio();
   const { profesionalSeleccionado } = useProfesionalSeleccionado();
   const { seleccionDia } = useSeleccionDia();
-  const { profesionalViejo } = useProfesionalViejo();
+  const { esPrimerProfesional } = useEsPrimerProfesional();
 
-  const servicio = seleccionServicio?.nombre;
-  const precio = `$${seleccionServicio.precio}`;
-  const duracion = seleccionServicio?.duracion;
-  const profesional =
-    profesionalSeleccionado?.id === 0 || profesionalViejo
-      ? "Por definir"
-      : profesionalSeleccionado?.nombre;
-  const dia = dayjs(seleccionDia).format("DD-MM-YYYY");
+  const { servicio, precio, duracion, dia } = useDatosResumen({
+    tipo: "parcial",
+  });
+
+  const profesional = esPrimerProfesional
+    ? "Por definir"
+    : profesionalSeleccionado?.nombre;
 
   return (
     <div className="resumen">
@@ -45,8 +45,7 @@ const Resumen = () => {
       )}
       {activeStep >= 2 && (
         <p>
-          <span className="bold-text">Profesional:</span>{" "}
-          {profesional}
+          <span className="bold-text">Profesional:</span> {profesional}
         </p>
       )}
       {activeStep >= 3 && (

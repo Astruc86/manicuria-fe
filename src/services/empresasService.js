@@ -20,7 +20,8 @@ const empresasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   borrarId: async (id) => {
@@ -39,7 +40,8 @@ const empresasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   editar: async (empresaData) => {
@@ -60,7 +62,8 @@ const empresasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerId: async (id) => {
@@ -73,10 +76,12 @@ const empresasService = {
     const response = await fetch(
       `${config.empresasApiBaseUrl}/empresas/traer/${id}`
     );
+    if (response.status == 404) return null;
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerLogo: async (idEmpresa) => {
@@ -90,12 +95,14 @@ const empresasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerCarrusel: async (idEmpresa) => {
     if (config.useMockData) {
-      return mockEmpresas.find((empresa) => empresa.id === idEmpresa).listaCarrusel;
+      return mockEmpresas.find((empresa) => empresa.id === idEmpresa)
+        .listaCarrusel;
     }
 
     const response = await fetch(
@@ -104,7 +111,8 @@ const empresasService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 };
 

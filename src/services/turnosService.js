@@ -50,23 +50,11 @@ const ordenarTurnosPorFechaYHora = (turnos) => {
 };
 
 const turnosService = {
-  crear: async (turnoData, agregarTurno, generarId) => {
+  crear: async (turnoData) => {
     if (config.useMockData) {
-      const idNuevo = generarId();
-      const turnoNuevo = {
-        fechaCita: turnoData.cita.fecha,
-        horaCita: turnoData.cita.hora,
-        nombreServicio: turnoData.servicio.nombre,
-        duracionServicio: turnoData.servicio.duracion,
-        precioServicio: turnoData.servicio.precio,
-        nombreProfesional: turnoData.profesional.nombre,
-        dni: turnoData.dni,
-        id: idNuevo,
-      };
-      agregarTurno(turnoNuevo);
       return;
     }
-    
+
     const turnoNuevo = {
       idCita: turnoData.cita.id,
       idServicio: turnoData.servicio.id,
@@ -82,18 +70,25 @@ const turnosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
+
   },
 
-  traerTodos: async () => {
+  traerTodos: async (turnosContext) => {
     if (config.useMockData) {
-      return ordenarTurnos(mockTurnos);
+      //TODO: cuando se agregue login con dni, descomentar la siguiente linea y borrar la que le sigue
+      //const turnos = turnosContext.concat(turnosContext);
+      const turnos = turnosContext;
+
+      return ordenarTurnos(turnos);
     }
 
     const response = await fetch(`${config.turnosApiBaseUrl}/turnos/traer`);
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   traerId: async (id) => {
@@ -107,7 +102,8 @@ const turnosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   borrarId: async (id) => {
@@ -126,7 +122,8 @@ const turnosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
   editar: async (turnoData) => {
@@ -144,22 +141,29 @@ const turnosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 
-  traerPorDni: async (dni) => {
+  traerPorDni: async (dni, turnosContext) => {
     if (config.useMockData) {
       const turnosDni = mockTurnos.filter((turno) => turno.dni == dni);
-      return ordenarTurnos(turnosDni);
+      const turnosContextDni = turnosContext.filter(
+        (turno) => turno.dni == dni
+      );
+      const turnos = turnosDni.concat(turnosContextDni);
+      return ordenarTurnos(turnos);
     }
 
     const response = await fetch(
       `${config.turnosApiBaseUrl}/turnos/traer/dni/${dni}`
     );
+    if (response.status == 404) return [];
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    return response.json();
+    const data = await response.json();
+    return data;
   },
 };
 

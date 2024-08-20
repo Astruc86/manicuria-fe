@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import { useStepperContext } from "../../context/StepperContext";
-import data from "../../json/profesionales.json";
+import React from "react";
 import "./profesional-item.css";
-import profesionalesService from "../../services/profesionalesService";
+import CircularIndeterminate from "../Progress/CircularIndeterminate";
+import { useProfesionales } from "../../hooks/useProfesionales";
 
 const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
   const className = isSelected
@@ -20,52 +19,41 @@ const ProfesionalItem = ({ profesional, handleClick, isSelected }) => {
 
 const ProfesionalList = () => {
   const {
+    profesionales,
     profesionalSeleccionado,
-    setProfesionalSeleccionado,
-    seleccionServicio,
-    setListaProfesionalesBE,
-  } = useStepperContext();
-  const [profesionales, setProfesionales] = React.useState([]);
-
-  useEffect(() => {
-    const fetchProfesionales = async () => {
-      try {
-        const result = await profesionalesService.traerPorServicio(
-          seleccionServicio.id
-        );
-        const primerProfesional = {
-          id: 0,
-          nombre: "Primer profesional disponible",
-          listaServicios: [],
-        };
-        setProfesionales([primerProfesional, ...result]);
-        setListaProfesionalesBE(result);
-      } catch (error) {
-        console.error("Error fetching profesionales:", error);
-      }
-    };
-
-    fetchProfesionales();
-  }, []);
-
-  const handleClick = (profesional) => {
-    setProfesionalSeleccionado(profesional);
-  };
+    isError,
+    isLoading,
+    seleccionarProfesional
+  } = useProfesionales();
 
   return (
-    <div className="profesional-list">
-      {profesionales.map((profesional, index) => (
-        <ProfesionalItem
-          key={index}
-          profesional={profesional}
-          handleClick={handleClick}
-          isSelected={
-            profesionalSeleccionado &&
-            profesional.id === profesionalSeleccionado.id
-          }
-        />
-      ))}
-    </div>
+    <>
+      {profesionales.length > 0 && (
+        <div className="profesional-list">
+          {profesionales.map((profesional, index) => (
+            <ProfesionalItem
+              key={index}
+              profesional={profesional}
+              handleClick={seleccionarProfesional}
+              isSelected={
+                profesionalSeleccionado &&
+                profesional.id === profesionalSeleccionado.id
+              }
+            />
+          ))}
+        </div>
+      )}
+      {isLoading && <CircularIndeterminate />}
+      {!isError && !isLoading && profesionales.length === 0 && (
+        <h1>No hay profesionales disponibles.</h1>
+      )}
+      {isError && (
+        <h1>
+          Error cargando los profesionales. Por favor, intente de nuevo más
+          tarde.
+        </h1>
+      )}
+    </>
   );
 };
 

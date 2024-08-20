@@ -2,47 +2,51 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import ConfirmarTurnoModal from "../confirmarTurnoModal/ConfirmarTurnoModal";
 import * as React from "react";
 import useModal from "../../hooks/useModal";
+import ServicioList from "../servicioItem/ServicioItem";
+import ProfesionalList from "../profesionalList/ProfesionalList";
+import Calendar from "../calendar/Calendar";
+import HorarioList from "../horaSeleccion/HorarioList";
+import ResumenFinal from "../resumen/ResumenFinal";
+import { BotonSiguiente } from "../botones/BotonSiguiente";
+import { BotonVolver } from "../botones/BotonVolver";
+import { useStepperTurno } from "../../hooks/useStepperTurno";
 
-const StepperComponent = ({
-  steps,
-  activeStep,
-  handleNext,
-  handleBack,
-  handleConfirmar,
-  getStepContent,
-  seleccionServicio,
-  profesionalSeleccionado,
-  seleccionHorario,
-  seleccionDia,
-}) => {
-  const isNextButtonDisabled =
-    (activeStep === 0 && !seleccionServicio) ||
-    (activeStep === 1 && !profesionalSeleccionado) ||
-    (activeStep === 2 && !seleccionDia) ||
-    (activeStep === 3 && !seleccionHorario);
+const StepperComponent = () => {
+  const {
+    steps,
+    activeStep,
+    handleNext,
+    handleBack,
+    isNextButtonDisabled,
+    isLastStep,
+  } = useStepperTurno();
 
-  const isLastStep = activeStep === steps.length - 1;
   const { open, handleOpen, handleClose } = useModal();
 
-  const boton = isLastStep ? (
-    <Button disabled={isNextButtonDisabled} onClick={handleOpen}>
-      CONFIRMAR
-    </Button>
-  ) : (
-    <Button disabled={isNextButtonDisabled} onClick={handleNext}>
-      SIGUIENTE
-    </Button>
-  );
+  const getStepContent = (step) => {
+    switch (step) {
+      case 0:
+        return <ServicioList />;
+      case 1:
+        return <ProfesionalList />;
+      case 2:
+        return <Calendar />;
+      case 3:
+        return <HorarioList />;
+      case 4:
+        return <ResumenFinal />;
+      default:
+        return null;
+    }
+  };
 
   const modal = isLastStep && (
     <ConfirmarTurnoModal
       open={open}
       handleClose={handleClose}
-      handleConfirmar={handleConfirmar}
     ></ConfirmarTurnoModal>
   );
 
@@ -58,14 +62,13 @@ const StepperComponent = ({
       <div>
         {getStepContent(activeStep)}
         <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-          <Button
-            color="inherit"
-            disabled={activeStep === 0}
-            onClick={handleBack}
-          >
-            Volver
-          </Button>
-          {boton}
+          <BotonVolver activeStep={activeStep} handleBack={handleBack} />
+          <BotonSiguiente
+            isLastStep={isLastStep}
+            handleOpen={handleOpen}
+            isNextButtonDisabled={isNextButtonDisabled}
+            handleNext={handleNext}
+          />
           {modal}
         </Box>
       </div>

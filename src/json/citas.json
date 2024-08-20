@@ -30,28 +30,28 @@
   {
     "id": 18,
     "hora": "20:30",
-    "fecha": "2024-07-15",
+    "fecha": "2024-08-15",
     "profesionalesDisponibles": [9],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 19,
     "hora": "21:30",
-    "fecha": "2024-07-22",
-    "profesionalesDisponibles": [9],
+    "fecha": "2024-08-22",
+    "profesionalesDisponibles": [16],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 20,
     "hora": "19:30",
-    "fecha": "2024-07-22",
-    "profesionalesDisponibles": [1,9],
+    "fecha": "2024-08-22",
+    "profesionalesDisponibles": [9],
     "profesionalesReservados": [2, 3]
   },
   {
-    "id": 20,
+    "id": 21,
     "hora": "23:30",
-    "fecha": "2024-07-22",
+    "fecha": "2024-08-22",
     "profesionalesDisponibles": [1,5],
     "profesionalesReservados": [2, 3]
   }

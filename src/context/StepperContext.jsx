@@ -8,9 +8,8 @@ export const StepperProvider = ({ children }) => {
   const [profesionalSeleccionado, setProfesionalSeleccionado] = useState(null);
   const [seleccionHorario, setSeleccionHorario] = useState(null);
   const [seleccionDia, setSeleccionDia] = useState(null);
-  const [listaProfesionalesBE, setListaProfesionalesBE] = useState([]);
   const [seleccionCita, setSeleccionCita] = useState(null);
-  const [profesionalViejo, setProfesionalViejo] = useState(null);
+  const [esPrimerProfesional, setEsPrimerProfesional] = useState(false);
   const [seleccionDni, setSeleccionDni] = useState(null);
 
   const limpiarStepper = () => {
@@ -19,8 +18,8 @@ export const StepperProvider = ({ children }) => {
     setProfesionalSeleccionado(null);
     setSeleccionHorario(null);
     setSeleccionDia(null);
-    setListaProfesionalesBE([]);
-    setProfesionalViejo(null);
+    setSeleccionCita(null);
+    setEsPrimerProfesional(false);
     setSeleccionDni(null);
   };
 
@@ -33,19 +32,17 @@ export const StepperProvider = ({ children }) => {
         setSeleccionServicio,
         profesionalSeleccionado,
         setProfesionalSeleccionado,
-        profesionalViejo,
-        setProfesionalViejo,
         seleccionHorario,
         setSeleccionHorario,
         seleccionDia,
         setSeleccionDia,
-        listaProfesionalesBE,
-        setListaProfesionalesBE,
         seleccionDni,
         setSeleccionDni,
         limpiarStepper,
         seleccionCita,
         setSeleccionCita,
+        esPrimerProfesional,
+        setEsPrimerProfesional,
       }}
     >
       {children}
@@ -82,19 +79,15 @@ export const useSeleccionDia = () => {
   return { seleccionDia, setSeleccionDia };
 };
 
-export const useListaProfesionalesBE = () => {
-  const { listaProfesionalesBE, setListaProfesionalesBE } =
-    useContext(StepperContext);
-  return { listaProfesionalesBE, setListaProfesionalesBE };
-};
-
 export const useSeleccionCita = () => {
   const { seleccionCita, setSeleccionCita } = useContext(StepperContext);
   return { seleccionCita, setSeleccionCita };
 };
-export const useProfesionalViejo = () => {
-  const { profesionalViejo, setProfesionalViejo } = useContext(StepperContext);
-  return { profesionalViejo, setProfesionalViejo };
+
+export const useEsPrimerProfesional = () => {
+  const { esPrimerProfesional, setEsPrimerProfesional } =
+    useContext(StepperContext);
+  return { esPrimerProfesional, setEsPrimerProfesional };
 };
 
 export const useSeleccionDni = () => {

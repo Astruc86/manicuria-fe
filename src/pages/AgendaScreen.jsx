@@ -1,3 +1,5 @@
-export const AgendaScreen = () => {
+const AgendaScreen = () => {
   return <>Agenda screen</>;
 };
+
+export default AgendaScreen;

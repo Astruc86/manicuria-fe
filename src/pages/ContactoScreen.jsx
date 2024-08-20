@@ -1,6 +1,6 @@
 import { InformacionContacto } from "../components/informacionContacto/InformacionContacto";
 
-export const ContactoScreen = () => {
+const ContactoScreen = () => {
   return (
     <>
       <h1>Contacto</h1>
@@ -8,3 +8,5 @@ export const ContactoScreen = () => {
     </>
   );
 };
+
+export default ContactoScreen;
