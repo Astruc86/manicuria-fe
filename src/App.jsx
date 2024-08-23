@@ -26,7 +26,8 @@ export const App = () => {
         <Layout />
         <StepperProvider>
           <TurnosProvider>
-            <div className="container">
+            {/* TODO: container */}
+            <div className="">
               <Suspense fallback={<CircularIndeterminate />}>
                 <Routes>
                   <Route path="/home" element={<HomeScreen />} />

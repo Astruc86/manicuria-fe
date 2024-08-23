@@ -7,7 +7,7 @@ export const NavbarCliente = () => {
     <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
       <div className="container-fluid">
         <NavLink to="/home" className="navbar-brand">
-          Manicuría
+          <img src="/img/logo.png" alt="logo"/>
         </NavLink>
         <button
           className="navbar-toggler"

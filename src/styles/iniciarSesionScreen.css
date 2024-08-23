@@ -1,0 +1,98 @@
+.iniciar-sesion {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  .iniciar-sesion section:first-child {
+    background-color: #ffe7dc;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  .iniciar-sesion img {
+    width: 50%;
+    height: auto;
+
+  }
+  
+  
+  .iniciar-sesion section:nth-child(2) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .iniciar-sesion section:nth-child(2) img {
+    display: none;
+  }
+  
+  .iniciar-sesion-img,
+  .iniciar-sesion-form {
+    transition: transform 0.7s ease-in-out; /* Suaviza la transición */
+  }
+  
+  .iniciar-sesion.empresa .iniciar-sesion-img {
+    transform: translateX(100%); /* Desplaza la imagen hacia la derecha */
+  }
+  
+  .iniciar-sesion.empresa .iniciar-sesion-form {
+    transform: translateX(-100%); /* Desplaza el formulario hacia la izquierda */
+  }
+  
+  @media (width <= 500px) {
+    .iniciar-sesion {
+      grid-template-columns: 1fr;
+      background-color: #ffe7dc;
+      height: 100vh;
+    }
+  
+    .iniciar-sesion section:first-child {
+      background-color: transparent;
+     
+      
+    }
+  
+    .iniciar-sesion section:first-child img {
+      padding: 12px;    
+      width: 35%;
+      
+    }
+  
+    .iniciar-sesion section:nth-child(2) {
+      border-top: 1px solid transparent;
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+      background-color: #fff;
+    }
+  
+    .iniciar-sesion-img,
+    .iniciar-sesion-form {
+      transition: transform 0.7s ease-in-out;
+    }
+  
+    .iniciar-sesion.cambiar-posicion .iniciar-sesion-img {
+      transform: translateX(100%);
+    }
+  
+    .iniciar-sesion.cambiar-posicion .iniciar-sesion-form {
+      transform: translateX(100%);
+    }
+  
+    .iniciar-sesion.empresa .iniciar-sesion-img {
+      transform: translateX(0);
+    }
+  
+    .iniciar-sesion.empresa .iniciar-sesion-form {
+      transform: translateX(0);
+    }
+  }
+  

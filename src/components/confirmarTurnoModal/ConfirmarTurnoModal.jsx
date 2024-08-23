@@ -5,7 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import NumericoInput from "../numericoInput/NumericoInput";
+import InputDni from "../inputs/InputDni";
 import { useStepperContext } from "../../context/StepperContext";
 
 export default function ConfirmarTurnoModal({ handleClose, open }) {
@@ -52,7 +52,7 @@ export default function ConfirmarTurnoModal({ handleClose, open }) {
             DNI.
           </DialogContentText>
 
-          <NumericoInput value={dni} onChange={handleDniChange} error={error} />
+          <InputDni value={dni} onChange={handleDniChange} error={error} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} color="inherit">

@@ -76,7 +76,7 @@ const turnosService = {
   traerTodos: async (turnosContext) => {
     if (config.useMockData) {
       //TODO: cuando se agregue login con dni, descomentar la siguiente linea y borrar la que le sigue
-      //const turnos = turnosContext.concat(turnosContext);
+      //const turnos = mockTurnos.concat(turnosContext);
       const turnos = turnosContext;
 
       return ordenarTurnos(turnos);

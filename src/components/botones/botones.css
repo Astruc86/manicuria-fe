@@ -1,0 +1,41 @@
+
+.btn-primario,
+.btn-secundario,
+.btn-terciario {
+
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.btn-primario {
+  background-color: #f7c1c9;
+  color: #1e1e1e;
+  margin-top: 12px;
+  
+  
+
+  &:hover {
+    background-color: #e5a6a9;
+  }
+}
+
+.btn-primario2 {
+  background-color: #F7C1C9;
+  color: #1e1e1e;
+  margin-top: 12px;
+
+  &:hover {
+    background-color: #f9d3d5;
+  }
+}
+
+.btn-terciario {
+    color: #1e1e1e;
+    font-weight: 700;
+    font-size: 0.7em;
+  
+    &:hover {
+      background-color: transparent;
+    }
+  }
