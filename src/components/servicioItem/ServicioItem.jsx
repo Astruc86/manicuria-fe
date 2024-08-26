@@ -11,11 +11,11 @@ const ServicioItem = ({ servicio, handleClick, isSelected }) => {
   return (
     <div className={className} onClick={() => handleClick(servicio)}>
       <div className="servicio-info d-flex justify-content-between">
-        <p>{servicio.nombre}</p>
+        <span>{servicio.nombre}</span>
         <p>{servicio.duracion} min</p>
         <p>${servicio.precio}</p>
       </div>
-      <p>{servicio.descripcion}</p>
+      <p className="descripcion">{servicio.descripcion}</p>
     </div>
   );
 };

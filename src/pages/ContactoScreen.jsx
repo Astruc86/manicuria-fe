@@ -2,10 +2,10 @@ import { InformacionContacto } from "../components/informacionContacto/Informaci
 
 const ContactoScreen = () => {
   return (
-    <>
+    <div className="container">
       <h1>Contacto</h1>
       <InformacionContacto></InformacionContacto>
-    </>
+    </div>
   );
 };
 

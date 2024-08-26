@@ -2,9 +2,10 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import UnpublishedIcon from "@mui/icons-material/Unpublished";
+import { BotonPrimario } from "../botones/BotonPrimario";
 
 const MensajeConfirmacionTurno = ({ isSuccess }) => {
   const navigate = useNavigate();
@@ -28,13 +29,11 @@ const MensajeConfirmacionTurno = ({ isSuccess }) => {
   );
 
   const boton = isSuccess && (
-    <Button variant="contained" onClick={handleMisTurnos}>
-      MIS TURNOS
-    </Button>
+    <BotonPrimario tipo="misTurnos" onClick={handleMisTurnos} />
   );
   return (
     <>
-      <Box sx={{ width: 350, border: "1px solid black", borderRadius: 4 }}>
+      <Box sx={{ width: 350, border: "1px solid #FFA06A", borderRadius: 4 }}>
         <Stack spacing={3} sx={{ padding: 5 }}>
           {icono}
           <h3>{titulo}</h3>

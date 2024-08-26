@@ -4,10 +4,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export const NavbarCliente = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
+    <nav className="navbar navbar-expand-lg ">
       <div className="container-fluid">
         <NavLink to="/home" className="navbar-brand">
-          <img src="/img/logo.png" alt="logo"/>
+          {/* <img src="/img/logo.png" alt="logo"/> */}
+          MIA
         </NavLink>
         <button
           className="navbar-toggler"

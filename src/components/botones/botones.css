@@ -1,19 +1,15 @@
-
 .btn-primario,
 .btn-secundario,
 .btn-terciario {
-
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: #1e1e1e;
 }
 
 .btn-primario {
   background-color: #f7c1c9;
-  color: #1e1e1e;
-  margin-top: 12px;
-  
-  
+  /* margin-top: 12px; */
 
   &:hover {
     background-color: #e5a6a9;
@@ -21,7 +17,7 @@
 }
 
 .btn-primario2 {
-  background-color: #F7C1C9;
+  background-color: #f7c1c9;
   color: #1e1e1e;
   margin-top: 12px;
 
@@ -30,12 +26,18 @@
   }
 }
 
+.btn-secundario {
+  color: #1e1e1e;
+
+  border: 1px solid #f7c1c9;
+  padding-left: 16px;
+  padding-right: 16px;
+}
 .btn-terciario {
-    color: #1e1e1e;
-    font-weight: 700;
-    font-size: 0.7em;
-  
-    &:hover {
-      background-color: transparent;
-    }
+  font-weight: 700;
+  font-size: 0.7em;
+
+  &:hover {
+    background-color: transparent;
   }
+}

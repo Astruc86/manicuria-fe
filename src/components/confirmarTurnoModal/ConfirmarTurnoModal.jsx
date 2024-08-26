@@ -7,6 +7,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import InputDni from "../inputs/InputDni";
 import { useStepperContext } from "../../context/StepperContext";
+import "./confirmarTurnoModal.css";
+import { BotonSecundario } from "../botones/BotonSecundario";
+import { BotonPrimario } from "../botones/BotonPrimario";
 
 export default function ConfirmarTurnoModal({ handleClose, open }) {
   const { setSeleccionDni } = useStepperContext();
@@ -44,9 +47,10 @@ export default function ConfirmarTurnoModal({ handleClose, open }) {
           component: "form",
           onSubmit: handleSubmit,
         }}
+        className="confirmar-turno"
       >
         <DialogTitle>Confirmar Turno</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ pb:1 }}>
           <DialogContentText sx={{ mb: 3 }}>
             Para hacer efectiva la confirmación del turno, por favor ingrese su
             DNI.
@@ -54,11 +58,9 @@ export default function ConfirmarTurnoModal({ handleClose, open }) {
 
           <InputDni value={dni} onChange={handleDniChange} error={error} />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogClose} color="inherit">
-            Cancelar
-          </Button>
-          <Button type="submit">Confirmar</Button>
+        <DialogActions sx={{ display: "flex", justifyContent: "space-between", mt:0, mb:1,px:2}}>
+          <BotonSecundario tipo="cancelar" onClick={handleDialogClose} />
+          <BotonPrimario tipo="confirmar" onClick={handleSubmit}/>
         </DialogActions>
       </Dialog>
     </>

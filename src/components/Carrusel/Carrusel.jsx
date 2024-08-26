@@ -10,15 +10,8 @@ const Carrusel = () => {
 
   return (
     <>
-      {/* <img
-        className=" w-100 prueba"
-        src="/img/carrusel/carrusel-1.png"
-        alt="alt3"
-        
-      /> */}
-
       {listaCarrusel?.length > 0 && (
-        <Carousel className="d-flex align-items-center justify-content-center carrusel ">
+        <Carousel className="d-flex carrusel ">
           {/* {listaCarrusel?.map((item) => (
             <Carousel.Item key={item.id}>
               <img className="d-block w-100" src={item.url} alt={item.alt} />
@@ -27,21 +20,21 @@ const Carrusel = () => {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/img/carrusel/carrusel-1.png"
+              src="/img/carrusel/carrusel (1).svg"
               alt="alt1"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/img/carrusel/carrusel-2.png"
+              src="/img/carrusel/carrusel (2).svg"
               alt="alt1"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/img/carrusel/carrusel-3.png"
+              src="/img/carrusel/carrusel (3).svg"
               alt="alt1"
             />
           </Carousel.Item>

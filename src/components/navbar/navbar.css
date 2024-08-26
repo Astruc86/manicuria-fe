@@ -1,0 +1,23 @@
+.nav-link {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
+
+.navbar {
+  min-height: 60px;
+  border-bottom: 3px solid #f7c1c9;
+}
+
+.navbar.inicio-sesion {
+  border-bottom: none;
+  z-index: 2;
+}
+
+.navbar-nav {
+    column-gap: 16px;
+}

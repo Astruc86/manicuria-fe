@@ -12,8 +12,8 @@
 }
 
 .horario-item-wrapper.selected {
-  background-color: #ffd1af;
-  color: black;
+  background-color: #FFE7DC;
+  /* color: black; */
 }
 .horario-item-wrapper {
   padding: 10px 20px 10px; 
@@ -30,8 +30,8 @@
 }
 
 .horario-item-wrapper.selected {
-  background-color: #ffd1af;
-  color: black;
+  background-color: #FFE7DC;
+  /* color: black; */
 }
 
 /* Estilos responsivos */

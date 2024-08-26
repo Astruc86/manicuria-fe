@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import { useTurno } from "../hooks/useTurno";
 import CircularIndeterminate from "../components/Progress/CircularIndeterminate";
 
-const TurnoScreen = memo(() => {
+const TurnoScreen = () => {
   const { activeStep } = useActiveStep();
   const { isError, isLoading, limpiarTurnoScreen, isSuccess } = useTurno();
   const [showConfirmacion, setShowConfirmacion] = useState(false);
@@ -30,7 +30,7 @@ const TurnoScreen = memo(() => {
   }, [isLoading, isSuccess, isError]);
 
   return (
-    <>
+    <main className="container">
       {showLoading && <CircularIndeterminate />}
       {showConfirmacion && (
         <Box
@@ -45,23 +45,26 @@ const TurnoScreen = memo(() => {
       )}
 
       {!isError && !showLoading && !showConfirmacion && (
-        <div
-          className={`turno-screen ${
-            [1, 2, 3].includes(activeStep) ? "split-layout" : ""
-          }`}
-        >
-          <div className="content">
-            <StepperComponent activeStep={activeStep} />
-          </div>
-          {[1, 2, 3].includes(activeStep) && (
-            <div className="resumen-container">
-              <Resumen />
-            </div>
-          )}
+        // <div
+        //   className={`turno-screen ${
+        //     [1, 2, 3].includes(activeStep) ? "split-layout" : ""
+        //   }`}
+        // >
+        //   <div className="content">
+        //     <StepperComponent activeStep={activeStep} />
+        //   </div>
+        //   {[1, 2, 3].includes(activeStep) && (
+        //     <div className="resumen-container">
+        //       <Resumen />
+        //     </div>
+        //   )}
+        // </div>
+        <div className="content">
+          <StepperComponent activeStep={activeStep} />
         </div>
       )}
-    </>
+    </main>
   );
-});
+};
 
 export default TurnoScreen;

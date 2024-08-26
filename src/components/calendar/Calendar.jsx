@@ -52,8 +52,8 @@ const Calendar = () => {
       },
     },
     "& .Mui-selected": {
-      backgroundColor: "#ffd1af !important",
       color: "#0a0a0a !important",
+      backgroundColor: "#FFE7DC !important",
     },
   };
 
