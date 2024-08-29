@@ -18,17 +18,17 @@
 
 .turnos-confirmados .turno {
     border: 1px solid #ddd;
-    border-top: 2px solid #000; /* Línea negra superior */
-    border-bottom: 2px solid #000; /* Línea negra inferior */
+    border-top: 2px solid #000; 
+    border-bottom: 2px solid #000; 
     overflow: hidden;
 }
 
 .turnos-confirmados .turno.future {
-    background-color: #FFE7DC; /* Verde claro para turnos futuros */
+    background-color: #FFE7DC; 
 }
 
 .turnos-confirmados .turno.past {
-    background-color: #F8F4EE; /* Gris claro para turnos pasados */
+    background-color: #F8F4EE; 
 }
 
 .turnos-confirmados .header {
