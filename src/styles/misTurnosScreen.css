@@ -1,0 +1,88 @@
+.turnos-confirmados {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 2.625rem 14.5rem 1.25rem;
+}
+
+.turnos-confirmados table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.turnos-confirmados th,
+.turnos-confirmados td {
+    padding: 8px;
+}
+
+.turnos-confirmados .turno {
+    border: 1px solid #ddd;
+    border-top: 2px solid #000; /* Línea negra superior */
+    border-bottom: 2px solid #000; /* Línea negra inferior */
+    overflow: hidden;
+}
+
+.turnos-confirmados .turno.future {
+    background-color: #FFE7DC; /* Verde claro para turnos futuros */
+}
+
+.turnos-confirmados .turno.past {
+    background-color: #F8F4EE; /* Gris claro para turnos pasados */
+}
+
+.turnos-confirmados .header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.turnos-confirmados .content {
+    padding: 10px;
+}
+
+.turnos-confirmados .details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.turnos-confirmados .total {
+    display: flex;
+    border-top: 1px dashed #000;
+    padding-top: 10px;
+    font-size: 1.2em;
+    justify-content: space-between;
+}
+
+.turnos-confirmados .total span:first-child {
+    text-align: left;
+}
+
+.turnos-confirmados .total span:last-child {
+    text-align: right;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+    .turnos-confirmados {
+        padding: 1.5rem; /* Ajusta el padding para pantallas más pequeñas */
+    }
+    
+    .turnos-confirmados .details {
+        flex-direction: column; /* Ajusta la dirección del contenido */
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .turnos-confirmados {
+        padding: 1rem; /* Ajusta el padding para pantallas muy pequeñas */
+    }
+    
+    .turnos-confirmados .details {
+        font-size: 0.8em; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
+    }
+}
