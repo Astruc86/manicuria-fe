@@ -45,9 +45,9 @@ const citasService = {
     return data;
   },
 
-  traerTodas: async () => {
+  traerTodos: async (turnosContext) => {
     if (config.useMockData) {
-      return mockCitas;
+      return ordenarTurnos(turnosContext);
     }
 
     const response = await fetch(`${config.citasApiBaseUrl}/citas/traer`);
