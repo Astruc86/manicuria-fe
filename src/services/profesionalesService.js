@@ -24,9 +24,9 @@ const profesionalesService = {
     return data;
   },
 
-  traerTodos: async () => {
+  traerTodos: async (turnosContext) => {
     if (config.useMockData) {
-      return mockProfesionales;
+      return ordenarTurnos(turnosContext);
     }
 
     const response = await fetch(
