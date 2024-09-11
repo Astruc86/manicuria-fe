@@ -7,7 +7,9 @@ export function BotonPrimario({ tipo, onClick, deshabilitado }) {
     siguiente: "SIGUIENTE",
     confirmar: "CONFIRMAR",
     ingresar: "INGRESAR",
-    misTurnos: "MIS TURNOS"
+    misTurnos: "MIS TURNOS",
+    volver: "VOLVER",
+    cerrarSesion: "CERRAR SESIÓN",
   };
   return (
     <Button

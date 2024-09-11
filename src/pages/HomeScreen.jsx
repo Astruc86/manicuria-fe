@@ -2,24 +2,48 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Carrusel from "../components/Carrusel/Carrusel";
 import { BotonPrimario } from "../components/botones/BotonPrimario";
+import "../styles/homeScreen.css";
 
 const HomeScreen = () => {
   return (
     <div className="container-home">
-      <Carrusel></Carrusel>
-      {/* <div className="d-flex justify-content-center mt-5">
-        <Link to="/turno">
-          <BotonPrimario tipo="reservar" className='btn-home'/>
+      <Carrusel />
+
+      <section className="container servicios">
+        <h1>Servicios</h1>
+        <div className="servicios-grid">
+          <aside className="servicio">
+            <img src="/img/servicios_cuidado.svg" alt="Uña saludable" />
+            <h2>Cuidado de uñas</h2>
+            <p>
+              Corte, limado, limpieza y aplicación de aceites nutritivos para un
+              acabado impecable.
+            </p>
+          </aside>
+          <aside className="servicio">
+            <img src="/img/servicios_manicuria.svg" alt="Uña pintada" />
+            <h2>Manicuría</h2>
+            <p>
+              Desde estilos clásicos hasta los más creativos, hacemos que tus
+              uñas sean una obra de arte.
+            </p>
+          </aside>
+          <aside className="servicio">
+            <img
+              src="/img/servicios_pedicuria.svg"
+              alt="Pie recibiendo cuidados"
+            />
+            <h2>Pedicuría</h2>
+            <p>
+              Nuestro servicio de pedicuria incluye exfoliación, masaje y
+              esmaltado, dejando tus pies suaves y bellos.
+            </p>
+          </aside>
+        </div>
+        <Link to="/turno" className="btn-reservar">
+          <BotonPrimario tipo="reservar" />
         </Link>
-      </div> */}
-
-      <h2>Servicios</h2>
-      <div style={{display:"flex", flexDirection:'row', width:'100%'}} className="servicios" >
-        <img src="/img/uñas.jpg" alt="" />
-        <img src="/img/uñas (2).jpg" alt="" />
-        <img src="/img/uñas (1).png" alt="" />
-
-      </div>
+      </section>
     </div>
   );
 };

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Button from "@mui/material/Button";
+import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -8,8 +7,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import InputDni from "../inputs/InputDni";
 import { useStepperContext } from "../../context/StepperContext";
 import "./confirmarTurnoModal.css";
-import { BotonSecundario } from "../botones/BotonSecundario";
 import { BotonPrimario } from "../botones/BotonPrimario";
+import { BotonTerciario } from "../botones/BotonTerciario";
 
 export default function ConfirmarTurnoModal({ handleClose, open }) {
   const { setSeleccionDni } = useStepperContext();
@@ -59,7 +58,7 @@ export default function ConfirmarTurnoModal({ handleClose, open }) {
           <InputDni value={dni} onChange={handleDniChange} error={error} />
         </DialogContent>
         <DialogActions sx={{ display: "flex", justifyContent: "space-between", mt:0, mb:1,px:2}}>
-          <BotonSecundario tipo="cancelar" onClick={handleDialogClose} />
+          <BotonTerciario tipo="cancelar" onClick={handleDialogClose} />
           <BotonPrimario tipo="confirmar" onClick={handleSubmit}/>
         </DialogActions>
       </Dialog>

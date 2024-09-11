@@ -1,11 +1,12 @@
-.mensaje-confirmacion h3,
-.mensaje-confirmacion p {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+.mensaje-confirmacion {
+  width: 350px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
-.mensaje-confirmacion {
-    background-color: pink;
+.mensaje-confirmacion img {
+  width: 70%;
+  height: auto;
+  align-self: center;
 }

@@ -4,6 +4,7 @@ export function BotonTerciario({ tipo, onClick }) {
   const texto = {
     ingresarCliente: "INGRESAR COMO CLIENTE",
     ingresarEmpresa: "INGRESAR COMO EMPRESA",
+    cancelar: "CANCELAR",
   };
   return (
     <Button variant="text" className="btn-terciario" onClick={onClick}>

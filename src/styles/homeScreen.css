@@ -1,0 +1,31 @@
+.container-home {
+  margin: 0;
+  padding: 0;
+}
+
+.servicios {  
+  display: flex;
+  flex-direction: column;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px 50px;
+}
+
+.servicio {
+  display: flex;
+  flex-direction: column;
+}
+
+.servicio img {
+  width: 200px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.btn-reservar {
+  margin-top: 50px;
+  align-self: center;
+}

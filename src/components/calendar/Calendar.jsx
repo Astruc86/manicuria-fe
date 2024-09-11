@@ -73,10 +73,10 @@ const Calendar = () => {
       )}
       {isLoading && <CircularIndeterminate />}
       {isError && (
-        <h1>Error cargando los días. Por favor, intente de nuevo más tarde.</h1>
+        <h3>Error cargando los días. Por favor, intente de nuevo más tarde.</h3>
       )}
       {!isError && !isLoading && fechasDisponibles.length === 0 && (
-        <h1>No hay fechas disponibles.</h1>
+        <h3>No hay fechas disponibles.</h3>
       )}
     </>
   );

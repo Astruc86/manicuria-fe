@@ -45,12 +45,12 @@ const ServicioList = () => {
       )}
       {isLoading && <CircularIndeterminate />}
       {isError && (
-        <h1>
+        <h3>
           Error cargando los servicios. Por favor, intente de nuevo más tarde.
-        </h1>
+        </h3>
       )}
       {!isError && !isLoading && servicios.length === 0 && (
-        <h1>No hay servicios disponibles.</h1>
+        <h3>No hay servicios disponibles.</h3>
       )}
     </>
   );

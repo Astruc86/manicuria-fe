@@ -25,12 +25,12 @@ const MisTurnosScreen = () => {
         })}
       {isLoading && <CircularIndeterminate />}
       {isError && (
-        <h1>
+        <h3>
           Error cargando los turnos. Por favor, intente de nuevo más tarde.
-        </h1>
+        </h3>
       )}
       {!isError && !isLoading && turnos.length === 0 && (
-        <h1>No hay turnos reservados</h1>
+        <h3>No hay turnos reservados</h3>
       )}
     </div>
   );
