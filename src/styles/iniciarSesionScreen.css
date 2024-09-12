@@ -49,18 +49,37 @@
 
 .iniciar-sesion-img,
 .iniciar-sesion-form {
-  transition: transform 0.7s ease-in-out; /* Suaviza la transición */
+  transition: transform 0.7s ease-in-out;
 }
 
-.iniciar-sesion.empresa .iniciar-sesion-img {
-  transform: translateX(100%); /* Desplaza la imagen hacia la derecha */
+.show-client .iniciar-sesion-img {
+  transform: translateX(0);
 }
 
-.iniciar-sesion.empresa .iniciar-sesion-form {
-  transform: translateX(-100%); /* Desplaza el formulario hacia la izquierda */
+.show-client .iniciar-sesion-form {
+  transform: translateX(0);
 }
 
-@media (width <= 500px) {
+.show-company .iniciar-sesion-img {
+  transform: translateX(100%);
+}
+
+.show-company .iniciar-sesion-form {
+  transform: translateX(-100%);
+}
+
+/* Clases para pantallas pequeñas */
+.small-screen .iniciar-sesion-img,
+.small-screen .iniciar-sesion-form {
+  transform: translateX(0);
+}
+
+.small-screen.cambiar-posicion .iniciar-sesion-img,
+.small-screen.cambiar-posicion .iniciar-sesion-form {
+  transform: translateX(100%);
+}
+
+@media (max-width: 500px) {
   .iniciar-sesion {
     grid-template-columns: 1fr;
     background-color: #ffe7dc;
@@ -81,26 +100,5 @@
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
     background-color: #fff;
-  }
-
-  .iniciar-sesion-img,
-  .iniciar-sesion-form {
-    transition: transform 0.7s ease-in-out;
-  }
-
-  .iniciar-sesion.cambiar-posicion .iniciar-sesion-img {
-    transform: translateX(100%);
-  }
-
-  .iniciar-sesion.cambiar-posicion .iniciar-sesion-form {
-    transform: translateX(100%);
-  }
-
-  .iniciar-sesion.empresa .iniciar-sesion-img {
-    transform: translateX(0);
-  }
-
-  .iniciar-sesion.empresa .iniciar-sesion-form {
-    transform: translateX(0);
   }
 }

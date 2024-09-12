@@ -1,8 +1,6 @@
 import * as React from "react";
-import { FormControl, useFormControlContext } from "@mui/base/FormControl";
-import Button from "@mui/material/Button";
+import { FormControl } from "@mui/base/FormControl";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 import { useUsuarioContext } from "../../context/UsuarioContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,14 +8,8 @@ import InputDni from "../inputs/InputDni";
 import { BotonPrimario } from "../botones/BotonPrimario";
 import { BotonTerciario } from "../botones/BotonTerciario";
 
-export const FormIniciarSesion = ({
-  isCliente,
-  setIsCliente,
-  isSwapping,
-  setIsSwapping,
-}) => {
+export const FormIniciarSesion = ({ isCliente, handleClickIniciarComo }) => {
   const { usuario, setUsuario } = useUsuarioContext();
-  // const [isCliente, setIsCliente] = useState(true);
   const navigate = useNavigate();
   const [dni, setDni] = useState("");
   const [error, setError] = useState(false);
@@ -25,47 +17,6 @@ export const FormIniciarSesion = ({
   const handleDniChange = (event) => {
     setError(false);
     setDni(event.target.value);
-  };
-
-  const tipoBoton = !isCliente ? "ingresarCliente" : "ingresarEmpresa";
-
-  const handleClickIniciarComo = () => {
-    setError(false);
-    setDni("");
-    //setIsCliente(!isCliente);
-    const clientWidth = document.documentElement.clientWidth;
-    const clientHeight = document.documentElement.clientHeight;
-
-    console.log(`Ancho del cliente: ${clientWidth}px`);
-    console.log(`Alto del cliente: ${clientHeight}px`);
-
-    if (clientWidth > 500) setIsCliente(!isCliente);
-    // {
-    //   setIsSwapping(true);
-
-    //   setTimeout(() => {
-    //     // Cambiar la posición después de la animación
-    //     setIsCliente(!isCliente);
-    //     setIsSwapping(false);
-    //   }, 450); // Coincide con la duración de la transición (0.7s)
-    // }
-    if (clientWidth <= 500) {
-      setIsSwapping(true);
-
-      setTimeout(() => {
-        // Cambiar la posición después de la animación
-        setIsCliente(!isCliente);
-        setIsSwapping(false);
-      }, 700); // Coincide con la duración de la transición (0.7s)
-    }
-
-    // setIsSwapping(true);
-
-    // setTimeout(() => {
-    //   // Cambiar la posición después de la animación
-    //   setIsCliente(!isCliente);
-    //   setIsSwapping(false);
-    // }, 700); // Coincide con la duración de la transición (0.7s)
   };
 
   const handleClickIngresar = (event) => {
@@ -79,22 +30,21 @@ export const FormIniciarSesion = ({
   };
 
   return (
-    <FormControl defaultValue="" required>
+    <FormControl required>
       <Stack spacing={3}>
         <h1>¡Bienvenido/a!</h1>
         <p>
-          Estás por iniciar sesión como{" "}
-          <strong>{isCliente ? "cliente" : "empresa"}</strong>
+          Estás por iniciar sesión como <strong>{isCliente ? "cliente" : "empresa"}</strong>
         </p>
         <InputDni value={dni} onChange={handleDniChange} error={error} />
 
-        <BotonPrimario
-          tipo="ingresar"
-          onClick={handleClickIngresar}
-        ></BotonPrimario>
+        <BotonPrimario tipo="ingresar" onClick={handleClickIngresar} />
 
-        <hr></hr>
-        <BotonTerciario tipo={tipoBoton} onClick={handleClickIniciarComo} />
+        <hr />
+        <BotonTerciario
+          tipo={isCliente ? "ingresarEmpresa" : "ingresarCliente"}
+          onClick={handleClickIniciarComo}
+        />
       </Stack>
     </FormControl>
   );
