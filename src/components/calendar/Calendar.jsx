@@ -24,7 +24,7 @@ const Calendar = () => {
 
   const seleccionDiaFormateado = seleccionDia ? dayjs(seleccionDia) : null;
 
-  const isDateSelectableMemo = useMemo(() => {
+  const isDateSelectable = useMemo(() => {
     const today = dayjs();
     const maxDate = today.add(30, "day");
     const fechasMap = new Set(
@@ -41,7 +41,7 @@ const Calendar = () => {
   }, [fechasDisponibles]);
 
   const handleDateChange = (date) => {
-    if (isDateSelectableMemo(date)) {
+    if (isDateSelectable(date)) {
       setSeleccionDia(date.format("YYYY-MM-DD"));
     }
   };
@@ -66,7 +66,7 @@ const Calendar = () => {
             displayStaticWrapperAs="desktop"
             value={seleccionDiaFormateado}
             onChange={handleDateChange}
-            shouldDisableDate={(date) => !isDateSelectableMemo(date)}
+            shouldDisableDate={(date) => !isDateSelectable(date)}
             sx={customStyles}
             slots={{ textField: (params) => <TextField {...params} /> }}
           />
