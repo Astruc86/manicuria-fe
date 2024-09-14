@@ -143,11 +143,9 @@ const turnosService = {
 
   traerPorDni: async (dni, turnosContext) => {
     if (config.useMockData) {
-      const turnosDni = mockTurnos.filter((turno) => turno.dni == dni);
-      const turnosContextDni = turnosContext.filter(
+      const turnos = turnosContext.filter(
         (turno) => turno.dni == dni
       );
-      const turnos = turnosDni.concat(turnosContextDni);
       return ordenarTurnos(turnos);
     }
 
