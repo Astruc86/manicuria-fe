@@ -1,14 +1,15 @@
 import * as React from "react";
-import { FormControl, useFormControlContext } from "@mui/base/FormControl";
+import { FormControl } from "@mui/base/FormControl";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import { useUsuarioContext } from "../../context/UsuarioContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUsuario } from "../../hooks/useUsuario";
 
 export const FormIniciarSesion = () => {
-  const { usuario, setUsuario } = useUsuarioContext();
+  const { modificarUsuario } = useUsuario();
+
   const [isCliente, setIsCliente] = useState(true);
   const navigate = useNavigate();
 
@@ -22,7 +23,8 @@ export const FormIniciarSesion = () => {
   };
 
   const handleClickIngresar = () => {
-    setUsuario(isCliente ? 2 : 1);
+    //TODO cambiar el dni por el value del input
+    modificarUsuario({ dni: "123445678", rol: isCliente ? 2 : 1 });
     navigate("/home");
   };
   return (
@@ -31,7 +33,8 @@ export const FormIniciarSesion = () => {
         <Stack spacing={3} sx={{ padding: 5 }}>
           <h2>¡Bienvenido/a!</h2>
           <p>
-            Estás por iniciar sesión como <strong>{isCliente ? "cliente" : "empresa"}</strong>
+            Estás por iniciar sesión como{" "}
+            <strong>{isCliente ? "cliente" : "empresa"}</strong>
           </p>
           <Button variant="contained" onClick={handleClickIngresar}>
             INGRESAR
