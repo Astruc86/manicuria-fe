@@ -1,12 +1,20 @@
 import React, { createContext, useState, useContext } from "react";
 
+export const turnosInitialState =
+  JSON.parse(window.sessionStorage.getItem("turnos")) || [];
+
+export const actualizarLocalStorage = (turnos) => {
+  window.sessionStorage.setItem("turnos", JSON.stringify(turnos));
+};
+
 const TurnosContext = createContext();
 
 export const TurnosProvider = ({ children }) => {
-  const [turnos, setTurnos] = useState([]);
+  const [turnos, setTurnos] = useState(turnosInitialState);
 
   const agregarTurno = (turno) => {
-    const nuevoTurno = crearTurno(turno)
+    const nuevoTurno = crearTurno(turno);
+    actualizarLocalStorage([...turnos, nuevoTurno])
     setTurnos([...turnos, nuevoTurno]);
   };
 
@@ -23,7 +31,7 @@ export const TurnosProvider = ({ children }) => {
       dni: turno.dni,
       id: id,
     };
-    return nuevoTurno
+    return nuevoTurno;
   };
   const generarId = () => {
     const id = turnos ? turnos.length + 1 : 1;
@@ -34,7 +42,7 @@ export const TurnosProvider = ({ children }) => {
     <TurnosContext.Provider
       value={{
         turnos,
-        agregarTurno
+        agregarTurno,
       }}
     >
       {children}
