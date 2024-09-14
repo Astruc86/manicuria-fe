@@ -13,13 +13,12 @@ const AgendaScreen = () => {
 
   return (
     <>
-      <h1>AgendaScreen</h1>
       {isLoading && <CircularIndeterminate />}
       {isError && (
-        <h1>Error cargando los turnos. Por favor, intente de nuevo más tarde.</h1>
+        <h3>Error cargando los turnos. Por favor, intente de nuevo más tarde.</h3>
       )}
       {!isError && !isLoading && turnos.length === 0 && (
-        <h1>No hay turnos reservados</h1>
+        <h3>No hay turnos reservados</h3>
       )}
       <div className="turnos-confirmados">
         {turnos.length > 0 &&
@@ -31,32 +30,32 @@ const AgendaScreen = () => {
               }`}
             >
               <div className="header">
-                <span>
+                <p>
                   {dayjs(turno.fechaCita).format("DD-MM-YYYY")} | {turno.horaCita} hs
-                </span>
+                </p>
               </div>
               <div className="content">
                 <div className="details">
-                  <span>
+                  <p>
                     <strong>Servicio:</strong> {turno.nombreServicio}
-                  </span>
-                  <span>
+                  </p>
+                  <p>
                     <strong>Duración:</strong> {turno.duracionServicio} min
-                  </span>
+                  </p>
                 </div>
                 <div className="details">
-                  <span>
+                  <p>
                     <strong>Profesional:</strong> {turno.nombreProfesional}
-                  </span>
-                  <span>
+                  </p>
+                  <p>
                     <strong>DNI cliente:</strong> {turno.dni}
-                  </span>
+                  </p>
                 </div>
                 <div className="total">
-                  <span>
+                  <p>
                     <strong>TOTAL</strong>
-                  </span>
-                  <span>${turno.precioServicio}</span>
+                  </p>
+                  <p>${turno.precioServicio}</p>
                 </div>
               </div>
             </div>
