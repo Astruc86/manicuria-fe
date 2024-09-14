@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from "react";
 export const turnosInitialState =
   JSON.parse(window.sessionStorage.getItem("turnos")) || [];
 
-export const actualizarLocalStorage = (turnos) => {
+export const actualizarSessionStorage = (turnos) => {
   window.sessionStorage.setItem("turnos", JSON.stringify(turnos));
 };
 
@@ -14,7 +14,7 @@ export const TurnosProvider = ({ children }) => {
 
   const agregarTurno = (turno) => {
     const nuevoTurno = crearTurno(turno);
-    actualizarLocalStorage([...turnos, nuevoTurno])
+    actualizarSessionStorage([...turnos, nuevoTurno])
     setTurnos([...turnos, nuevoTurno]);
   };
 
