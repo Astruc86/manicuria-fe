@@ -70,15 +70,11 @@ const turnosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-
   },
 
   traerTodos: async (turnosContext) => {
     if (config.useMockData) {
-      //TODO: cuando se agregue login con dni, descomentar la siguiente linea y borrar la que le sigue
       const turnos = mockTurnos.concat(turnosContext);
-     
-
       return ordenarTurnos(turnos);
     }
 

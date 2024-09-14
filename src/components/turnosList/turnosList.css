@@ -1,0 +1,46 @@
+.turnos-confirmados {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.turnos-confirmados .turno {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background-color: #ffe7dc;
+}
+
+.turnos-confirmados .turno.past {
+  background-color: #f8f4ee;
+}
+
+.turnos-confirmados .header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.turnos-confirmados .content {
+  padding: 10px;
+}
+
+.turnos-confirmados .details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.turnos-confirmados .total {
+  display: flex;
+  border-top: 1px dashed #000;
+  padding-top: 10px;
+  justify-content: space-between;
+}
+
+@media (width < 768px) {
+  .turnos-confirmados .details {
+    flex-direction: column;
+    margin-bottom: 0px;
+  }
+}
