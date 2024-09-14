@@ -3,9 +3,12 @@
   padding: 0;
 }
 
-.servicios {  
+.servicios { 
+  min-height: auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
+
 }
 
 .servicios-grid {

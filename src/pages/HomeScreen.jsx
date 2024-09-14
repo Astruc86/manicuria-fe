@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import Carrusel from "../components/Carrusel/Carrusel";
 import { BotonPrimario } from "../components/botones/BotonPrimario";
 import "../styles/homeScreen.css";
+import { useUsuarioContext } from "../context/UsuarioContext";
 
 const HomeScreen = () => {
+  //TODO: cambiar cuando se pushee la rama 89 y cuando se este trabajando en la 101
+  const { usuario } = useUsuarioContext();
   return (
     <div className="container-home">
       <Carrusel />
@@ -40,9 +43,11 @@ const HomeScreen = () => {
             </p>
           </aside>
         </div>
-        <Link to="/turno" className="btn-reservar">
-          <BotonPrimario tipo="reservar" />
-        </Link>
+        {usuario != 1 && (
+          <Link to="/turno" className="btn-reservar">
+            <BotonPrimario tipo="reservar" />
+          </Link>
+        )}
       </section>
     </div>
   );
