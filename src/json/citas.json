@@ -37,98 +37,98 @@
   {
     "id": 19,
     "hora": "21:30",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [16],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 20,
     "hora": "19:30",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [9],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 21,
     "hora": "23:30",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 22,
     "hora": "23:30",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 23,
     "hora": "10:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 24,
     "hora": "11:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 25,
     "hora": "12:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 26,
     "hora": "13:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 27,
     "hora": "14:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 28,
     "hora": "15:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 29,
     "hora": "16:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 30,
     "hora": "17:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 31,
     "hora": "18:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   },
   {
     "id": 32,
     "hora": "19:00",
-    "fecha": "2024-08-30",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [1, 5, 9],
     "profesionalesReservados": []
   }
