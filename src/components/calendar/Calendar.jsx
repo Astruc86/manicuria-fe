@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useMemo } from "react";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -13,7 +13,6 @@ import { useCalendario } from "../../hooks/useCalendario";
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
-
 const Calendar = () => {
   const {
     fechasDisponibles,
@@ -23,24 +22,26 @@ const Calendar = () => {
     setSeleccionDia,
   } = useCalendario();
 
-  const [selectedDate, setSelectedDate] = useState(
-    seleccionDia ? dayjs(seleccionDia) : null
-  );
- 
-  const isDateSelectable = (date) => {
+  const seleccionDiaFormateado = seleccionDia ? dayjs(seleccionDia) : null;
+
+  const isDateSelectable = useMemo(() => {
     const today = dayjs();
     const maxDate = today.add(30, "day");
-
-    return (
-      fechasDisponibles.some((f) => f.isSame(date, "day")) &&
-      date.isSameOrAfter(today, "day") &&
-      date.isSameOrBefore(maxDate, "day")
+    const fechasMap = new Set(
+      fechasDisponibles.map((f) => f.format("YYYY-MM-DD"))
     );
-  };
+
+    return (date) => {
+      return (
+        fechasMap.has(date.format("YYYY-MM-DD")) &&
+        date.isSameOrAfter(today, "day") &&
+        date.isSameOrBefore(maxDate, "day")
+      );
+    };
+  }, [fechasDisponibles]);
 
   const handleDateChange = (date) => {
     if (isDateSelectable(date)) {
-      setSelectedDate(date);
       setSeleccionDia(date.format("YYYY-MM-DD"));
     }
   };
@@ -63,7 +64,7 @@ const Calendar = () => {
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
           <StaticDatePicker
             displayStaticWrapperAs="desktop"
-            value={selectedDate}
+            value={seleccionDiaFormateado}
             onChange={handleDateChange}
             shouldDisableDate={(date) => !isDateSelectable(date)}
             sx={customStyles}
