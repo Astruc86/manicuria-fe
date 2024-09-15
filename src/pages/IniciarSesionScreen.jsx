@@ -32,15 +32,13 @@ const IniciarSesionScreen = () => {
     );
 
     if (windowWidth <= 500) {
-      if (iniciarSesionMain) {
-        iniciarSesionMain.classList.add("small-screen");
-        iniciarSesionMain.classList.add("cambiar-posicion");
+      iniciarSesionMain.classList.add("small-screen");
+      iniciarSesionMain.classList.add("cambiar-posicion");
 
-        setTimeout(() => {
-          setIsCliente(!isCliente);
-          iniciarSesionMain.classList.remove("cambiar-posicion");
-        }, 700);
-      }
+      setTimeout(() => {
+        setIsCliente(!isCliente);
+        iniciarSesionMain.classList.remove("cambiar-posicion");
+      }, 700);
     } else {
       const iniciarSesionClassName = isCliente ? "show-company" : "show-client";
       iniciarSesionMain.classList.add(iniciarSesionClassName);

@@ -5,12 +5,14 @@ export function useCambioTamañoPantalla(isCliente) {
 
   const handleResize = () => {
     const iniciarSesionMain = document.querySelector(".iniciar-sesion");
+
+    if (!iniciarSesionMain) return;
+
     const iniciarSesionImg = document.querySelector(".iniciar-sesion-img");
     const iniciarSesionForm = document.querySelector(".iniciar-sesion-form");
     const newWidth = iniciarSesionMain?.offsetWidth;
     setWindowWidth(newWidth);
 
-    if (!iniciarSesionMain) return;
     if (newWidth > 500 && windowWidth > 500) return;
     if (newWidth <= 500 && windowWidth <= 500) return;
 
