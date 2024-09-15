@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import CircularIndeterminate from "../components/Progress/CircularIndeterminate";
 import { TurnosList } from "../components/turnosList/TurnosList";
 import { useUsuarioContext } from "../context/UsuarioContext";
@@ -19,6 +19,10 @@ const MisTurnosScreen = () => {
     navigate("/inicio-sesion");
   };
 
+  const handleNavegaTurnos = () => {
+    navigate("/turno");
+  };
+
   return (
     <div className="container mis-turnos">
       {usuario == 2 ? (
@@ -30,23 +34,29 @@ const MisTurnosScreen = () => {
             </h3>
           )}
           {!isError && !isLoading && turnos.length === 0 && (
-            <h3>No hay turnos reservados</h3>
+            <>
+              <Box className="mensaje-reservar-turnos">
+                <Stack>
+                  <h4>
+                    Aún no tienes turnos reservados. ¡Reserva tu primer turno!
+                  </h4>
+                  <BotonPrimario tipo="reservar" onClick={handleNavegaTurnos} />
+                </Stack>
+              </Box>
+            </>
           )}
           {turnos.length > 0 && <TurnosList turnos={turnos} />}
         </>
       ) : (
-        <div>
-          <Box className="mensaje-sesion">
-            <h3>Para ver tus turnos inicia sesión</h3>
-
-            <Stack spacing={3} sx={{ padding: 5 }}>
-              <BotonPrimario
-                tipo="ingresar"
-                onClick={handleNavegarInicioSesion}
-              />
-            </Stack>
-          </Box>
-        </div>
+        <Box className="mensaje-iniciar-sesion">
+          <Stack>
+            <h4>Para ver tus turnos debes iniciar sesión</h4>
+            <BotonPrimario
+              tipo="ingresar"
+              onClick={handleNavegarInicioSesion}
+            />
+          </Stack>
+        </Box>
       )}
     </div>
   );
