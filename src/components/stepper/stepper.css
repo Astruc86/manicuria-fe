@@ -1,0 +1,40 @@
+.grid-stepper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.grid-stepper.servicios {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+.grid-stepper > div:first-child {
+  /* background-color: antiquewhite; */
+}
+
+.grid-stepper > div:nth-child(2) {
+  /* background-color: rgb(212, 163, 128); */
+}
+ 
+@media (width<=768px) {
+  .grid-stepper {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 16px;
+  }
+}
+
+@media (width<=500px) {
+  .grid-stepper {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+  }
+  .grid-stepper > div:first-child {
+    /* order: 1; */
+  }
+  .grid-stepper > div:nth-child(2) {
+    display: none;
+  }
+}

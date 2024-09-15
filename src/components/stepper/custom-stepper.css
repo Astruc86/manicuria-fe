@@ -1,0 +1,53 @@
+/* Estilos generales para el StepLabel */
+.custom-step-label .MuiStepLabel-label {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #1e1e1e;
+}
+
+/* Estilo cuando el paso está activo */
+.custom-step-label .MuiStepLabel-label.Mui-active {
+  font-weight: 700;
+  color: #1e1e1e;
+}
+
+/* Estilo cuando el paso está completado */
+.custom-step-label .MuiStepLabel-label.Mui-completed {
+  font-weight: 700;
+  color: #1e1e1e;
+}
+
+/* Estilo para el ícono cuando el paso está activo */
+.custom-step-label .MuiStepLabel-iconContainer.Mui-active .MuiStepIcon-text {
+  fill: #fff;
+}
+
+/* Estilo para el ícono cuando el paso está completado */
+.custom-step-label .MuiStepLabel-iconContainer.Mui-completed .MuiSvgIcon-root {
+  color: #fff;
+}
+
+/* Color de la bolita según el estado del paso */
+.custom-step-label .MuiSvgIcon-root {
+  fill: #b0b0b0;
+}
+
+/* Color de la bolita cuando el paso está activo o completado */
+.custom-step-label .MuiStepLabel-iconContainer.Mui-active .MuiSvgIcon-root,
+.custom-step-label .MuiStepLabel-iconContainer.Mui-completed .MuiSvgIcon-root {
+  fill: #1e1e1e;
+}
+
+@media (width <= 500px) {
+  .custom-step-label .MuiStepLabel-label {
+    font-size: 0.6em;
+  }
+  .custom-step-icon {
+    width: 16px;
+    height: 16px;
+  }
+  .custom-step-icon circle {
+    r: 8;
+  }
+}

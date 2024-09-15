@@ -3,6 +3,7 @@ import { useStepperContext } from "../context/StepperContext";
 import citasService from "../services/citasService";
 import dayjs from "dayjs";
 import { useTurnosContext } from "../context/TurnosContext";
+import { useMemo } from "react";
 
 export function useCalendario() {
   const { seleccionDia, setSeleccionDia, profesionalSeleccionado } =
@@ -16,7 +17,8 @@ export function useCalendario() {
       return citasService.traerPrimerProfesional(storedProfesionales, turnos);
     } else {
       return citasService.traerFiltradasDisponiblesPorProfesional(
-        profesionalSeleccionado.id, turnos
+        profesionalSeleccionado.id,
+        turnos
       );
     }
   };
@@ -30,7 +32,9 @@ export function useCalendario() {
     queryFn: fetchFechas,
   });
 
-  const fechasDisponibles = data && data.map((cita) => dayjs(cita.fecha));
+  const fechasDisponibles = useMemo(() => {
+    return data && data.map((cita) => dayjs(cita.fecha));
+  }, [data]);
 
   return {
     fechasDisponibles,
