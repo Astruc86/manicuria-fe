@@ -1,16 +1,18 @@
-import React from "react";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom"
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import UnpublishedIcon from "@mui/icons-material/Unpublished";
+import { useNavigate } from "react-router-dom";
+import { BotonPrimario } from "../botones/BotonPrimario";
+import "./mensajeConfirmacionTurno.css";
 
 const MensajeConfirmacionTurno = ({ isSuccess }) => {
   const navigate = useNavigate();
 
   const handleMisTurnos = () => {
     navigate("/turnos");
+  };
+
+  const handleTurno = () => {
+    navigate("/home");
   };
 
   const titulo = isSuccess
@@ -22,27 +24,25 @@ const MensajeConfirmacionTurno = ({ isSuccess }) => {
     : "Hubo un error al confirmar su turno. Por favor, inténtelo de nuevo más tarde.";
 
   const icono = isSuccess ? (
-    <CheckCircleIcon sx={{ fontSize: 60 }} color="success" />
+    <img src="/img/msj_exito.svg" alt="Gato con corazones" />
   ) : (
-    <UnpublishedIcon sx={{ fontSize: 60 }} color="error" />
+    <img src="/img/msj_error.svg" alt="Gato llorando" />
   );
 
-  const boton = isSuccess && (
-    <Button variant="contained" onClick={handleMisTurnos}>
-      MIS TURNOS
-    </Button>
+  const boton = isSuccess ? (
+    <BotonPrimario tipo="misTurnos" onClick={handleMisTurnos} />
+  ) : (
+    <BotonPrimario tipo="volver" onClick={handleTurno} />
   );
   return (
-    <>
-      <Box sx={{ width: 350, border: "1px solid black", borderRadius: 4 }}>
-        <Stack spacing={3} sx={{ padding: 5 }}>
-          {icono}
-          <h3>{titulo}</h3>
-          <p>{mensaje}</p>
-          {boton}
-        </Stack>
-      </Box>
-    </>
+    <Box className="mensaje-confirmacion ">
+      <Stack spacing={3} sx={{ padding: 5 }}>
+        {icono}
+        <h3>{titulo}</h3>
+        <p>{mensaje}</p>
+        {boton}
+      </Stack>
+    </Box>
   );
 };
 

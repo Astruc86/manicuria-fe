@@ -12,9 +12,34 @@ const CustomNumberInput = styled(TextField)`
   input[type="number"] {
     -moz-appearance: textfield;
   }
+
+  /* Cambiar la fuente del input */
+  .MuiOutlinedInput-input {
+    font-family: "Montserrat", sans-serif;
+  }
+
+  /* Cambiar la fuente del label */
+  .MuiInputLabel-root {
+    font-family: "Montserrat", sans-serif;
+    color: ${(props) => (props.error ? "red" : "#1E1E1E")};
+
+    &.Mui-focused {
+      color: ${(props) => (props.error ? "red" : "#1E1E1E")};
+    }
+  }
+
+  .MuiFormHelperText-root {
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .MuiOutlinedInput-root {
+    &.Mui-focused fieldset {
+      border-color: ${(props) => (props.error ? "red" : "#F7C1C9")};
+    }
+  }
 `;
 
-export default function NumericoInput({ value, onChange, error }) {
+export default function InputDni({ value, onChange, error }) {
   const handleKeyDown = (event) => {
     const { key, ctrlKey, metaKey } = event;
     if (ctrlKey || metaKey) {
@@ -53,7 +78,6 @@ export default function NumericoInput({ value, onChange, error }) {
       helperText={error ? "El DNI debe tener 8 dígitos." : " "}
       label="DNI"
       required
-      autoFocus
       variant="outlined"
       type="number"
       id="outlined-controlled"

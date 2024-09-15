@@ -1,9 +1,8 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import { NavbarCliente } from "./NavbarCliente";
-import { NavbarInicioSesion } from "./NavbarInicioSesion";
 import { NavbarEmpresa } from "./NavbarEmpresa";
 import { useUsuarioContext } from "../../context/UsuarioContext";
+import { NavbarInicioSesion } from "./NavbarInicioSesion";
 
 const Layout = ({ children }) => {
   const location = useLocation();

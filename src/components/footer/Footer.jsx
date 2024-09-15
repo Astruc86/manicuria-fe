@@ -38,7 +38,7 @@ export default function Footer() {
           </div>
         </footer>
       )}
-      {isError && <h1>Error cargando las redes sociales</h1>}
+      {isError && <h3>Error cargando las redes sociales</h3>}
     </>
   );
 }

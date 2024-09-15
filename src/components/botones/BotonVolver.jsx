@@ -1,13 +1,11 @@
-import { Button } from "@mui/material";
+import { BotonSecundario } from "./BotonSecundario";
 
 export function BotonVolver({ activeStep, handleBack }) {
   return (
-    <Button
-      color="inherit"
+    <BotonSecundario
       onClick={handleBack}
-      sx={{ visibility: activeStep === 0 ? "hidden" : "visible" }}
-    >
-      Volver
-    </Button>
+      tipo="volver"
+      visibilidad={activeStep === 0 ? "hidden" : "visible"}
+    />
   );
 }
