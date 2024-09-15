@@ -1,11 +1,31 @@
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #1e1e1e;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .container {
   margin-top: 30px;
-  flex: 1;
   padding: 20px;
+  min-height: 100vh;
 }
+
+h1 {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h2,
+button {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+

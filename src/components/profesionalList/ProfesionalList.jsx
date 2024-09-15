@@ -45,13 +45,13 @@ const ProfesionalList = () => {
       )}
       {isLoading && <CircularIndeterminate />}
       {!isError && !isLoading && profesionales.length === 0 && (
-        <h1>No hay profesionales disponibles.</h1>
+        <h3>No hay profesionales disponibles.</h3>
       )}
       {isError && (
-        <h1>
+        <h3>
           Error cargando los profesionales. Por favor, intente de nuevo más
           tarde.
-        </h1>
+        </h3>
       )}
     </>
   );

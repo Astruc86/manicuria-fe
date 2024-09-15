@@ -17,11 +17,13 @@ export function useEmpresa() {
 
   const listaCarrusel = empresa.listaCarrusel;
   const horarios = empresa.horarios;
+  const logo = empresa.logo;
 
   return {
     empresa,
     listaCarrusel,
     horarios,
+    logo,
     isError,
     isLoading,
   };
