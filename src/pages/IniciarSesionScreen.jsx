@@ -1,5 +1,3 @@
-import * as React from "react";
-import { useUsuarioContext } from "../context/UsuarioContext";
 import { FormIniciarSesion } from "../components/formIniciarSesion/FormIniciarSesion";
 import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
@@ -12,8 +10,6 @@ import { useCambioTamañoPantalla } from "../hooks/useCambioTamañoPantalla";
 
 const IniciarSesionScreen = () => {
   const { rol, cerrarSesion } = useUsuario();
-
-  const { usuario, setUsuario } = useUsuarioContext();
   const [isCliente, setIsCliente] = useState(true);
 
   const { windowWidth } = useCambioTamañoPantalla(isCliente);

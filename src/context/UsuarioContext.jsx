@@ -14,12 +14,13 @@ export const UsuarioProvider = ({ children }) => {
 
   const modificarUsuario = (nuevoUsuario) => {
     if (!nuevoUsuario.dni || !nuevoUsuario.rol) return;
-    actualizarSessionStorage(nuevoUsuario)
+    actualizarSessionStorage(nuevoUsuario);
     setUsuario(nuevoUsuario);
   };
 
   const cerrarSesion = () => {
     setUsuario({ dni: "", rol: 0 });
+    actualizarSessionStorage({ dni: "", rol: 0 });
   };
 
   return (

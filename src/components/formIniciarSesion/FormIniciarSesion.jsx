@@ -1,7 +1,5 @@
-import * as React from "react";
 import { FormControl } from "@mui/base/FormControl";
 import Stack from "@mui/material/Stack";
-import { useUsuarioContext } from "../../context/UsuarioContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputDni from "../inputs/InputDni";
@@ -26,7 +24,6 @@ export const FormIniciarSesion = ({ isCliente, handleClickIniciarComo }) => {
       setError(true);
       return;
     }
-    //TODO cambiar el dni por el value del input
     modificarUsuario({ dni: dni, rol: isCliente ? 2 : 1 });
     navigate("/home");
   };
