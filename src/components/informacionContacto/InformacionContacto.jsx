@@ -26,10 +26,10 @@ export const InformacionContacto = () => {
       )}
       {isLoading && <CircularIndeterminate />}
       {isError && (
-        <h1>
+        <h3>
           Error cargando los datos de la empresa. Por favor, intente de nuevo
           más tarde.
-        </h1>
+        </h3>
       )}
     </>
   );

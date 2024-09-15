@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import Button from "@mui/material/Button";
+import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import NumericoInput from "../numericoInput/NumericoInput";
+import InputDni from "../inputs/InputDni";
 import { useStepperContext } from "../../context/StepperContext";
+import "./confirmarTurnoModal.css";
+import { BotonPrimario } from "../botones/BotonPrimario";
+import { BotonTerciario } from "../botones/BotonTerciario";
 
 export default function ConfirmarTurnoModal({ handleClose, open }) {
   const { setSeleccionDni } = useStepperContext();
@@ -44,21 +46,20 @@ export default function ConfirmarTurnoModal({ handleClose, open }) {
           component: "form",
           onSubmit: handleSubmit,
         }}
+        className="confirmar-turno"
       >
         <DialogTitle>Confirmar Turno</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ pb:1 }}>
           <DialogContentText sx={{ mb: 3 }}>
             Para hacer efectiva la confirmación del turno, por favor ingrese su
             DNI.
           </DialogContentText>
 
-          <NumericoInput value={dni} onChange={handleDniChange} error={error} />
+          <InputDni value={dni} onChange={handleDniChange} error={error} />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogClose} color="inherit">
-            Cancelar
-          </Button>
-          <Button type="submit">Confirmar</Button>
+        <DialogActions sx={{ display: "flex", justifyContent: "space-between", mt:0, mb:1,px:2}}>
+          <BotonTerciario tipo="cancelar" onClick={handleDialogClose} />
+          <BotonPrimario tipo="confirmar" onClick={handleSubmit}/>
         </DialogActions>
       </Dialog>
     </>

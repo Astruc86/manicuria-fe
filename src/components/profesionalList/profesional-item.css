@@ -1,13 +1,9 @@
 /* Estilos base */
-.profesional-item {
+/* .profesional-item {
   font-size: 1.2em;
-}
+} */
 
 .profesional-info p {
-  font-size: 1.2em;
-}
-
-.profesional-detalles {
   font-size: 1.2em;
 }
 
@@ -16,6 +12,7 @@
   margin-bottom: 10px;
   cursor: pointer;
   border: 1px solid #ccc;
+  border-radius: 16px;
 }
 
 .profesional-item-wrapper:hover {
@@ -23,12 +20,12 @@
 }
 
 .profesional-item-wrapper.selected {
-  background-color: #ffd1af;
+  background-color: #FFE7DC;
   color: black;
 }
 
 .profesional-list {
-  padding-top: 30px;
+  /* padding-top: 30px; */
 }
 
 /* Estilos responsivos */
@@ -39,7 +36,7 @@
   }
 
   .profesional-list {
-    padding: 0.625rem 2rem;
+    /* padding: 0.625rem 2rem; */
   }
 }
 
@@ -50,6 +47,6 @@
   }
 
   .profesional-list {
-    padding: 0.625rem 1rem;
+    /* padding: 0.625rem 1rem; */
   }
 }

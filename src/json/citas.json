@@ -2,57 +2,134 @@
   {
     "id": 15,
     "hora": "22:30",
-    "fecha": "2024-08-08",
+    "fecha": "2024-09-08",
     "profesionalesDisponibles": [5],
     "profesionalesReservados": [1, 2, 3]
   },
   {
     "id": 16,
     "hora": "09:30",
-    "fecha": "2024-07-16",
+    "fecha": "2024-09-16",
     "profesionalesDisponibles": [1],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 17,
     "hora": "10:30",
-    "fecha": "2024-07-15",
+    "fecha": "2024-09-28",
     "profesionalesDisponibles": [7],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 18,
     "hora": "08:30",
-    "fecha": "2024-07-15",
+    "fecha": "2024-09-28",
     "profesionalesDisponibles": [2],
-    "profesionalesReservados": [ 3]
+    "profesionalesReservados": [3]
   },
   {
     "id": 18,
     "hora": "20:30",
-    "fecha": "2024-09-15",
+    "fecha": "2024-09-29",
     "profesionalesDisponibles": [9],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 19,
     "hora": "21:30",
-    "fecha": "2024-09-22",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [16],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 20,
     "hora": "19:30",
-    "fecha": "2024-09-22",
+    "fecha": "2024-09-30",
     "profesionalesDisponibles": [9],
     "profesionalesReservados": [2, 3]
   },
   {
     "id": 21,
     "hora": "23:30",
-    "fecha": "2024-09-22",
-    "profesionalesDisponibles": [1,5],
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5],
     "profesionalesReservados": [2, 3]
+  },
+  {
+    "id": 22,
+    "hora": "23:30",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5],
+    "profesionalesReservados": [2, 3]
+  },
+  {
+    "id": 23,
+    "hora": "10:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 24,
+    "hora": "11:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 25,
+    "hora": "12:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 26,
+    "hora": "13:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 27,
+    "hora": "14:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 28,
+    "hora": "15:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 29,
+    "hora": "16:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 30,
+    "hora": "17:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 31,
+    "hora": "18:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
+  },
+  {
+    "id": 32,
+    "hora": "19:00",
+    "fecha": "2024-09-30",
+    "profesionalesDisponibles": [1, 5, 9],
+    "profesionalesReservados": []
   }
 ]

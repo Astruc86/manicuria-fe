@@ -1,0 +1,102 @@
+.container-sesion {
+  min-height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.mensaje-sesion {
+  width: 350px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.iniciar-sesion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.iniciar-sesion section:first-child {
+  background-color: #ffe7dc;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.iniciar-sesion img {
+  width: 50%;
+  height: auto;
+}
+
+.iniciar-sesion section:nth-child(2) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.iniciar-sesion section:nth-child(2) img {
+  display: none;
+}
+
+.iniciar-sesion-img,
+.iniciar-sesion-form {
+  transition: transform 0.7s ease-in-out;
+}
+
+.show-client .iniciar-sesion-img {
+  transform: translateX(0);
+}
+
+.show-client .iniciar-sesion-form {
+  transform: translateX(0);
+}
+
+.show-company .iniciar-sesion-img {
+  transform: translateX(100%);
+}
+
+.show-company .iniciar-sesion-form {
+  transform: translateX(-100%);
+}
+
+/* Clases para pantallas pequeñas */
+.small-screen .iniciar-sesion-img,
+.small-screen .iniciar-sesion-form {
+  transform: translateX(0);
+}
+
+.small-screen.cambiar-posicion .iniciar-sesion-img,
+.small-screen.cambiar-posicion .iniciar-sesion-form {
+  transform: translateX(100%);
+}
+
+.iniciar-sesion.small-screen {
+  grid-template-columns: 1fr;
+  background-color: #ffe7dc;
+  height: 100vh;
+}
+
+.iniciar-sesion.small-screen section:first-child {
+  background-color: transparent;
+}
+
+.iniciar-sesion.small-screen section:first-child img {
+  padding: 12px;
+  width: 35%;
+}
+
+.iniciar-sesion.small-screen section:nth-child(2) {
+  border-top: 1px solid transparent;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  background-color: #fff;
+}

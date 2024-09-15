@@ -1,11 +1,14 @@
 import { InformacionContacto } from "../components/informacionContacto/InformacionContacto";
+import "../styles/contactoScreen.css";
 
 const ContactoScreen = () => {
   return (
-    <>
-      <h1>Contacto</h1>
-      <InformacionContacto></InformacionContacto>
-    </>
+    <div className="container">
+      <header className="contacto">
+        <h1>Contactanos</h1>
+      </header>
+      <InformacionContacto/>
+    </div>
   );
 };
 
