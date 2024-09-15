@@ -6,13 +6,12 @@ import { useMisTurnos } from "../hooks/useMisTurnos";
 import { Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "../styles/misTurnosScreen.css";
+import { BotonPrimario } from "../components/botones/BotonPrimario";
 
 const MisTurnosScreen = () => {
   const { turnos, isLoading, isError } = useMisTurnos();
   //TODO cuando se pushee la rama MIA-101 traer del useUsuarioContext el rol
   const { usuario } = useUsuarioContext();
-  //TODO cuando se pushee la rama MIA-89 cambiar el estilo del botón
-  // <BotonPrimario tipo="ingresar" onClick={handleCerrarSesion} />
 
   const navigate = useNavigate();
 
@@ -41,9 +40,10 @@ const MisTurnosScreen = () => {
             <h3>Para ver tus turnos inicia sesión</h3>
 
             <Stack spacing={3} sx={{ padding: 5 }}>
-              <Button variant="contained" onClick={handleNavegarInicioSesion}>
-                INGRESAR
-              </Button>
+              <BotonPrimario
+                tipo="ingresar"
+                onClick={handleNavegarInicioSesion}
+              />
             </Stack>
           </Box>
         </div>

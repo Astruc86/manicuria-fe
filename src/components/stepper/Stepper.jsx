@@ -13,6 +13,9 @@ import ResumenFinal from "../resumen/ResumenFinal";
 import { BotonSiguiente } from "../botones/BotonSiguiente";
 import { BotonVolver } from "../botones/BotonVolver";
 import { useStepperTurno } from "../../hooks/useStepperTurno";
+import { CustomStepper } from "./CustomStepper";
+import Resumen from "../resumen/Resumen";
+import "./stepper.css";
 
 const StepperComponent = () => {
   const {
@@ -50,28 +53,29 @@ const StepperComponent = () => {
     ></ConfirmarTurnoModal>
   );
 
+  const gridStepper =
+    activeStep == 0 || activeStep == 4
+      ? "grid-stepper servicios"
+      : "grid-stepper";
+
   return (
     <>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label, index) => (
-          <Step key={index}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <div>
-        {getStepContent(activeStep)}
-        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-          <BotonVolver activeStep={activeStep} handleBack={handleBack} />
-          <BotonSiguiente
-            isLastStep={isLastStep}
-            handleOpen={handleOpen}
-            isNextButtonDisabled={isNextButtonDisabled}
-            handleNext={handleNext}
-          />
-          {modal}
-        </Box>
-      </div>
+      <CustomStepper activeStep={activeStep} steps={steps} />
+      <main className={gridStepper}>
+        <div>{getStepContent(activeStep)}</div>
+        <div>{[1, 2, 3].includes(activeStep) && <Resumen />}</div>
+      </main>
+      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+        <BotonVolver activeStep={activeStep} handleBack={handleBack} />
+        <BotonSiguiente
+          isLastStep={isLastStep}
+          handleOpen={handleOpen}
+          isNextButtonDisabled={isNextButtonDisabled}
+          handleNext={handleNext}
+        />
+
+        {modal}
+      </Box>
     </>
   );
 };

@@ -1,4 +1,3 @@
-import React from "react";
 import HorarioItem from "./HorarioItem";
 import "./horario-list.css";
 import CircularIndeterminate from "../Progress/CircularIndeterminate";
@@ -25,12 +24,12 @@ const HorarioList = () => {
 
       {isLoading && <CircularIndeterminate />}
       {isError && (
-        <h1>
+        <h3>
           Error cargando los horarios. Por favor, intente de nuevo más tarde.
-        </h1>
+        </h3>
       )}
       {!isError && !isLoading && horarios.length === 0 && (
-        <h1>No hay horarios disponibles.</h1>
+        <h3>No hay horarios disponibles.</h3>
       )}
     </>
   );

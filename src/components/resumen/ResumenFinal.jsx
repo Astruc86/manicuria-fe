@@ -47,9 +47,9 @@ const ResumenFinal = () => {
 
       {isLoading && <CircularIndeterminate />}
       {isError && (
-        <h1>
+        <h3>
           Error cargando los datos. Por favor, intente de nuevo más tarde.
-        </h1>
+        </h3>
       )}
     </>
   );

@@ -1,15 +1,21 @@
+.footer {
+  background-color: #1e1e1e;
+  color: #fff;
+  height: 200px;
+  align-content: center;
+}
+
 .footer-iconos .icono {
-    width: 50px;
-    height: 200px;
-  }
+  width: 50px;
+  height: 50px;
+  color: #fff;
+
+  /* height: 200px; */
+}
+
+.footer-iconos {
   
-  .footer {
-    background-color: #333;
-    color: #fff;
-    height: 200px;
-  }
-  
-  .footer-iconos{
-    height: 100%;
-    align-items: center;
-  }
+  /* background-color: antiquewhite; */
+  /* height: 100%; */
+  /* align-items: center; */
+}

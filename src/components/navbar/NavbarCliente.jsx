@@ -1,14 +1,21 @@
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useEmpresa } from "../../hooks/useEmpresa";
 
 export const NavbarCliente = () => {
+  const { logo } = useEmpresa();
+
   return (
-    <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
+    <nav className="navbar navbar-expand-lg ">
       <div className="container-fluid">
-        <NavLink to="/home" className="navbar-brand">
-          Manicuría
-        </NavLink>
+        {logo ? (
+          <NavLink to="/home" className="navbar-brand">
+            <img src={logo.url} alt={logo.alt} />
+          </NavLink>
+        ) : (
+          "MIA"
+        )}
         <button
           className="navbar-toggler"
           type="button"

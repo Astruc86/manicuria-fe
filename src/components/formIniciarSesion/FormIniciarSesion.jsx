@@ -1,47 +1,51 @@
 import * as React from "react";
-import { FormControl, useFormControlContext } from "@mui/base/FormControl";
-import Button from "@mui/material/Button";
+import { FormControl } from "@mui/base/FormControl";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 import { useUsuarioContext } from "../../context/UsuarioContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import InputDni from "../inputs/InputDni";
+import { BotonPrimario } from "../botones/BotonPrimario";
+import { BotonTerciario } from "../botones/BotonTerciario";
 
-export const FormIniciarSesion = () => {
+export const FormIniciarSesion = ({ isCliente, handleClickIniciarComo }) => {
   const { usuario, setUsuario } = useUsuarioContext();
-  const [isCliente, setIsCliente] = useState(true);
   const navigate = useNavigate();
+  const [dni, setDni] = useState("");
+  const [error, setError] = useState(false);
 
-  const textosBoton = {
-    cliente: "INGRESAR COMO CLIENTE",
-    empresa: "INGRESAR COMO EMPRESA",
+  const handleDniChange = (event) => {
+    setError(false);
+    setDni(event.target.value);
   };
 
-  const handleClickIniciarComo = () => {
-    setIsCliente(!isCliente);
-  };
-
-  const handleClickIngresar = () => {
+  const handleClickIngresar = (event) => {
+    event.preventDefault();
+    if (dni.length !== 8) {
+      setError(true);
+      return;
+    }
     setUsuario(isCliente ? 2 : 1);
     navigate("/home");
   };
+
   return (
-    <FormControl defaultValue="" required>
-      <Box sx={{ width: 370, border: "1px solid black", borderRadius: 4 }}>
-        <Stack spacing={3} sx={{ padding: 5 }}>
-          <h2>¡Bienvenido/a!</h2>
-          <p>
-            Estás por iniciar sesión como <strong>{isCliente ? "cliente" : "empresa"}</strong>
-          </p>
-          <Button variant="contained" onClick={handleClickIngresar}>
-            INGRESAR
-          </Button>
-          <hr></hr>
-          <Button variant="text" onClick={handleClickIniciarComo}>
-            {isCliente ? textosBoton.empresa : textosBoton.cliente}
-          </Button>
-        </Stack>
-      </Box>
+    <FormControl required>
+      <Stack spacing={3}>
+        <h1>¡Bienvenido/a!</h1>
+        <p>
+          Estás por iniciar sesión como <strong>{isCliente ? "cliente" : "empresa"}</strong>
+        </p>
+        <InputDni value={dni} onChange={handleDniChange} error={error} />
+
+        <BotonPrimario tipo="ingresar" onClick={handleClickIngresar} />
+
+        <hr />
+        <BotonTerciario
+          tipo={isCliente ? "ingresarEmpresa" : "ingresarCliente"}
+          onClick={handleClickIniciarComo}
+        />
+      </Stack>
     </FormControl>
   );
 };
