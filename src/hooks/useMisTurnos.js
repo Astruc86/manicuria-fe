@@ -4,14 +4,14 @@ import turnosService from "../services/turnosService";
 
 export function useMisTurnos() {
   const { turnos: turnosContext } = useTurnosContext();
-    
+
   const {
     isLoading,
     isError,
-    data:turnos = [],
+    data: turnos = [],
   } = useQuery({
     queryKey: ["turnos"],
-    queryFn: ()=> turnosService.traerTodos(turnosContext),
+    queryFn: () => turnosService.traerTodos(turnosContext),
   });
 
   return {

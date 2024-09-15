@@ -1,23 +1,5 @@
 .horario-list {
   display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(5, 1fr);
-  border-top: 1px solid black; 
-  border-bottom: 1px solid black; 
-  margin-top: 2rem; 
-}
-
-/* Estilos responsivos */
-@media screen and (max-width: 768px) {
-  .horario-list {
-    grid-template-columns: repeat(3, 1fr);
-    padding: 0.625rem 2rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .horario-list {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0.625rem 1rem;
-  }
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
 }

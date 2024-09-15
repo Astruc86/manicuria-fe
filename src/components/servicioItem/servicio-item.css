@@ -1,13 +1,14 @@
 /* Estilos base */
-.servicio-item {
-  font-size: 1.2em;
+.servicio-info span {
+  font-weight: 600;
+}
+
+.servicio-item-wrapper .descripcion {
+  font-weight: 400;
+  font-style: italic;
 }
 
 .servicio-info p {
-  font-size: 1.2em;
-}
-
-.servicio-detalles {
   font-size: 1.2em;
 }
 
@@ -16,19 +17,19 @@
   margin-bottom: 10px;
   cursor: pointer;
   border: 1px solid #ccc;
-}
+  border-radius: 16px;
 
-.servicio-item-wrapper:hover {
-  background-color: #f0f0f0;
+  &:hover {
+    background-color: #f0f0f0;
+  }
 }
 
 .servicio-item-wrapper.selected {
-  background-color: #ffd1af;
-  color: black;
+  background-color: #ffe7dc;
 }
 
 .servicio-list {
-  padding: 2.625rem 10.5rem 1.25rem;
+  /* padding: 2.625rem 10.5rem 1.25rem; */
 }
 
 /* Estilos responsivos */
@@ -37,9 +38,9 @@
     padding: 15px;
     font-size: 1em;
   }
-  
+
   .servicio-list {
-    padding: 0.625rem 2rem;
+    /* padding: 0.625rem 2rem; */
   }
 }
 
@@ -48,8 +49,8 @@
     padding: 10px;
     font-size: 0.8em;
   }
-  
+
   .servicio-list {
-    padding: 0.625rem 1rem;
+    /* padding: 0.625rem 1rem; */
   }
 }

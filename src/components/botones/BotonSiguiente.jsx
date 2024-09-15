@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { BotonPrimario } from "./BotonPrimario";
 
 export function BotonSiguiente({
   isLastStep,
@@ -7,10 +8,12 @@ export function BotonSiguiente({
   handleNext,
 }) {
   return isLastStep ? (
-    <Button onClick={handleOpen}>CONFIRMAR</Button>
+    <BotonPrimario tipo="confirmar" onClick={handleOpen} />
   ) : (
-    <Button disabled={isNextButtonDisabled} onClick={handleNext}>
-      SIGUIENTE
-    </Button>
+    <BotonPrimario
+      tipo="siguiente"
+      onClick={handleNext}
+      deshabilitado={isNextButtonDisabled}
+    />
   );
 }
