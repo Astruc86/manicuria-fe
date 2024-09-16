@@ -102,3 +102,7 @@
 .small-screen .iniciar-sesion {
   max-width: 500px;
 }
+
+.container-sesion {
+  max-width: 500px;
+}
