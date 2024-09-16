@@ -80,7 +80,7 @@
 .iniciar-sesion.small-screen {
   grid-template-columns: 1fr;
   background-color: #ffe7dc;
-  height: 100vh;
+  min-height: 100dvh;
 }
 
 .iniciar-sesion.small-screen section:first-child {
