@@ -1,5 +1,4 @@
-import React from "react";
-import "./servicio-item.css";
+import "./servicioList.css";
 import CircularIndeterminate from "../Progress/CircularIndeterminate";
 import { useServicios } from "../../hooks/useServicios";
 
@@ -10,10 +9,10 @@ const ServicioItem = ({ servicio, handleClick, isSelected }) => {
 
   return (
     <div className={className} onClick={() => handleClick(servicio)}>
-      <div className="servicio-info d-flex justify-content-between">
-        <span>{servicio.nombre}</span>
-        <p>{servicio.duracion} min</p>
-        <p>${servicio.precio}</p>
+      <div className="servicio-info">
+        <p className="nombre">{servicio.nombre}</p>
+        <p className="duracion">{servicio.duracion} min</p>
+        <p className="precio">${servicio.precio}</p>
       </div>
       <p className="descripcion">{servicio.descripcion}</p>
     </div>
