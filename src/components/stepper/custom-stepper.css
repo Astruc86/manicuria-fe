@@ -41,13 +41,13 @@
 
 @media (width <= 500px) {
   .custom-step-label .MuiStepLabel-label {
-    font-size: 0.6em;
+    font-size: 0.65em;
   }
-  .custom-step-icon {
-    width: 16px;
-    height: 16px;
-  }
-  .custom-step-icon circle {
-    r: 8;
+  .custom-step-label .MuiStepLabel-iconContainer .MuiSvgIcon-root {
+    width: 22px;
+    height: 22px;
+  }  
+  .custom-step-label .MuiStepLabel-iconContainer .MuiSvgIcon-root circle {
+    r: 11; 
   }
 }
