@@ -1,4 +1,4 @@
-const environment = process.env.NODE_ENV || 'development';
+const environment = import.meta.env.VITE_ENVIRONMENT || 'development';
 
 const config = {
   development: {

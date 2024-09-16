@@ -1,22 +1,22 @@
-import { useUsuarioContext } from "../context/UsuarioContext";
 import { FormIniciarSesion } from "../components/formIniciarSesion/FormIniciarSesion";
 import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
+import { useUsuario } from "../hooks/useUsuario";
 import { useState } from "react";
 import "../styles/iniciarSesionScreen.css";
 import { BotonPrimario } from "../components/botones/BotonPrimario";
 import { useCambioTamañoPantalla } from "../hooks/useCambioTamañoPantalla";
 
 const IniciarSesionScreen = () => {
-  const { usuario, setUsuario } = useUsuarioContext();
+  const { rol, cerrarSesion } = useUsuario();
   const [isCliente, setIsCliente] = useState(true);
 
   const { windowWidth } = useCambioTamañoPantalla(isCliente);
   const navigate = useNavigate();
 
   const handleCerrarSesion = () => {
-    setUsuario(0);
+    cerrarSesion();
     navigate("/path/home");
   };
 
@@ -48,7 +48,7 @@ const IniciarSesionScreen = () => {
 
   return (
     <div className="container-sesion">
-      {usuario === 0 ? (
+      {rol === 0 ? (
         <main className="iniciar-sesion">
           <section className="iniciar-sesion-img">
             {isCliente ? (
