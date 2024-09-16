@@ -81,7 +81,8 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr;
   background-color: #ffe7dc;
-  height: 100svh;
+  height: auto;
+  max-height: 100dvh;
   overflow: hidden;
 
 }
