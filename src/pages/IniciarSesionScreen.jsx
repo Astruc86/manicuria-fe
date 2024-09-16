@@ -46,6 +46,11 @@ const IniciarSesionScreen = () => {
     }
   };
 
+  const estilosMensajeCerrarSesion = {
+    width: "350px",
+    textAlign: "center",
+  };
+
   return (
     <div className="container-sesion">
       {usuario === 0 ? (
@@ -71,7 +76,7 @@ const IniciarSesionScreen = () => {
           </section>
         </main>
       ) : (
-        <Box className="mensaje-sesion">
+        <Box sx={estilosMensajeCerrarSesion}>
           <Stack spacing={3} sx={{ padding: 5 }}>
             <h2>Ya iniciaste sesión</h2>
             <BotonPrimario tipo="cerrarSesion" onClick={handleCerrarSesion} />

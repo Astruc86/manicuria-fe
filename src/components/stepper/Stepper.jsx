@@ -1,9 +1,5 @@
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import Box from "@mui/material/Box";
 import ConfirmarTurnoModal from "../confirmarTurnoModal/ConfirmarTurnoModal";
-import * as React from "react";
 import useModal from "../../hooks/useModal";
 import ServicioList from "../servicioItem/ServicioItem";
 import ProfesionalList from "../profesionalList/ProfesionalList";

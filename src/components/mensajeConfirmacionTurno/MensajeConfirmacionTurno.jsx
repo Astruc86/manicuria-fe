@@ -23,10 +23,10 @@ const MensajeConfirmacionTurno = ({ isSuccess }) => {
     ? "Puede ver los detalles de sus turnos haciendo clic aquí."
     : "Hubo un error al confirmar su turno. Por favor, inténtelo de nuevo más tarde.";
 
-  const icono = isSuccess ? (
-    <img src="/img/msj_exito.svg" alt="Gato con corazones" />
+  const img = isSuccess ? (
+    <img src="/img/msj_exito.svg" alt="Gato con corazones" className="mensaje-confirmacion-img" />
   ) : (
-    <img src="/img/msj_error.svg" alt="Gato llorando" />
+    <img src="/img/msj_error.svg" alt="Gato llorando" className="mensaje-confirmacion-img"/>
   );
 
   const boton = isSuccess ? (
@@ -34,10 +34,17 @@ const MensajeConfirmacionTurno = ({ isSuccess }) => {
   ) : (
     <BotonPrimario tipo="volver" onClick={handleTurno} />
   );
+
+  const estilosMensajeConfirmacion = {
+    width: "350px",
+    display: "flex",
+    flexDirection: "column",
+  };
+  
   return (
-    <Box className="mensaje-confirmacion ">
+    <Box sx={estilosMensajeConfirmacion}>
       <Stack spacing={3} sx={{ padding: 5 }}>
-        {icono}
+        {img}
         <h3>{titulo}</h3>
         <p>{mensaje}</p>
         {boton}

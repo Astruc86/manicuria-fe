@@ -1,11 +1,4 @@
-.mensaje-confirmacion {
-  width: 350px;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-}
-
-.mensaje-confirmacion img {
+.mensaje-confirmacion-img {
   width: 70%;
   height: auto;
   align-self: center;
