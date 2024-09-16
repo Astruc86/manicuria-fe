@@ -6,7 +6,7 @@ const AgendaScreen = () => {
   const { turnos, isLoading, isError } = useAgenda();
 
   return (
-    <>
+    <div className="container">
       {isLoading && <CircularIndeterminate />}
       {isError && (
         <h3>
@@ -17,7 +17,7 @@ const AgendaScreen = () => {
         <h3>No hay turnos reservados</h3>
       )}
       {turnos.length > 0 && <TurnosList turnos={turnos} />}
-    </>
+    </div>
   );
 };
 

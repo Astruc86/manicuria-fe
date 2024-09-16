@@ -1,17 +1,16 @@
 import { Box } from "@mui/material";
 import CircularIndeterminate from "../components/Progress/CircularIndeterminate";
 import { TurnosList } from "../components/turnosList/TurnosList";
-import { useUsuarioContext } from "../context/UsuarioContext";
 import { useMisTurnos } from "../hooks/useMisTurnos";
 import { Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "../styles/misTurnosScreen.css";
 import { BotonPrimario } from "../components/botones/BotonPrimario";
+import { useUsuario } from "../hooks/useUsuario";
 
 const MisTurnosScreen = () => {
   const { turnos, isLoading, isError } = useMisTurnos();
-  //TODO cuando se pushee la rama MIA-101 traer del useUsuarioContext el rol
-  const { usuario } = useUsuarioContext();
+  const { rol } = useUsuario();
 
   const navigate = useNavigate();
 
@@ -24,9 +23,9 @@ const MisTurnosScreen = () => {
   };
 
   return (
-    <div className="container mis-turnos">
-      {usuario == 2 ? (
-        <>
+    <>
+      {rol == 2 ? (
+        <div className="container">
           {isLoading && <CircularIndeterminate />}
           {isError && (
             <h3>
@@ -34,7 +33,7 @@ const MisTurnosScreen = () => {
             </h3>
           )}
           {!isError && !isLoading && turnos.length === 0 && (
-            <>
+            <div className="container mis-turnos">
               <Box className="mensaje-reservar-turnos">
                 <Stack>
                   <h4>
@@ -43,22 +42,24 @@ const MisTurnosScreen = () => {
                   <BotonPrimario tipo="reservar" onClick={handleNavegaTurnos} />
                 </Stack>
               </Box>
-            </>
+            </div>
           )}
           {turnos.length > 0 && <TurnosList turnos={turnos} />}
-        </>
+        </div>
       ) : (
-        <Box className="mensaje-iniciar-sesion">
-          <Stack>
-            <h4>Para ver tus turnos debes iniciar sesión</h4>
-            <BotonPrimario
-              tipo="ingresar"
-              onClick={handleNavegarInicioSesion}
-            />
-          </Stack>
-        </Box>
+        <div className="container mis-turnos">
+          <Box className="mensaje-iniciar-sesion">
+            <Stack>
+              <h4>Para ver tus turnos debes iniciar sesión</h4>
+              <BotonPrimario
+                tipo="ingresar"
+                onClick={handleNavegarInicioSesion}
+              />
+            </Stack>
+          </Box>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
