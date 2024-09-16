@@ -66,6 +66,7 @@
 }
 
 /* Clases para pantallas pequeñas */
+
 .small-screen .iniciar-sesion-img,
 .small-screen .iniciar-sesion-form {
   transform: translateX(0);
@@ -98,3 +99,6 @@
   background-color: #fff;
 }
 
+.small-screen .iniciar-sesion {
+  max-width: 500px;
+}
