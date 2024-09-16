@@ -2,8 +2,10 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  min-height: 100dvh;
+}
 
+.cerrar-sesion {
+  min-height: 100dvh;
 }
 
 .mensaje-sesion {

@@ -75,12 +75,14 @@ const IniciarSesionScreen = () => {
           </section>
         </main>
       ) : (
+        <div className="cerrar-sesion">
         <Box sx={estilosMensajeCerrarSesion}>
           <Stack spacing={3} sx={{ padding: 5 }}>
             <h2>Ya iniciaste sesión</h2>
             <BotonPrimario tipo="cerrarSesion" onClick={handleCerrarSesion} />
           </Stack>
         </Box>
+        </div>
       )}
     </div>
   );
