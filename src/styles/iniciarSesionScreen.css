@@ -98,3 +98,8 @@
   border-top-right-radius: 32px;
   background-color: #fff;
 }
+
+.iniciar-sesion.small-screen {
+  overflow: hidden;
+}
+

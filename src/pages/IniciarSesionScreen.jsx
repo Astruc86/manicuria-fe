@@ -36,12 +36,8 @@ const IniciarSesionScreen = () => {
       iniciarSesionMain.classList.add("cambiar-posicion");
       setTimeout(() => {
         setIsCliente(!isCliente);
-        
         iniciarSesionMain.classList.remove("cambiar-posicion");
-        window.dispatchEvent(new Event("resize"));
-
       }, 700);
-      
     } else {
       const iniciarSesionClassName = isCliente ? "show-company" : "show-client";
       iniciarSesionMain.classList.add(iniciarSesionClassName);
