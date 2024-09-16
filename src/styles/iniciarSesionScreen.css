@@ -13,7 +13,7 @@
 .iniciar-sesion {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
 }
 
@@ -66,7 +66,13 @@
 }
 
 /* Clases para pantallas pequeñas */
-
+@media(width<=500px) {
+  .container-sesion {
+    height: 100dvh;
+    overflow: hidden;
+  }
+  
+}
 .small-screen .iniciar-sesion-img,
 .small-screen .iniciar-sesion-form {
   transform: translateX(0);
@@ -81,10 +87,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr;
   background-color: #ffe7dc;
-  height: auto;
-  max-height: 100dvh;
-  overflow: hidden;
-
+  
 }
 
 .iniciar-sesion.small-screen section:first-child {
