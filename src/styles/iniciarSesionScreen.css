@@ -1,6 +1,5 @@
 .container-sesion {
   min-height: 100vh;
-  width: 100%;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -20,7 +19,6 @@
 
 .iniciar-sesion section:first-child {
   background-color: #ffe7dc;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
