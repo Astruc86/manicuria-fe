@@ -1,5 +1,5 @@
 .container-sesion {
-  min-height: 100vh;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -81,8 +81,9 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr;
   background-color: #ffe7dc;
-  min-height: auto;
-  height: 100dvh;
+  height: 100svh;
+  overflow: hidden;
+
 }
 
 .iniciar-sesion.small-screen section:first-child {
@@ -102,6 +103,5 @@
 }
 
 .iniciar-sesion.small-screen {
-  overflow: hidden;
 }
 
