@@ -64,5 +64,15 @@ export function useCambioTamañoPantalla(isCliente) {
     };
   }, [windowWidth, isCliente]);
 
+  useEffect(() => {
+    const iniciarSesionMain = document.querySelector(".iniciar-sesion");
+    if (!iniciarSesionMain) return;
+    const newWidth = iniciarSesionMain?.offsetWidth;
+    iniciarSesionMain.classList.add(isCliente ? "show-client" : "show-company");
+    iniciarSesionMain.classList.add(
+      newWidth <= 500 ? "small-screen" : "show-client"
+    );
+  }, []);
+
   return { windowWidth };
 }
