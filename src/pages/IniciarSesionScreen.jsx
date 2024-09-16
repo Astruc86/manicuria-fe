@@ -37,8 +37,12 @@ const IniciarSesionScreen = () => {
       setTimeout(() => {
         setIsCliente(!isCliente);
         iniciarSesionMain.classList.remove("cambiar-posicion");
-      }, 700);
+        iniciarSesionMain.style.display = "none";
+        iniciarSesionMain.offsetHeight; // Forzar el reflow
+        iniciarSesionMain.style.display = "block";
+        window.dispatchEvent(new Event("resize"));
 
+      }, 700);
     } else {
       const iniciarSesionClassName = isCliente ? "show-company" : "show-client";
       iniciarSesionMain.classList.add(iniciarSesionClassName);
