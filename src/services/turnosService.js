@@ -70,12 +70,12 @@ const turnosService = {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-
   },
 
   traerTodos: async (turnosContext) => {
     if (config.useMockData) {
-      return ordenarTurnos(turnosContext);
+      const turnos = mockTurnos.concat(turnosContext);
+      return ordenarTurnos(turnos);
     }
 
     const response = await fetch(`${config.turnosApiBaseUrl}/turnos/traer`);
@@ -143,11 +143,7 @@ const turnosService = {
 
   traerPorDni: async (dni, turnosContext) => {
     if (config.useMockData) {
-      const turnosDni = mockTurnos.filter((turno) => turno.dni == dni);
-      const turnosContextDni = turnosContext.filter(
-        (turno) => turno.dni == dni
-      );
-      const turnos = turnosDni.concat(turnosContextDni);
+      const turnos = turnosContext.filter((turno) => turno.dni == dni);
       return ordenarTurnos(turnos);
     }
 

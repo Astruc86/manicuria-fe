@@ -1,0 +1,19 @@
+.mensaje-iniciar-sesion,
+.mensaje-reservar-turnos {
+  width: 400px;
+  text-align: center;
+}
+
+.mensaje-reservar-turnos {
+  width: 450px;
+}
+
+.mensaje-iniciar-sesion h4,
+.mensaje-reservar-turnos h4 {
+  padding-bottom: 16px;
+}
+
+.container.mis-turnos {
+  display: flex;
+  justify-content: center;
+}
