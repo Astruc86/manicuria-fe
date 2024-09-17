@@ -6,13 +6,7 @@ export function CustomStepper({ activeStep, steps }) {
     <Stepper activeStep={activeStep} alternativeLabel>
       {steps?.map((label, index) => (
         <Step key={index}>
-          <StepLabel
-            className="custom-step-label"
-            active={activeStep === index}
-            completed={activeStep > index}
-          >
-            {label}
-          </StepLabel>
+          <StepLabel className="custom-step-label">{label}</StepLabel>
         </Step>
       ))}
     </Stepper>
