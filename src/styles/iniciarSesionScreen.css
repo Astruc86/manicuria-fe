@@ -92,9 +92,9 @@
   height: 100dvh;
   overflow-x: hidden;
   min-height: 100dvh; /* Se cambia de height a min-height */
-  /* overflow-y: auto; 
+  overflow-y: auto; 
   overscroll-behavior: contain; 
-  scroll-behavior: smooth; */
+  scroll-behavior: smooth;
 }
 
 .iniciar-sesion.small-screen section:first-child {
