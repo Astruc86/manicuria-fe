@@ -21,7 +21,7 @@
 .iniciar-sesion {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 }
 
@@ -87,9 +87,10 @@
 
 .iniciar-sesion.small-screen {
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: minmax(100px, auto) minmax(200px, auto);
+  
   background-color: #ffe7dc;
-  height: 100dvh;
+  /* height: 100dvh; */
   overflow-x: hidden;
   min-height: 100dvh; /* Se cambia de height a min-height */
   overflow-y: auto; 
