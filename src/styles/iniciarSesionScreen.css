@@ -94,15 +94,21 @@
   background-color: #ffe7dc;
   /* height: 100dvh; */
   overflow-x: hidden;
-  height: 100%;
-  min-height: 100dvh; /* Se cambia de height a min-height */
+  /* height: 100%;
+  min-height: 100dvh;
   overflow-y: auto; 
   overscroll-behavior: contain; 
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; */
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh; /* Altura mínima dinámica de la pantalla */
+  height: auto;
 }
 
 .iniciar-sesion.small-screen section:first-child {
   background-color: transparent;
+  flex: 1;
 }
 
 .iniciar-sesion.small-screen section:first-child img {
@@ -117,5 +123,5 @@
   border-top-right-radius: 32px;
   background-color: #fff;
   justify-content: flex-start;
-  flex: 1;
+  flex: 2;
 }
