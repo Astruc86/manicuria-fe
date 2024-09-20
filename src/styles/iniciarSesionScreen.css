@@ -87,7 +87,7 @@
 
 .iniciar-sesion.small-screen {
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(100px, auto) minmax(200px, auto);
+  grid-auto-rows: auto;
   
   background-color: #ffe7dc;
   /* height: 100dvh; */
