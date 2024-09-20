@@ -91,6 +91,10 @@
   background-color: #ffe7dc;
   height: 100dvh;
   overflow: hidden;
+  min-height: 100dvh; /* Se cambia de height a min-height */
+  overflow-y: auto; /* Permitir scroll solo si es necesario */
+  overscroll-behavior: contain; /* Evitar rebotes en el scroll */
+  scroll-behavior: smooth; /* Hacer el desplazamiento suave */
 }
 
 .iniciar-sesion.small-screen section:first-child {
