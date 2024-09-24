@@ -1,0 +1,62 @@
+.servicio-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.servicio-item-wrapper .descripcion {
+  font-style: italic;
+}
+
+.servicio-info .nombre {
+  font-weight: 600;
+}
+
+.servicio-item-wrapper {
+  padding: 27px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.servicio-item-wrapper.selected {
+  background-color: #ffe7dc;
+}
+
+/* Estilos responsivos */
+@media (width <= 768px) {
+  .servicio-item-wrapper {
+    padding: 15px;
+  }
+}
+
+@media (width <= 480px) {
+  .servicio-item-wrapper {
+    padding: 10px;
+  }
+  .servicio-info .nombre {
+    grid-area: nombre;
+  }
+  .servicio-info .precio {
+    grid-area: precio;
+  }
+  .servicio-info .duracion {
+    grid-area: duracion;
+    text-align: end;
+  }
+  .servicio-info .descripcion {
+    grid-area: descripcion;
+  }
+
+  .servicio-info {
+    display: grid;
+    grid-template-areas:
+      "nombre nombre"
+      "precio duracion";
+  }
+}

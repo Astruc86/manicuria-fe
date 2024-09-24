@@ -1,13 +1,20 @@
 .container-sesion {
-  min-height: 100vh;
-  width: 100%;
   align-items: center;
   justify-content: center;
   display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.cerrar-sesion {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100dvh;
 }
 
 .mensaje-sesion {
-  width:  350px;
+  width: 350px;
   text-align: center;
 }
 
@@ -20,7 +27,6 @@
 
 .iniciar-sesion section:first-child {
   background-color: #ffe7dc;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,6 +74,7 @@
 }
 
 /* Clases para pantallas pequeñas */
+
 .small-screen .iniciar-sesion-img,
 .small-screen .iniciar-sesion-form {
   transform: translateX(0);
@@ -79,18 +86,35 @@
 }
 
 .iniciar-sesion.small-screen {
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column; /* Alinea los elementos verticalmente */
+  /* justify-content: space-between; */
+  /* justify-content: space-evenly; */
+  
   background-color: #ffe7dc;
-  height: 100vh;
+  /* height: 100dvh; */
+  overflow-x: hidden;
+  /* height: 100%;
+  min-height: 100dvh;
+  overflow-y: auto; 
+  overscroll-behavior: contain; 
+  scroll-behavior: smooth; */
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh; /* Altura mínima dinámica de la pantalla */
+  height: auto;
 }
 
 .iniciar-sesion.small-screen section:first-child {
   background-color: transparent;
+  flex: 1;
 }
 
 .iniciar-sesion.small-screen section:first-child img {
   padding: 12px;
   width: 35%;
+  
 }
 
 .iniciar-sesion.small-screen section:nth-child(2) {
@@ -98,4 +122,6 @@
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   background-color: #fff;
+  justify-content: flex-start;
+  flex: 2;
 }

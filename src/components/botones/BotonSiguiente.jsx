@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { BotonPrimario } from "./BotonPrimario";
 
 export function BotonSiguiente({

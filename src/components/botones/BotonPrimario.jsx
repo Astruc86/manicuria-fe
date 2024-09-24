@@ -1,6 +1,5 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
-import "./botones.css";
+
 export function BotonPrimario({ tipo, onClick, deshabilitado }) {
   const texto = {
     reservar: "RESERVAR TURNO",
@@ -11,10 +10,20 @@ export function BotonPrimario({ tipo, onClick, deshabilitado }) {
     volver: "VOLVER",
     cerrarSesion: "CERRAR SESIÓN",
   };
+  const estilosBtnPrimario = {
+    fontFamily: 'Lato, sans-serif',
+    fontWeight: 400,
+    fontStyle: 'normal',
+    color: '#1e1e1e',
+    backgroundColor: '#f7c1c9',
+    '&:hover': {
+      backgroundColor: '#e5a6a9',
+    },
+  };
   return (
     <Button
       variant="contained"
-      className="btn-primario"
+      sx={estilosBtnPrimario}
       onClick={onClick}
       disabled={deshabilitado}
     >

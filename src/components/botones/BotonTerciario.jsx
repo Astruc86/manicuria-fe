@@ -6,8 +6,18 @@ export function BotonTerciario({ tipo, onClick }) {
     ingresarEmpresa: "INGRESAR COMO EMPRESA",
     cancelar: "CANCELAR",
   };
+  const estilosBtnTerciario = {
+    fontFamily: "Lato, sans-serif",
+    fontWeight: 700,
+    fontSize: "0.7em",
+    color: "#1e1e1e",
+    backgroundColor: "transparent",
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  };
   return (
-    <Button variant="text" className="btn-terciario" onClick={onClick}>
+    <Button variant="text" sx={estilosBtnTerciario} onClick={onClick}>
       {texto[tipo]}
     </Button>
   );

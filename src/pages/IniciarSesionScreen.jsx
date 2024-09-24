@@ -34,7 +34,6 @@ const IniciarSesionScreen = () => {
     if (windowWidth <= 500) {
       iniciarSesionMain.classList.add("small-screen");
       iniciarSesionMain.classList.add("cambiar-posicion");
-
       setTimeout(() => {
         setIsCliente(!isCliente);
         iniciarSesionMain.classList.remove("cambiar-posicion");
@@ -44,6 +43,11 @@ const IniciarSesionScreen = () => {
       iniciarSesionMain.classList.add(iniciarSesionClassName);
       setIsCliente(!isCliente);
     }
+  };
+
+  const estilosMensajeCerrarSesion = {
+    width: "350px",
+    textAlign: "center",
   };
 
   return (
@@ -71,12 +75,14 @@ const IniciarSesionScreen = () => {
           </section>
         </main>
       ) : (
-        <Box className="mensaje-sesion">
+        <div className="cerrar-sesion">
+        <Box sx={estilosMensajeCerrarSesion}>
           <Stack spacing={3} sx={{ padding: 5 }}>
             <h2>Ya iniciaste sesión</h2>
             <BotonPrimario tipo="cerrarSesion" onClick={handleCerrarSesion} />
           </Stack>
         </Box>
+        </div>
       )}
     </div>
   );
