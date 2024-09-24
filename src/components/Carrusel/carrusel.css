@@ -1,8 +1,31 @@
 .carrusel {
-    max-height: calc(100vh - 80px);
-  }
-  
-  .carrusel img {
-    width: 100%;
-    height: 100%;
-  }
+  max-height: calc(100vh - 80px);
+}
+
+.carrusel img {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-item-custom {
+  transition: background-color 0.5s ease;
+}
+
+.carousel-item-custom.loading {
+  background-color: #f7c1c9;
+}
+
+.loading-background {
+  background-color: #f7c1c9;
+  width: 100%;
+  height: 50vw; 
+}
+
+.carousel-image {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-item-custom:not(.loading) .carousel-image {
+  opacity: 1;
+}

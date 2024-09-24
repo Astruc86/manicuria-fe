@@ -4,7 +4,6 @@ import Footer from "./components/footer/Footer";
 import "./index.css";
 import { StepperProvider } from "./context/StepperContext";
 import { TurnosProvider } from "./context/TurnosContext";
-
 import Layout from "./components/navbar/Layout";
 import { UsuarioProvider } from "./context/UsuarioContext";
 import CircularIndeterminate from "./components/Progress/CircularIndeterminate";
@@ -18,7 +17,6 @@ const AgendaScreen = lazy(() => import("./pages/AgendaScreen"));
 
 export const App = () => {
   const location = useLocation();
-  const mostrarFooter = location.pathname === "/turno";
 
   return (
     <>
@@ -32,18 +30,15 @@ export const App = () => {
                 <Route path="/turno" element={<TurnoScreen />} />
                 <Route path="/contacto" element={<ContactoScreen />} />
                 <Route path="/turnos" element={<MisTurnosScreen />} />
-                <Route
-                  path="/inicio-sesion"
-                  element={<IniciarSesionScreen />}
-                />
+                <Route path="/inicio-sesion" element={<IniciarSesionScreen />} />
                 <Route path="/agenda" element={<AgendaScreen />} />
                 <Route path="/*" element={<Navigate to="/home" />} />
               </Routes>
+              {location.pathname !== "/turno" && <Footer />}
             </Suspense>
           </TurnosProvider>
         </StepperProvider>
       </UsuarioProvider>
-      {!mostrarFooter && <Footer />}
     </>
   );
 };
