@@ -92,7 +92,7 @@
   },
   {
     "id": 14,
-    "hora": "16:00",
+    "hora": "16:30",
     "fecha": "2024-09-24",
     "profesionalesDisponibles": [3, 7, 2, 9, 4, 8, 6],
     "profesionalesReservados": [10, 5, 1]
@@ -288,7 +288,7 @@
   },
   {
     "id": 42,
-    "hora": "09:00",
+    "hora": "09:30",
     "fecha": "2024-11-07",
     "profesionalesDisponibles": [7, 6, 1, 3, 8, 2, 4, 10, 9, 5],
     "profesionalesReservados": []
