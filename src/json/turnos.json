@@ -2,41 +2,71 @@
   {
     "id": 1,
     "fechaCita": "2024-09-19",
-    "horaCita": "05:00",
-    "nombreServicio": "Manicura",
+    "horaCita": "17:00",
+    "nombreServicio": "Manicura Básica",
     "duracionServicio": 30,
-    "precioServicio": 25.0,
-    "nombreProfesional": "Ana",
-    "dni": "12345678"
-  },
-  {
-    "id": 4,
-    "fechaCita": "2024-07-19",
-    "horaCita": "09:00",
-    "nombreServicio": "Manicura",
-    "duracionServicio": 30,
-    "precioServicio": 25.0,
-    "nombreProfesional": "Ana",
-    "dni": "12345678"
+    "precioServicio": 15000,
+    "nombreProfesional": "Laura Díaz",
+    "dni": "45230741"
   },
   {
     "id": 2,
-    "fechaCita": "2024-10-15",
-    "horaCita": "14:30",
-    "nombreServicio": "Pedicura",
+    "fechaCita": "2024-07-19",
+    "horaCita": "10:00",
+    "nombreServicio": "Pedicura Básica",
     "duracionServicio": 30,
-    "precioServicio": 35.0,
-    "nombreProfesional": "Laura",
+    "precioServicio": 18000,
+    "nombreProfesional": "María Gómez",
     "dni": "12345678"
   },
   {
     "id": 3,
     "fechaCita": "2024-10-15",
-    "horaCita": "11:00",
-    "nombreServicio": "Esmaltado",
+    "horaCita": "14:30",
+    "nombreServicio": "Manicura Gel",
     "duracionServicio": 30,
-    "precioServicio": 15.0,
-    "nombreProfesional": "Maria",
+    "precioServicio": 25000,
+    "nombreProfesional": "Carlos Fernández",
+    "dni": "30000123"
+  },
+  {
+    "id": 4,
+    "fechaCita": "2024-10-15",
+    "horaCita": "11:00",
+    "nombreServicio": "Manicura Spa",
+    "duracionServicio": 30,
+    "precioServicio": 30000,
+    "nombreProfesional": "Miguel Ramírez",
     "dni": "22222222"
+  },
+  {
+    "id": 5,
+    "fechaCita": "2024-11-11",
+    "horaCita": "15:00",
+    "nombreServicio": "Tratamiento de Parafina",
+    "duracionServicio": 30,
+    "precioServicio": 28000,
+    "nombreProfesional": "Javier Morales",
+    "dni": "87000000"
+  },
+  {
+    "id": 6,
+    "fechaCita": "2024-09-09",
+    "horaCita": "18:00",
+    "nombreServicio": "Manicura con Acrílico",
+    "duracionServicio": 30,
+    "precioServicio": 45000,
+    "nombreProfesional": "Javier Morales",
+    "dni": "87000000"
+  },
+  {
+    "id": 6,
+    "fechaCita": "2024-09-19",
+    "horaCita": "19:00",
+    "nombreServicio": "Nail Art Avanzado",
+    "duracionServicio": 30,
+    "precioServicio": 40000,
+    "nombreProfesional": "Sofía Torres",
+    "dni": "87000000"
   }
 ]

@@ -1,22 +1,22 @@
 [
   {
     "id": 1,
-    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fimagen1.jpg?alt=media&token=277e5a74-bae7-4c24-ab46-c6ee87ebf661",
+    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fcarrusel_manos.svg?alt=media&token=ebb756c8-17af-4b9c-93c1-db8432e15253",
     "alt": "manos 01"
   },
   {
     "id": 2,
-    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fimagen2.jpg?alt=media&token=49d2bef6-1f29-4c18-8b76-32fba3478799",
+    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fcarrusel_esmaltes.svg?alt=media&token=cb910836-a103-401d-bf19-e1a6ef106fda",
     "alt": "manos 02"
   },
   {
     "id": 3,
-    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fimagen3.jpg?alt=media&token=9d8097db-4656-4b49-b8ed-793a098c7048",
+    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/carousel%2Fcarrusel_pies.svg?alt=media&token=5c445b9e-214d-4114-9de7-b494ca32f21f",
     "alt": "manos 03"
   },
   {
     "id": 4,
-    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/logo%2Flogo.jpg?alt=media&token=ad610bf4-cd71-4ec0-92ec-12c2efb9d794",
+    "url": "https://firebasestorage.googleapis.com/v0/b/manicuria-imagenes.appspot.com/o/logo%2Flogo_mia.svg?alt=media&token=6a1b48d9-1538-432b-99d6-1672c41f7e6e",
     "alt": "logo"
   }
 ]

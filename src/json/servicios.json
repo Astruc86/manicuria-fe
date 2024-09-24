@@ -27,11 +27,46 @@
     "duracion": 30,
     "precio": 30000
   },
-  {    
-    "id": 10,
+  {
+    "id": 5,
     "nombre": "Manicura con Decoración",
-    "descripcion": "Esmalte con diseño artístico. Este servicio contempla el caso en que no hayan citas disponibles para el servicio de Manicura Francesa.", 
+    "descripcion": "Esmalte con diseño artístico.",
     "duracion": 30,
     "precio": 35050
+  },
+  {
+    "id": 6,
+    "nombre": "Pedicura Básica",
+    "descripcion": "Corte, limado y esmaltado de uñas de los pies.",
+    "duracion": 30,
+    "precio": 18000
+  },
+  {
+    "id": 7,
+    "nombre": "Pedicura Spa",
+    "descripcion": "Tratamiento hidratante con masajes para los pies.",
+    "duracion": 30,
+    "precio": 32000
+  },
+  {
+    "id": 8,
+    "nombre": "Nail Art Avanzado",
+    "descripcion": "Diseños artísticos avanzados en las uñas.",
+    "duracion": 30,
+    "precio": 40000
+  },
+  {
+    "id": 9,
+    "nombre": "Tratamiento de Parafina",
+    "descripcion": "Tratamiento hidratante con cera de parafina.",
+    "duracion": 30,
+    "precio": 28000
+  },
+  {
+    "id": 10,
+    "nombre": "Manicura con Acrílico",
+    "descripcion": "Aplicación de uñas acrílicas.",
+    "duracion": 30,
+    "precio": 45000
   }
 ]

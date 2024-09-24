@@ -1,72 +1,72 @@
 [
   {
     "id": 1,
-    "nombre": "Juan",
+    "nombre": "Juan Pérez",
     "dni": "12345678",
     "sueldo": 2000,
     "listaServicios": [1, 2, 3]
   },
   {
     "id": 2,
-    "nombre": "María",
+    "nombre": "María Gómez",
     "dni": "87654321",
     "sueldo": 2500,
     "listaServicios": [1, 4, 6]
   },
   {
     "id": 3,
-    "nombre": "Pedro",
+    "nombre": "Pedro López",
     "dni": "98765432",
     "sueldo": 1800,
     "listaServicios": [1, 5, 7]
   },
   {
     "id": 4,
-    "nombre": "Ana",
+    "nombre": "Ana Martínez",
     "dni": "23456789",
     "sueldo": 3000,
     "listaServicios": [2, 3, 5]
   },
   {
     "id": 5,
-    "nombre": "Carlos",
+    "nombre": "Carlos Fernández",
     "dni": "34567890",
     "sueldo": 2200,
     "listaServicios": [3, 4, 6]
   },
   {
     "id": 6,
-    "nombre": "Luisa",
+    "nombre": "Luisa Sánchez",
     "dni": "45678901",
     "sueldo": 2800,
     "listaServicios": [2, 3]
   },
   {
     "id": 7,
-    "nombre": "Miguel",
+    "nombre": "Miguel Ramírez",
     "dni": "56789012",
     "sueldo": 2400,
     "listaServicios": [2, 4, 6]
   },
   {
     "id": 8,
-    "nombre": "Sofía",
+    "nombre": "Sofía Torres",
     "dni": "67890123",
     "sueldo": 1900,
-    "listaServicios": [2, 5, 7]
+    "listaServicios": [2, 5, 7, 8]
   },
   {
     "id": 9,
-    "nombre": "Laura",
+    "nombre": "Laura Díaz",
     "dni": "78901234",
     "sueldo": 3200,
     "listaServicios": [1, 2]
   },
   {
     "id": 10,
-    "nombre": "Javier",
+    "nombre": "Javier Morales",
     "dni": "89012345",
     "sueldo": 2100,
-    "listaServicios": [10]
+    "listaServicios": [9, 10]
   }
 ]
