@@ -17,6 +17,7 @@ const AgendaScreen = lazy(() => import("./pages/AgendaScreen"));
 
 export const App = () => {
   const location = useLocation();
+  const mostrarFooter = location.pathname !== "/turno" && location.pathname !== "/inicio-sesion"
 
   return (
     <>
@@ -34,7 +35,7 @@ export const App = () => {
                 <Route path="/agenda" element={<AgendaScreen />} />
                 <Route path="/*" element={<Navigate to="/home" />} />
               </Routes>
-              {location.pathname !== "/turno" && <Footer />}
+              {mostrarFooter && <Footer />}
             </Suspense>
           </TurnosProvider>
         </StepperProvider>
