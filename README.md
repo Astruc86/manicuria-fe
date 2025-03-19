@@ -30,7 +30,7 @@ VITE_ENVIRONMENT=development
 ### Frontend
 
 1. Clonar el repositorio
-`git clone [https://github.com/Astruc86/manicuria-fe.git](https://github.com/Astruc86/manicuria-fe.git)`
+`git clone https://github.com/Astruc86/manicuria-fe.git`
 2. Instalar dependencias:
 `npm install`
 3. Ejecutar el proyecto:
@@ -38,7 +38,7 @@ VITE_ENVIRONMENT=development
 
 ### Backend
 1. Clonar el repositorio
-`git clone [https://github.com/lopezsol/manicuria-be.git](https://github.com/lopezsol/manicuria-be.git)`
+`git clone https://github.com/lopezsol/manicuria-be.git`
 2. Crear una base de datos local en MySQL.
 3. Configurar la base de datos en application.properties.
 4. Configurar el archivo .env
